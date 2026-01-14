@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { clsx } from 'clsx';
+import { useFeedback } from '@/hooks/useFeedback';
 
 const navItems = [
   { path: '/', label: 'Home', icon: HomeIcon },
@@ -8,6 +9,8 @@ const navItems = [
 ];
 
 export function BottomNav() {
+  const { tap } = useFeedback();
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-slate-800/95 backdrop-blur-lg border-t border-slate-700 safe-bottom">
       <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
@@ -15,9 +18,10 @@ export function BottomNav() {
           <NavLink
             key={path}
             to={path}
+            onClick={tap}
             className={({ isActive }) =>
               clsx(
-                'flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors',
+                'flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-colors active:scale-95',
                 isActive ? 'text-primary-400' : 'text-slate-400 hover:text-slate-200'
               )
             }

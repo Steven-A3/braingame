@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useFeedback } from '@/hooks/useFeedback';
 
 interface OnboardingProps {
   onComplete: () => void;
@@ -42,16 +43,20 @@ const STEPS = [
 
 export function Onboarding({ onComplete }: OnboardingProps) {
   const [currentStep, setCurrentStep] = useState(0);
+  const feedback = useFeedback();
 
   const handleNext = () => {
+    feedback.tap();
     if (currentStep < STEPS.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
+      feedback.complete();
       onComplete();
     }
   };
 
   const handleSkip = () => {
+    feedback.tap();
     onComplete();
   };
 
