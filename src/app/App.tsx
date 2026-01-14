@@ -8,6 +8,8 @@ import { GamePlayPage } from './routes/GamePlayPage';
 import { Onboarding } from '@/components/onboarding';
 import { DailyWorkout } from '@/components/workout';
 import { Leaderboard } from '@/components/leaderboard';
+import { Settings } from '@/components/settings';
+import { ProgressCharts } from '@/components/charts';
 import { useUserStore } from '@/stores/userStore';
 
 function OnboardingGuard({ children }: { children: React.ReactNode }) {
@@ -35,6 +37,8 @@ export function App() {
           <Route path="/play/:gameId" element={<GamePlayPage />} />
           <Route path="/workout" element={<DailyWorkout />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/progress" element={<ProgressCharts />} />
         </Routes>
       </OnboardingGuard>
     </BrowserRouter>
