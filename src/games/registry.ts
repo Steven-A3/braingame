@@ -13,6 +13,14 @@ export const GAMES: GameInfo[] = [
     duration: '~3 min',
     icon: '🔮',
   },
+  {
+    id: 'card-flip',
+    name: 'Card Flip',
+    category: 'memory',
+    description: 'Match pairs of cards',
+    duration: '~3 min',
+    icon: '🃏',
+  },
 
   // Logic
   {
@@ -33,6 +41,14 @@ export const GAMES: GameInfo[] = [
     duration: '~2 min',
     icon: '🎨',
   },
+  {
+    id: 'target-tracker',
+    name: 'Target Tracker',
+    category: 'focus',
+    description: 'Track multiple moving targets',
+    duration: '~3 min',
+    icon: '🎯',
+  },
 
   // Calculation
   {
@@ -42,6 +58,14 @@ export const GAMES: GameInfo[] = [
     description: 'Solve equations quickly',
     duration: '~3 min',
     icon: '🔢',
+  },
+  {
+    id: 'estimation-station',
+    name: 'Estimation Station',
+    category: 'calculation',
+    description: 'Quick number estimation',
+    duration: '~2 min',
+    icon: '🎲',
   },
 
   // Language

@@ -10,8 +10,11 @@ import { ResultsScreen } from '@/components/game/ResultsScreen';
 
 // Game components (lazy loaded in production, direct imports for simplicity)
 import { PatternEcho } from '@/games/memory/PatternEcho';
+import { CardFlip } from '@/games/memory/CardFlip';
 import { ColorStroop } from '@/games/focus/ColorStroop';
+import { TargetTracker } from '@/games/focus/TargetTracker';
 import { MathSprint } from '@/games/calculation/MathSprint';
+import { EstimationStation } from '@/games/calculation/EstimationStation';
 import { ReflexTap } from '@/games/speed/ReflexTap';
 import { GridDeduction } from '@/games/logic/GridDeduction';
 import { WordMorph } from '@/games/language/WordMorph';
@@ -21,8 +24,11 @@ import { AnagramBlitz } from '@/games/language/AnagramBlitz';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GAME_COMPONENTS: Record<string, React.ComponentType<any>> = {
   'pattern-echo': PatternEcho,
+  'card-flip': CardFlip,
   'color-stroop': ColorStroop,
+  'target-tracker': TargetTracker,
   'math-sprint': MathSprint,
+  'estimation-station': EstimationStation,
   'reflex-tap': ReflexTap,
   'grid-deduction': GridDeduction,
   'word-morph': WordMorph,
