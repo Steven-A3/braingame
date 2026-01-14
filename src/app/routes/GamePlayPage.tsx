@@ -14,6 +14,8 @@ import { PatternEcho } from '@/games/memory/PatternEcho';
 import { ColorStroop } from '@/games/focus/ColorStroop';
 import { MathSprint } from '@/games/calculation/MathSprint';
 import { ReflexTap } from '@/games/speed/ReflexTap';
+import { GridDeduction } from '@/games/logic/GridDeduction';
+import { WordMorph } from '@/games/language/WordMorph';
 
 const GAME_COMPONENTS: Record<string, React.ComponentType<{
   config: GameConfig;
@@ -24,6 +26,8 @@ const GAME_COMPONENTS: Record<string, React.ComponentType<{
   'color-stroop': ColorStroop,
   'math-sprint': MathSprint,
   'reflex-tap': ReflexTap,
+  'grid-deduction': GridDeduction,
+  'word-morph': WordMorph,
 };
 
 export function GamePlayPage() {
