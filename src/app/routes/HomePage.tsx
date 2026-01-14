@@ -95,6 +95,34 @@ export function HomePage() {
         </Link>
       </motion.div>
 
+      {/* Daily Workout & Leaderboard */}
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <Link
+          to="/workout"
+          className="card hover:bg-slate-800/80 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <div className="text-3xl">🏋️</div>
+            <div>
+              <div className="font-semibold">Daily Workout</div>
+              <div className="text-xs text-slate-400">5 curated games</div>
+            </div>
+          </div>
+        </Link>
+        <Link
+          to="/leaderboard"
+          className="card hover:bg-slate-800/80 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <div className="text-3xl">🏆</div>
+            <div>
+              <div className="font-semibold">Leaderboard</div>
+              <div className="text-xs text-slate-400">Your best scores</div>
+            </div>
+          </div>
+        </Link>
+      </div>
+
       {/* Quick Stats */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="card text-center py-4">

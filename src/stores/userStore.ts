@@ -18,6 +18,9 @@ interface UserState {
   // User profile
   name: string;
 
+  // Onboarding
+  hasCompletedOnboarding: boolean;
+
   // Stats
   stats: UserStats;
 
@@ -26,6 +29,11 @@ interface UserState {
 
   // Today's completion status
   completedToday: boolean;
+
+  // Daily workout
+  dailyWorkoutCompleted: boolean;
+  dailyWorkoutGames: string[];
+  dailyWorkoutProgress: number;
 
   // Badge system
   earnedBadges: string[];
@@ -37,6 +45,10 @@ interface UserState {
 
   // Actions
   setName: (name: string) => void;
+  completeOnboarding: () => void;
+  startDailyWorkout: (games: string[]) => void;
+  completeDailyWorkoutGame: (gameId: string) => void;
+  resetDailyWorkout: () => void;
   recordGameResult: (result: GameResult) => void;
   checkStreak: () => void;
   getStreakStatus: () => {
@@ -65,6 +77,7 @@ export const useUserStore = create<UserState>()(
   persist(
     (set, get) => ({
       name: '',
+      hasCompletedOnboarding: false,
       stats: {
         totalGamesPlayed: 0,
         totalScore: 0,
@@ -76,6 +89,9 @@ export const useUserStore = create<UserState>()(
       },
       gameHistory: [],
       completedToday: false,
+      dailyWorkoutCompleted: false,
+      dailyWorkoutGames: [],
+      dailyWorkoutProgress: 0,
       earnedBadges: [],
       badgeProgress: [],
       newBadges: [],
@@ -84,6 +100,34 @@ export const useUserStore = create<UserState>()(
       playedDates: [],
 
       setName: (name) => set({ name }),
+
+      completeOnboarding: () => set({ hasCompletedOnboarding: true }),
+
+      startDailyWorkout: (games) => set({
+        dailyWorkoutGames: games,
+        dailyWorkoutProgress: 0,
+        dailyWorkoutCompleted: false,
+      }),
+
+      completeDailyWorkoutGame: (gameId) => {
+        const state = get();
+        const gameIndex = state.dailyWorkoutGames.indexOf(gameId);
+        if (gameIndex === -1) return;
+
+        const newProgress = state.dailyWorkoutProgress + 1;
+        const isComplete = newProgress >= state.dailyWorkoutGames.length;
+
+        set({
+          dailyWorkoutProgress: newProgress,
+          dailyWorkoutCompleted: isComplete,
+        });
+      },
+
+      resetDailyWorkout: () => set({
+        dailyWorkoutGames: [],
+        dailyWorkoutProgress: 0,
+        dailyWorkoutCompleted: false,
+      }),
 
       recordGameResult: (result) => {
         const state = get();
@@ -282,7 +326,7 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: 'daily-brain-user',
-      version: 2,
+      version: 3,
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as UserState;
         if (version < 2) {
@@ -300,6 +344,16 @@ export const useUserStore = create<UserState>()(
               perfectGames: 0,
               categoryGames: { ...initialCategoryGames },
             },
+          };
+        }
+        if (version < 3) {
+          // Migrate to version 3 - add onboarding and daily workout
+          return {
+            ...state,
+            hasCompletedOnboarding: state.stats?.totalGamesPlayed > 0, // Existing users skip onboarding
+            dailyWorkoutCompleted: false,
+            dailyWorkoutGames: [],
+            dailyWorkoutProgress: 0,
           };
         }
         return state;
