@@ -13,7 +13,7 @@ interface MathSprintProps {
 
 export function MathSprint({ config, onComplete, onExit }: MathSprintProps) {
   const engineRef = useRef<MathSprintEngine | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [problem, setProblem] = useState<ReturnType<MathSprintEngine['getCurrentProblem']>>(null);
   const [timeRemaining, setTimeRemaining] = useState(0);

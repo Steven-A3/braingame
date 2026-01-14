@@ -13,8 +13,8 @@ interface ReflexTapProps {
 
 export function ReflexTap({ config, onComplete, onExit }: ReflexTapProps) {
   const engineRef = useRef<ReflexTapEngine | null>(null);
-  const delayTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const timeoutTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const delayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timeoutTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [target, setTarget] = useState<ReturnType<ReflexTapEngine['getCurrentTarget']>>(null);
   const [waiting, setWaiting] = useState(false);

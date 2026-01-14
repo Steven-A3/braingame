@@ -2,7 +2,6 @@ import { useState, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGameInfo } from '@/games/registry';
-import { getDailyChallenge } from '@/services/dailyContent';
 import { calculateDifficulty } from '@/games/core/DifficultySystem';
 import { getGameSeed } from '@/games/core/SeededRNG';
 import { useUserStore } from '@/stores/userStore';
