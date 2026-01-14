@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { GameResult } from '@/games/core/types';
+import type { GameResult, GameCategory } from '@/games/core/types';
+import type { BadgeProgress, Badge } from '@/services/badges';
+import { BADGES, calculateBadgeProgress, checkNewBadges } from '@/services/badges';
 
 interface UserStats {
   totalGamesPlayed: number;
@@ -8,6 +10,8 @@ interface UserStats {
   currentStreak: number;
   longestStreak: number;
   lastPlayDate: string | null;
+  perfectGames: number;
+  categoryGames: Record<GameCategory, number>;
 }
 
 interface UserState {
@@ -17,11 +21,19 @@ interface UserState {
   // Stats
   stats: UserStats;
 
-  // Game history (last 30 days)
+  // Game history (last 100 results)
   gameHistory: GameResult[];
 
   // Today's completion status
   completedToday: boolean;
+
+  // Badge system
+  earnedBadges: string[];
+  badgeProgress: BadgeProgress[];
+  newBadges: Badge[];
+  hasShared: boolean;
+  hasInstalledPWA: boolean;
+  playedDates: string[];
 
   // Actions
   setName: (name: string) => void;
@@ -32,9 +44,22 @@ interface UserState {
     isActive: boolean;
     daysUntilLost: number;
   };
+  markShared: () => void;
+  markPWAInstalled: () => void;
+  clearNewBadges: () => void;
+  getBadgeProgress: (badgeId: string) => BadgeProgress | undefined;
 }
 
 const getToday = () => new Date().toISOString().split('T')[0];
+
+const initialCategoryGames: Record<GameCategory, number> = {
+  memory: 0,
+  logic: 0,
+  focus: 0,
+  calculation: 0,
+  language: 0,
+  speed: 0,
+};
 
 export const useUserStore = create<UserState>()(
   persist(
@@ -46,9 +71,17 @@ export const useUserStore = create<UserState>()(
         currentStreak: 0,
         longestStreak: 0,
         lastPlayDate: null,
+        perfectGames: 0,
+        categoryGames: { ...initialCategoryGames },
       },
       gameHistory: [],
       completedToday: false,
+      earnedBadges: [],
+      badgeProgress: [],
+      newBadges: [],
+      hasShared: false,
+      hasInstalledPWA: false,
+      playedDates: [],
 
       setName: (name) => set({ name }),
 
@@ -75,19 +108,62 @@ export const useUserStore = create<UserState>()(
 
         const newLongest = Math.max(state.stats.longestStreak, newStreak);
 
+        // Track perfect games (accuracy >= 95%)
+        const isPerfect = result.accuracy >= 0.95;
+        const newPerfectGames = isPerfect ? state.stats.perfectGames + 1 : state.stats.perfectGames;
+
+        // Track category games
+        const newCategoryGames = { ...state.stats.categoryGames };
+        newCategoryGames[result.category] = (newCategoryGames[result.category] || 0) + 1;
+
         // Add to history (keep last 100 results)
         const newHistory = [result, ...state.gameHistory].slice(0, 100);
 
-        set({
-          stats: {
-            totalGamesPlayed: state.stats.totalGamesPlayed + 1,
-            totalScore: state.stats.totalScore + result.score,
+        // Track played dates (keep unique dates, last 365)
+        const newPlayedDates = state.playedDates.includes(today)
+          ? state.playedDates
+          : [today, ...state.playedDates].slice(0, 365);
+
+        const newStats = {
+          totalGamesPlayed: state.stats.totalGamesPlayed + 1,
+          totalScore: state.stats.totalScore + result.score,
+          currentStreak: newStreak,
+          longestStreak: newLongest,
+          lastPlayDate: today,
+          perfectGames: newPerfectGames,
+          categoryGames: newCategoryGames,
+        };
+
+        // Calculate badge progress
+        const previousProgress = state.badgeProgress;
+        const currentProgress = BADGES.map(badge =>
+          calculateBadgeProgress(badge, {
             currentStreak: newStreak,
             longestStreak: newLongest,
-            lastPlayDate: today,
-          },
+            totalGamesPlayed: newStats.totalGamesPlayed,
+            totalScore: newStats.totalScore,
+            perfectGames: newPerfectGames,
+            categoryGames: newCategoryGames,
+            hasShared: state.hasShared,
+            hasInstalledPWA: state.hasInstalledPWA,
+            playedDates: newPlayedDates,
+          })
+        );
+
+        // Check for newly earned badges
+        const newlyEarned = checkNewBadges(previousProgress, currentProgress);
+        const earnedBadgeIds = currentProgress
+          .filter(p => p.earnedAt)
+          .map(p => p.badgeId);
+
+        set({
+          stats: newStats,
           gameHistory: newHistory,
           completedToday: true,
+          playedDates: newPlayedDates,
+          badgeProgress: currentProgress,
+          earnedBadges: earnedBadgeIds,
+          newBadges: newlyEarned.length > 0 ? newlyEarned : state.newBadges,
         });
       },
 
@@ -132,10 +208,102 @@ export const useUserStore = create<UserState>()(
 
         return { current, isActive, daysUntilLost };
       },
+
+      markShared: () => {
+        const state = get();
+        if (state.hasShared) return;
+
+        // Recalculate badge progress with shared status
+        const newProgress = BADGES.map(badge =>
+          calculateBadgeProgress(badge, {
+            currentStreak: state.stats.currentStreak,
+            longestStreak: state.stats.longestStreak,
+            totalGamesPlayed: state.stats.totalGamesPlayed,
+            totalScore: state.stats.totalScore,
+            perfectGames: state.stats.perfectGames,
+            categoryGames: state.stats.categoryGames,
+            hasShared: true,
+            hasInstalledPWA: state.hasInstalledPWA,
+            playedDates: state.playedDates,
+          })
+        );
+
+        const newlyEarned = checkNewBadges(state.badgeProgress, newProgress);
+        const earnedBadgeIds = newProgress
+          .filter(p => p.earnedAt)
+          .map(p => p.badgeId);
+
+        set({
+          hasShared: true,
+          badgeProgress: newProgress,
+          earnedBadges: earnedBadgeIds,
+          newBadges: newlyEarned.length > 0 ? newlyEarned : state.newBadges,
+        });
+      },
+
+      markPWAInstalled: () => {
+        const state = get();
+        if (state.hasInstalledPWA) return;
+
+        // Recalculate badge progress with PWA installed status
+        const newProgress = BADGES.map(badge =>
+          calculateBadgeProgress(badge, {
+            currentStreak: state.stats.currentStreak,
+            longestStreak: state.stats.longestStreak,
+            totalGamesPlayed: state.stats.totalGamesPlayed,
+            totalScore: state.stats.totalScore,
+            perfectGames: state.stats.perfectGames,
+            categoryGames: state.stats.categoryGames,
+            hasShared: state.hasShared,
+            hasInstalledPWA: true,
+            playedDates: state.playedDates,
+          })
+        );
+
+        const newlyEarned = checkNewBadges(state.badgeProgress, newProgress);
+        const earnedBadgeIds = newProgress
+          .filter(p => p.earnedAt)
+          .map(p => p.badgeId);
+
+        set({
+          hasInstalledPWA: true,
+          badgeProgress: newProgress,
+          earnedBadges: earnedBadgeIds,
+          newBadges: newlyEarned.length > 0 ? newlyEarned : state.newBadges,
+        });
+      },
+
+      clearNewBadges: () => set({ newBadges: [] }),
+
+      getBadgeProgress: (badgeId) => {
+        const state = get();
+        return state.badgeProgress.find(p => p.badgeId === badgeId);
+      },
     }),
     {
       name: 'daily-brain-user',
-      version: 1,
+      version: 2,
+      migrate: (persistedState: unknown, version: number) => {
+        const state = persistedState as UserState;
+        if (version < 2) {
+          // Migrate from version 1 to 2 - add new badge fields
+          return {
+            ...state,
+            earnedBadges: [],
+            badgeProgress: [],
+            newBadges: [],
+            hasShared: false,
+            hasInstalledPWA: false,
+            playedDates: [],
+            stats: {
+              ...state.stats,
+              perfectGames: 0,
+              categoryGames: { ...initialCategoryGames },
+            },
+          };
+        }
+        return state;
+      },
     }
   )
 );

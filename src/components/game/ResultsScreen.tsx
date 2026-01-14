@@ -1,9 +1,16 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
 import type { GameResult, GameInfo } from '@/games/core/types';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { calculateStars } from '@/games/core/DifficultySystem';
 import { useUserStore } from '@/stores/userStore';
+import {
+  generateShareText,
+  canShare,
+  shareResult,
+  copyToClipboard,
+} from '@/services/share';
 
 interface ResultsScreenProps {
   result: GameResult;
@@ -13,7 +20,8 @@ interface ResultsScreenProps {
 }
 
 export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: ResultsScreenProps) {
-  const { stats } = useUserStore();
+  const { stats, markShared } = useUserStore();
+  const [showCopied, setShowCopied] = useState(false);
 
   // Calculate stars (estimate max score based on levels)
   const maxPossibleScore = result.maxLevel * 200; // Rough estimate
@@ -25,21 +33,32 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
   const durationStr = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
 
   // Generate share text
-  const shareText = generateShareText(result, gameInfo, stars);
+  const shareText = generateShareText(result, stats.currentStreak);
 
   const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Daily Brain',
-          text: shareText,
-        });
-      } catch (e) {
-        // User cancelled or error
-        copyToClipboard(shareText);
+    // Mark that user has shared (for badge tracking)
+    markShared();
+
+    if (canShare()) {
+      const shared = await shareResult({
+        title: 'Daily Brain',
+        text: shareText,
+      });
+
+      if (!shared) {
+        // Fallback to clipboard if share was cancelled
+        handleCopy();
       }
     } else {
-      copyToClipboard(shareText);
+      handleCopy();
+    }
+  };
+
+  const handleCopy = async () => {
+    const success = await copyToClipboard(shareText);
+    if (success) {
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
     }
   };
 
@@ -147,8 +166,28 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
 
         {/* Action buttons */}
         <div className="space-y-3">
-          <button onClick={handleShare} className="btn-secondary w-full">
-            📤 Share Results
+          <button onClick={handleShare} className="btn-secondary w-full relative">
+            <AnimatePresence mode="wait">
+              {showCopied ? (
+                <motion.span
+                  key="copied"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  ✓ Copied to Clipboard!
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="share"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  📤 Share Results
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
           <div className="grid grid-cols-2 gap-3">
             <button onClick={onPlayAgain} className="btn-primary">
@@ -162,25 +201,4 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
       </motion.div>
     </div>
   );
-}
-
-function generateShareText(result: GameResult, gameInfo: GameInfo, stars: number): string {
-  const starEmojis = '⭐'.repeat(stars) + '☆'.repeat(5 - stars);
-  const accuracyEmoji = result.accuracy >= 0.9 ? '🎯' : result.accuracy >= 0.7 ? '✅' : '💪';
-
-  return `Daily Brain - ${gameInfo.name}
-${result.date}
-
-${starEmojis}
-Score: ${result.score.toLocaleString()}
-${accuracyEmoji} ${Math.round(result.accuracy * 100)}% accuracy
-
-Play at dailybrain.app`;
-}
-
-function copyToClipboard(text: string) {
-  navigator.clipboard.writeText(text).then(() => {
-    // Could show a toast notification here
-    alert('Copied to clipboard!');
-  });
 }
