@@ -14,6 +14,12 @@ interface UserStats {
   categoryGames: Record<GameCategory, number>;
 }
 
+interface UserSettings {
+  soundEnabled: boolean;
+  reducedMotion: boolean;
+  notificationsEnabled: boolean;
+}
+
 interface UserState {
   // User profile
   name: string;
@@ -43,6 +49,9 @@ interface UserState {
   hasInstalledPWA: boolean;
   playedDates: string[];
 
+  // Settings
+  settings: UserSettings;
+
   // Actions
   setName: (name: string) => void;
   completeOnboarding: () => void;
@@ -60,6 +69,8 @@ interface UserState {
   markPWAInstalled: () => void;
   clearNewBadges: () => void;
   getBadgeProgress: (badgeId: string) => BadgeProgress | undefined;
+  updateSettings: (settings: Partial<UserSettings>) => void;
+  resetAllData: () => void;
 }
 
 const getToday = () => new Date().toISOString().split('T')[0];
@@ -71,6 +82,12 @@ const initialCategoryGames: Record<GameCategory, number> = {
   calculation: 0,
   language: 0,
   speed: 0,
+};
+
+const initialSettings: UserSettings = {
+  soundEnabled: true,
+  reducedMotion: false,
+  notificationsEnabled: false,
 };
 
 export const useUserStore = create<UserState>()(
@@ -98,6 +115,7 @@ export const useUserStore = create<UserState>()(
       hasShared: false,
       hasInstalledPWA: false,
       playedDates: [],
+      settings: { ...initialSettings },
 
       setName: (name) => set({ name }),
 
@@ -323,10 +341,45 @@ export const useUserStore = create<UserState>()(
         const state = get();
         return state.badgeProgress.find(p => p.badgeId === badgeId);
       },
+
+      updateSettings: (newSettings) => {
+        const state = get();
+        set({
+          settings: { ...state.settings, ...newSettings },
+        });
+      },
+
+      resetAllData: () => {
+        set({
+          name: '',
+          hasCompletedOnboarding: false,
+          stats: {
+            totalGamesPlayed: 0,
+            totalScore: 0,
+            currentStreak: 0,
+            longestStreak: 0,
+            lastPlayDate: null,
+            perfectGames: 0,
+            categoryGames: { ...initialCategoryGames },
+          },
+          gameHistory: [],
+          completedToday: false,
+          dailyWorkoutCompleted: false,
+          dailyWorkoutGames: [],
+          dailyWorkoutProgress: 0,
+          earnedBadges: [],
+          badgeProgress: [],
+          newBadges: [],
+          hasShared: false,
+          hasInstalledPWA: false,
+          playedDates: [],
+          settings: { ...initialSettings },
+        });
+      },
     }),
     {
       name: 'daily-brain-user',
-      version: 3,
+      version: 4,
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as UserState;
         if (version < 2) {
@@ -354,6 +407,13 @@ export const useUserStore = create<UserState>()(
             dailyWorkoutCompleted: false,
             dailyWorkoutGames: [],
             dailyWorkoutProgress: 0,
+          };
+        }
+        if (version < 4) {
+          // Migrate to version 4 - add settings
+          return {
+            ...state,
+            settings: { ...initialSettings },
           };
         }
         return state;
