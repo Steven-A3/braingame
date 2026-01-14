@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGameInfo } from '@/games/registry';
 import { calculateDifficulty } from '@/games/core/DifficultySystem';
@@ -69,7 +69,11 @@ const GAME_COMPONENTS: Record<string, React.ComponentType<any>> = {
 export function GamePlayPage() {
   const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isWorkout = searchParams.get('workout') === 'true';
+
   const recordGameResult = useUserStore((state) => state.recordGameResult);
+  const completeDailyWorkoutGame = useUserStore((state) => state.completeDailyWorkoutGame);
 
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [showResults, setShowResults] = useState(false);
@@ -90,16 +94,30 @@ export function GamePlayPage() {
     setGameResult(result);
     setShowResults(true);
     recordGameResult(result);
-  }, [recordGameResult]);
+
+    // Track workout progress if in workout mode
+    if (isWorkout && gameId) {
+      completeDailyWorkoutGame(gameId);
+    }
+  }, [recordGameResult, isWorkout, gameId, completeDailyWorkoutGame]);
 
   const handleExit = useCallback(() => {
-    navigate('/');
-  }, [navigate]);
+    if (isWorkout) {
+      navigate('/workout');
+    } else {
+      navigate('/');
+    }
+  }, [navigate, isWorkout]);
 
   const handlePlayAgain = useCallback(() => {
-    setShowResults(false);
-    setGameResult(null);
-  }, []);
+    // In workout mode, go back to workout instead of playing again
+    if (isWorkout) {
+      navigate('/workout');
+    } else {
+      setShowResults(false);
+      setGameResult(null);
+    }
+  }, [isWorkout, navigate]);
 
   // Game not found
   if (!gameId || !gameInfo) {
