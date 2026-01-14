@@ -13,7 +13,7 @@ interface ColorStroopProps {
 
 export function ColorStroop({ config, onComplete, onExit }: ColorStroopProps) {
   const engineRef = useRef<ColorStroopEngine | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [challenge, setChallenge] = useState<ReturnType<ColorStroopEngine['getCurrentChallenge']>>(null);
   const [timeRemaining, setTimeRemaining] = useState(0);

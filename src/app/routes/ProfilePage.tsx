@@ -112,7 +112,7 @@ function StatItem({ label, value, icon }: { label: string; value: string | numbe
   );
 }
 
-function calculateCategoryStats(history: typeof useUserStore.prototype.gameHistory) {
+function calculateCategoryStats(history: { category: GameCategory; score: number }[]) {
   const stats: Record<GameCategory, { gamesPlayed: number; totalScore: number; avgScore: number }> = {
     memory: { gamesPlayed: 0, totalScore: 0, avgScore: 0 },
     logic: { gamesPlayed: 0, totalScore: 0, avgScore: 0 },
