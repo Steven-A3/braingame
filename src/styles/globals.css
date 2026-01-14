@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-slate-900 text-white min-h-screen;
+    overscroll-behavior: none;
+  }
+
+  /* Prevent text selection during games */
+  .game-container {
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+    @apply active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 hover:bg-primary-600 text-white;
+    @apply shadow-lg shadow-primary-500/25;
+  }
+
+  .btn-secondary {
+    @apply btn bg-slate-700 hover:bg-slate-600 text-white;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-white/10 text-white;
+  }
+
+  .card {
+    @apply bg-slate-800 rounded-2xl p-6 shadow-xl;
+  }
+
+  .game-tile {
+    @apply rounded-lg transition-all duration-150;
+    @apply active:scale-95 cursor-pointer;
+  }
+
+  /* Category colors */
+  .category-memory { @apply bg-brain-memory text-white; }
+  .category-logic { @apply bg-brain-logic text-white; }
+  .category-focus { @apply bg-brain-focus text-white; }
+  .category-calculation { @apply bg-brain-calculation text-white; }
+  .category-language { @apply bg-brain-language text-white; }
+  .category-speed { @apply bg-brain-speed text-white; }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  /* Flame animation for streaks */
+  .flame-glow {
+    filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.5));
+  }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
