@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { GAMES, getGameInfo } from '@/games/registry';
 import { getGameSeed } from '@/games/core/SeededRNG';
+import { Confetti, EmojiBurst } from '@/components/ui/Confetti';
+import { useFeedback } from '@/hooks/useFeedback';
 import type { GameCategory } from '@/games/core/types';
 
 const WORKOUT_SIZE = 5;
@@ -41,6 +43,7 @@ function generateWorkoutGames(seed: number): string[] {
 
 export function DailyWorkout() {
   const navigate = useNavigate();
+  const feedback = useFeedback();
   const {
     dailyWorkoutGames,
     dailyWorkoutProgress,
@@ -48,6 +51,9 @@ export function DailyWorkout() {
     startDailyWorkout,
     stats,
   } = useUserStore();
+
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showEmoji, setShowEmoji] = useState(false);
 
   const [showIntro, setShowIntro] = useState(true);
 
@@ -72,14 +78,17 @@ export function DailyWorkout() {
   }, [dailyWorkoutGames, workoutGames, startDailyWorkout]);
 
   const handleStartWorkout = () => {
+    feedback.tap();
     setShowIntro(false);
   };
 
   const handlePlayGame = (gameId: string) => {
+    feedback.tap();
     navigate(`/play/${gameId}?workout=true`);
   };
 
   const handleGoHome = () => {
+    feedback.tap();
     navigate('/');
   };
 
@@ -140,10 +149,27 @@ export function DailyWorkout() {
     );
   }
 
+  // Trigger celebration on workout completion
+  useEffect(() => {
+    if (dailyWorkoutCompleted) {
+      setShowConfetti(true);
+      setShowEmoji(true);
+      feedback.achievement();
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+        setShowEmoji(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [dailyWorkoutCompleted, feedback]);
+
   // Completion screen
   if (dailyWorkoutCompleted) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-6">
+        <Confetti active={showConfetti} count={80} />
+        <EmojiBurst active={showEmoji} emoji="💪" count={10} />
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -155,7 +181,7 @@ export function DailyWorkout() {
             transition={{ delay: 0.2, type: 'spring' }}
             className="text-8xl mb-4"
           >
-            🎉
+            🏆
           </motion.div>
           <h1 className="text-2xl font-bold mb-2">Workout Complete!</h1>
           <p className="text-slate-400 mb-6">
@@ -165,21 +191,31 @@ export function DailyWorkout() {
           <div className="card mb-6">
             <div className="grid grid-cols-2 gap-4 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary-400">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.4, type: 'spring' }}
+                  className="text-3xl font-bold text-primary-400"
+                >
                   {stats.currentStreak}
-                </div>
+                </motion.div>
                 <div className="text-xs text-slate-400">Day Streak</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-primary-400">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.5, type: 'spring' }}
+                  className="text-3xl font-bold text-primary-400"
+                >
                   {stats.totalGamesPlayed}
-                </div>
+                </motion.div>
                 <div className="text-xs text-slate-400">Total Games</div>
               </div>
             </div>
           </div>
 
-          <button onClick={handleGoHome} className="btn-primary w-full">
+          <button onClick={() => { feedback.tap(); handleGoHome(); }} className="btn-primary w-full">
             Back to Home
           </button>
         </motion.div>

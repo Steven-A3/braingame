@@ -25,15 +25,18 @@
   .btn {
     @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
     @apply active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply touch-manipulation;
   }
 
   .btn-primary {
     @apply btn bg-primary-500 hover:bg-primary-600 text-white;
-    @apply shadow-lg shadow-primary-500/25;
+    @apply shadow-lg shadow-primary-500/25 hover:shadow-xl hover:shadow-primary-500/30;
+    @apply hover:-translate-y-0.5;
   }
 
   .btn-secondary {
     @apply btn bg-slate-700 hover:bg-slate-600 text-white;
+    @apply hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-ghost {
@@ -42,11 +45,43 @@
 
   .card {
     @apply bg-slate-800 rounded-2xl p-6 shadow-xl;
+    @apply transition-all duration-200;
+  }
+
+  .card-interactive {
+    @apply card hover:bg-slate-700/80 hover:shadow-2xl;
+    @apply hover:-translate-y-1 cursor-pointer;
   }
 
   .game-tile {
     @apply rounded-lg transition-all duration-150;
-    @apply active:scale-95 cursor-pointer;
+    @apply active:scale-95 cursor-pointer touch-manipulation;
+  }
+
+  /* Glow effects for achievements */
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.4),
+                0 0 40px rgba(251, 191, 36, 0.2),
+                0 0 60px rgba(251, 191, 36, 0.1);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4),
+                0 0 40px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Pulse animation for important elements */
+  .pulse-attention {
+    animation: pulse-attention 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-attention {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    }
   }
 
   /* Category colors */
