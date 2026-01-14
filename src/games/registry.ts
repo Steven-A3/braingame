@@ -4,7 +4,7 @@ import type { GameCategory, GameInfo } from './core/types';
  * Registry of all available games
  */
 export const GAMES: GameInfo[] = [
-  // Memory
+  // Memory (4 games)
   {
     id: 'pattern-echo',
     name: 'Pattern Echo',
@@ -21,8 +21,24 @@ export const GAMES: GameInfo[] = [
     duration: '~3 min',
     icon: '🃏',
   },
+  {
+    id: 'spatial-recall',
+    name: 'Spatial Recall',
+    category: 'memory',
+    description: 'Remember positions on a grid',
+    duration: '~3 min',
+    icon: '🧠',
+  },
+  {
+    id: 'number-memory',
+    name: 'Number Memory',
+    category: 'memory',
+    description: 'Memorize number sequences',
+    duration: '~3 min',
+    icon: '🔢',
+  },
 
-  // Logic
+  // Logic (3 games)
   {
     id: 'grid-deduction',
     name: 'Grid Deduction',
@@ -31,8 +47,24 @@ export const GAMES: GameInfo[] = [
     duration: '~4 min',
     icon: '🧩',
   },
+  {
+    id: 'sequence-solver',
+    name: 'Sequence Solver',
+    category: 'logic',
+    description: 'Find the pattern and predict next',
+    duration: '~3 min',
+    icon: '📊',
+  },
+  {
+    id: 'set-finder',
+    name: 'Set Finder',
+    category: 'logic',
+    description: 'Find matching attribute sets',
+    duration: '~4 min',
+    icon: '🎴',
+  },
 
-  // Focus
+  // Focus (3 games)
   {
     id: 'color-stroop',
     name: 'Color Stroop',
@@ -49,15 +81,23 @@ export const GAMES: GameInfo[] = [
     duration: '~3 min',
     icon: '🎯',
   },
+  {
+    id: 'visual-search',
+    name: 'Visual Search',
+    category: 'focus',
+    description: 'Find the odd one out',
+    duration: '~2 min',
+    icon: '🔍',
+  },
 
-  // Calculation
+  // Calculation (4 games)
   {
     id: 'math-sprint',
     name: 'Math Sprint',
     category: 'calculation',
     description: 'Solve equations quickly',
     duration: '~3 min',
-    icon: '🔢',
+    icon: '➕',
   },
   {
     id: 'estimation-station',
@@ -67,8 +107,24 @@ export const GAMES: GameInfo[] = [
     duration: '~2 min',
     icon: '🎲',
   },
+  {
+    id: 'number-chain',
+    name: 'Number Chain',
+    category: 'calculation',
+    description: 'Chain operations to hit target',
+    duration: '~3 min',
+    icon: '🔗',
+  },
+  {
+    id: 'fraction-match',
+    name: 'Fraction Match',
+    category: 'calculation',
+    description: 'Match equivalent values',
+    duration: '~2 min',
+    icon: '⚖️',
+  },
 
-  // Language
+  // Language (3 games)
   {
     id: 'word-morph',
     name: 'Word Morph',
@@ -77,8 +133,24 @@ export const GAMES: GameInfo[] = [
     duration: '~4 min',
     icon: '📝',
   },
+  {
+    id: 'anagram-blitz',
+    name: 'Anagram Blitz',
+    category: 'language',
+    description: 'Find words from scrambled letters',
+    duration: '~2 min',
+    icon: '🔤',
+  },
+  {
+    id: 'word-categories',
+    name: 'Word Categories',
+    category: 'language',
+    description: 'Sort words into categories',
+    duration: '~3 min',
+    icon: '📂',
+  },
 
-  // Speed
+  // Speed (3 games)
   {
     id: 'reflex-tap',
     name: 'Reflex Tap',
@@ -93,17 +165,15 @@ export const GAMES: GameInfo[] = [
     category: 'speed',
     description: 'N-back memory challenge',
     duration: '~3 min',
-    icon: '🧠',
+    icon: '💨',
   },
-
-  // Language (additional)
   {
-    id: 'anagram-blitz',
-    name: 'Anagram Blitz',
-    category: 'language',
-    description: 'Find words from scrambled letters',
+    id: 'symbol-sprint',
+    name: 'Symbol Sprint',
+    category: 'speed',
+    description: 'Rapid symbol matching',
     duration: '~2 min',
-    icon: '🔤',
+    icon: '🏃',
   },
 ];
 

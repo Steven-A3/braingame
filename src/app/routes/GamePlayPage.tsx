@@ -9,31 +9,61 @@ import type { GameConfig, GameResult } from '@/games/core/types';
 import { ResultsScreen } from '@/components/game/ResultsScreen';
 
 // Game components (lazy loaded in production, direct imports for simplicity)
+// Memory
 import { PatternEcho } from '@/games/memory/PatternEcho';
 import { CardFlip } from '@/games/memory/CardFlip';
+import { SpatialRecall } from '@/games/memory/SpatialRecall';
+import { NumberMemory } from '@/games/memory/NumberMemory';
+// Logic
+import { GridDeduction } from '@/games/logic/GridDeduction';
+import { SequenceSolver } from '@/games/logic/SequenceSolver';
+import { SetFinder } from '@/games/logic/SetFinder';
+// Focus
 import { ColorStroop } from '@/games/focus/ColorStroop';
 import { TargetTracker } from '@/games/focus/TargetTracker';
+import { VisualSearch } from '@/games/focus/VisualSearch';
+// Calculation
 import { MathSprint } from '@/games/calculation/MathSprint';
 import { EstimationStation } from '@/games/calculation/EstimationStation';
-import { ReflexTap } from '@/games/speed/ReflexTap';
-import { GridDeduction } from '@/games/logic/GridDeduction';
+import { NumberChain } from '@/games/calculation/NumberChain';
+import { FractionMatch } from '@/games/calculation/FractionMatch';
+// Language
 import { WordMorph } from '@/games/language/WordMorph';
-import { SpeedMatch } from '@/games/speed/SpeedMatch';
 import { AnagramBlitz } from '@/games/language/AnagramBlitz';
+import { WordCategories } from '@/games/language/WordCategories';
+// Speed
+import { ReflexTap } from '@/games/speed/ReflexTap';
+import { SpeedMatch } from '@/games/speed/SpeedMatch';
+import { SymbolSprint } from '@/games/speed/SymbolSprint';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const GAME_COMPONENTS: Record<string, React.ComponentType<any>> = {
+  // Memory
   'pattern-echo': PatternEcho,
   'card-flip': CardFlip,
+  'spatial-recall': SpatialRecall,
+  'number-memory': NumberMemory,
+  // Logic
+  'grid-deduction': GridDeduction,
+  'sequence-solver': SequenceSolver,
+  'set-finder': SetFinder,
+  // Focus
   'color-stroop': ColorStroop,
   'target-tracker': TargetTracker,
+  'visual-search': VisualSearch,
+  // Calculation
   'math-sprint': MathSprint,
   'estimation-station': EstimationStation,
-  'reflex-tap': ReflexTap,
-  'grid-deduction': GridDeduction,
+  'number-chain': NumberChain,
+  'fraction-match': FractionMatch,
+  // Language
   'word-morph': WordMorph,
-  'speed-match': SpeedMatch,
   'anagram-blitz': AnagramBlitz,
+  'word-categories': WordCategories,
+  // Speed
+  'reflex-tap': ReflexTap,
+  'speed-match': SpeedMatch,
+  'symbol-sprint': SymbolSprint,
 };
 
 export function GamePlayPage() {
