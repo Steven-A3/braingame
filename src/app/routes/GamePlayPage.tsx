@@ -15,18 +15,19 @@ import { MathSprint } from '@/games/calculation/MathSprint';
 import { ReflexTap } from '@/games/speed/ReflexTap';
 import { GridDeduction } from '@/games/logic/GridDeduction';
 import { WordMorph } from '@/games/language/WordMorph';
+import { SpeedMatch } from '@/games/speed/SpeedMatch';
+import { AnagramBlitz } from '@/games/language/AnagramBlitz';
 
-const GAME_COMPONENTS: Record<string, React.ComponentType<{
-  config: GameConfig;
-  onComplete: (result: GameResult) => void;
-  onExit: () => void;
-}>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const GAME_COMPONENTS: Record<string, React.ComponentType<any>> = {
   'pattern-echo': PatternEcho,
   'color-stroop': ColorStroop,
   'math-sprint': MathSprint,
   'reflex-tap': ReflexTap,
   'grid-deduction': GridDeduction,
   'word-morph': WordMorph,
+  'speed-match': SpeedMatch,
+  'anagram-blitz': AnagramBlitz,
 };
 
 export function GamePlayPage() {
@@ -121,6 +122,7 @@ export function GamePlayPage() {
             config={config}
             onComplete={handleComplete}
             onExit={handleExit}
+            onQuit={handleExit}
           />
         </motion.div>
       )}

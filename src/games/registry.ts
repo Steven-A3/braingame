@@ -63,6 +63,24 @@ export const GAMES: GameInfo[] = [
     duration: '~2 min',
     icon: '⚡',
   },
+  {
+    id: 'speed-match',
+    name: 'Speed Match',
+    category: 'speed',
+    description: 'N-back memory challenge',
+    duration: '~3 min',
+    icon: '🧠',
+  },
+
+  // Language (additional)
+  {
+    id: 'anagram-blitz',
+    name: 'Anagram Blitz',
+    category: 'language',
+    description: 'Find words from scrambled letters',
+    duration: '~2 min',
+    icon: '🔤',
+  },
 ];
 
 export const GAMES_BY_ID = new Map(GAMES.map((g) => [g.id, g]));
