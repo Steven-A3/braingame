@@ -1,0 +1,34 @@
+# robots.txt for dailybrain.one
+# Brain Training Games - Daily Brain
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dailybrain.one/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block common bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
