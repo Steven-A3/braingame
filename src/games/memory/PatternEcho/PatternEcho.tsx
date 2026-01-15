@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { PatternEchoEngine, type Tile } from './PatternEchoEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface PatternEchoProps {
   config: GameConfig;
@@ -20,6 +21,7 @@ export function PatternEcho({ config, onComplete, onExit }: PatternEchoProps) {
   const [gridSize, setGridSize] = useState(3);
   const [playerTapped, setPlayerTapped] = useState<Tile | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const feedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -86,6 +88,13 @@ export function PatternEcho({ config, onComplete, onExit }: PatternEchoProps) {
       const expected = level.sequence[engineRef.current.getPlayerProgress()];
       const correct = expected.row === row && expected.col === col;
       setIsCorrect(correct);
+
+      // Audio/haptic feedback
+      if (correct) {
+        feedback.correct();
+      } else {
+        feedback.wrong();
+      }
     }
 
     engineRef.current.handleInput(tile);
@@ -95,7 +104,7 @@ export function PatternEcho({ config, onComplete, onExit }: PatternEchoProps) {
       setPlayerTapped(null);
       setIsCorrect(null);
     }, 200);
-  }, [showingSequence]);
+  }, [showingSequence, feedback]);
 
   if (!gameState) {
     return (

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { SequenceSolverEngine, SequenceSolverState } from './SequenceSolverEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface SequenceSolverProps {
@@ -15,6 +16,7 @@ export function SequenceSolver({ config, onComplete, onQuit }: SequenceSolverPro
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [solverState, setSolverState] = useState<SequenceSolverState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new SequenceSolverEngine(config);
@@ -48,8 +50,14 @@ export function SequenceSolver({ config, onComplete, onQuit }: SequenceSolverPro
   }, []);
 
   const handleOptionClick = useCallback((option: string) => {
+    const state = engineRef.current?.getGameState();
+    if (state?.correctOption === option) {
+      feedback.correct();
+    } else {
+      feedback.wrong();
+    }
     engineRef.current?.handleInput(option);
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !solverState) {
     return (

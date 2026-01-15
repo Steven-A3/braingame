@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { GridDeductionEngine } from './GridDeductionEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface GridDeductionProps {
   config: GameConfig;
@@ -16,6 +17,7 @@ export function GridDeduction({ config, onComplete, onExit }: GridDeductionProps
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [level, setLevel] = useState<ReturnType<GridDeductionEngine['getCurrentLevel']>>(null);
   const [selectedCell, setSelectedCell] = useState<{ row: number; col: number } | null>(null);
+  const feedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -43,12 +45,14 @@ export function GridDeduction({ config, onComplete, onExit }: GridDeductionProps
   }, [config, onComplete]);
 
   const handleCellClick = useCallback((row: number, col: number) => {
+    feedback.tap();
     engineRef.current?.selectCell(row, col);
-  }, []);
+  }, [feedback]);
 
   const handleNumberInput = useCallback((num: number) => {
+    feedback.tap();
     engineRef.current?.handleInput(num);
-  }, []);
+  }, [feedback]);
 
   const handleClear = useCallback(() => {
     engineRef.current?.clearCell();

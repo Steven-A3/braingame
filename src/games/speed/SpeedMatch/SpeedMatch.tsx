@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SpeedMatchEngine, SpeedMatchState, ShapeType, ColorType } from './SpeedMatchEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface SpeedMatchProps {
@@ -33,6 +34,7 @@ export function SpeedMatch({ config, onComplete, onQuit }: SpeedMatchProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [matchState, setMatchState] = useState<SpeedMatchState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -70,15 +72,27 @@ export function SpeedMatch({ config, onComplete, onQuit }: SpeedMatchProps) {
 
   const handleMatch = useCallback(() => {
     if (engineRef.current) {
+      const state = engineRef.current.getGameState();
+      if (state?.isMatch) {
+        gameFeedback.correct();
+      } else {
+        gameFeedback.wrong();
+      }
       engineRef.current.handleInput('match');
     }
-  }, []);
+  }, [gameFeedback]);
 
   const handleNoMatch = useCallback(() => {
     if (engineRef.current) {
+      const state = engineRef.current.getGameState();
+      if (!state?.isMatch) {
+        gameFeedback.correct();
+      } else {
+        gameFeedback.wrong();
+      }
       engineRef.current.handleInput('no-match');
     }
-  }, []);
+  }, [gameFeedback]);
 
   if (!isReady || !gameState || !matchState) {
     return (

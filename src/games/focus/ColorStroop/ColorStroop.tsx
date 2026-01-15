@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { ColorStroopEngine } from './ColorStroopEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface ColorStroopProps {
   config: GameConfig;
@@ -19,6 +20,7 @@ export function ColorStroop({ config, onComplete, onExit }: ColorStroopProps) {
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [progress, setProgress] = useState({ current: 1, total: 5 });
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -71,10 +73,18 @@ export function ColorStroop({ config, onComplete, onExit }: ColorStroopProps) {
 
     const isCorrect = answer === challenge.correctAnswer;
     setFeedback(isCorrect ? 'correct' : 'wrong');
+
+    // Audio/haptic feedback
+    if (isCorrect) {
+      gameFeedback.correct();
+    } else {
+      gameFeedback.wrong();
+    }
+
     engineRef.current.handleInput(answer);
 
     setTimeout(() => setFeedback(null), 300);
-  }, [challenge]);
+  }, [challenge, gameFeedback]);
 
   if (!gameState || !challenge) {
     return (

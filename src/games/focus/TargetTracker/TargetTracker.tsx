@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TargetTrackerEngine, TargetTrackerState, Ball } from './TargetTrackerEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface TargetTrackerProps {
@@ -15,6 +16,7 @@ export function TargetTracker({ config, onComplete, onQuit }: TargetTrackerProps
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [trackerState, setTrackerState] = useState<TargetTrackerState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new TargetTrackerEngine(config);
@@ -51,9 +53,16 @@ export function TargetTracker({ config, onComplete, onQuit }: TargetTrackerProps
 
   const handleBallClick = useCallback((ballId: number) => {
     if (engineRef.current) {
+      const state = engineRef.current.getGameState();
+      const ball = state?.balls.find(b => b.id === ballId);
+      if (ball?.isTarget) {
+        feedback.correct();
+      } else {
+        feedback.wrong();
+      }
       engineRef.current.handleInput(ballId);
     }
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !trackerState) {
     return (

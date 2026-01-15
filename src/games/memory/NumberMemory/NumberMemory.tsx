@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NumberMemoryEngine, NumberMemoryState } from './NumberMemoryEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface NumberMemoryProps {
@@ -15,6 +16,7 @@ export function NumberMemory({ config, onComplete, onQuit }: NumberMemoryProps) 
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [memoryState, setMemoryState] = useState<NumberMemoryState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const gameFeedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new NumberMemoryEngine(config);
@@ -48,8 +50,9 @@ export function NumberMemory({ config, onComplete, onQuit }: NumberMemoryProps) 
   }, []);
 
   const handleKeyPress = useCallback((key: string) => {
+    gameFeedback.tap();
     engineRef.current?.handleInput(key);
-  }, []);
+  }, [gameFeedback]);
 
   // Keyboard support
   useEffect(() => {
@@ -234,6 +237,9 @@ export function NumberMemory({ config, onComplete, onQuit }: NumberMemoryProps) 
           )}
 
           {/* Feedback phase */}
+          {memoryState.phase === 'feedback' && memoryState.isCorrect !== null && (
+            <NumberMemoryFeedback isCorrect={memoryState.isCorrect} feedback={gameFeedback} />
+          )}
           {memoryState.phase === 'feedback' && (
             <motion.div
               key="feedback"
@@ -267,4 +273,17 @@ export function NumberMemory({ config, onComplete, onQuit }: NumberMemoryProps) 
       </div>
     </div>
   );
+}
+
+// Hidden component to trigger feedback effect
+function NumberMemoryFeedback({ isCorrect, feedback }: { isCorrect: boolean; feedback: ReturnType<typeof useGameFeedback> }) {
+  useEffect(() => {
+    if (isCorrect) {
+      feedback.correct();
+    } else {
+      feedback.wrong();
+    }
+  }, [isCorrect, feedback]);
+
+  return null;
 }
