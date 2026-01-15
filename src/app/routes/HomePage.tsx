@@ -7,6 +7,7 @@ import { useUserStore } from '@/stores/userStore';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { getDifficultyLabel } from '@/games/core/DifficultySystem';
 import { StreakDisplay } from '@/components/ui/StreakDisplay';
+import { BannerAd } from '@/components/ads/AdUnit';
 
 export function HomePage() {
   const { stats, completedToday, checkStreak } = useUserStore();
@@ -172,6 +173,9 @@ export function HomePage() {
           <div className="text-xs text-slate-400">Total Score</div>
         </div>
       </div>
+
+      {/* Ad Banner */}
+      <BannerAd className="mb-6" />
 
       {/* Theme of the month */}
       <div className="text-center text-slate-500 text-sm">
