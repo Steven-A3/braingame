@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
+import { InviteFriends } from '@/components/referral/InviteFriends';
 
 export function Settings() {
   const navigate = useNavigate();
@@ -118,6 +119,9 @@ export function Settings() {
             />
           </div>
         </div>
+
+        {/* Invite Friends */}
+        <InviteFriends />
 
         {/* Data Management */}
         <div className="card">

@@ -1,18 +1,15 @@
 import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import type { GameResult, GameInfo } from '@/games/core/types';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { calculateStars } from '@/games/core/DifficultySystem';
 import { useUserStore } from '@/stores/userStore';
-import {
-  generateShareText,
-  canShare,
-  shareResult,
-  copyToClipboard,
-} from '@/services/share';
+import { generateShareText } from '@/services/share';
 import { Confetti, EmojiBurst } from '@/components/ui/Confetti';
 import { useFeedback } from '@/hooks/useFeedback';
+import { SocialShareButtons } from '@/components/ui/SocialShareButtons';
+import { ResultsAd } from '@/components/ads/AdUnit';
 
 interface ResultsScreenProps {
   result: GameResult;
@@ -22,8 +19,7 @@ interface ResultsScreenProps {
 }
 
 export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: ResultsScreenProps) {
-  const { stats, markShared, gameHistory } = useUserStore();
-  const [showCopied, setShowCopied] = useState(false);
+  const { stats, gameHistory } = useUserStore();
   const [showConfetti, setShowConfetti] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [animatedScore, setAnimatedScore] = useState(0);
@@ -90,35 +86,6 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
 
     return () => clearTimeout(timeout);
   }, [isPerfect, isPersonalBest, result.levelsCompleted, result.maxLevel, result.score, feedback]);
-
-  const handleShare = async () => {
-    feedback.tap();
-    // Mark that user has shared (for badge tracking)
-    markShared();
-
-    if (canShare()) {
-      const shared = await shareResult({
-        title: 'Daily Brain',
-        text: shareText,
-      });
-
-      if (!shared) {
-        // Fallback to clipboard if share was cancelled
-        handleCopy();
-      }
-    } else {
-      handleCopy();
-    }
-  };
-
-  const handleCopy = async () => {
-    const success = await copyToClipboard(shareText);
-    if (success) {
-      setShowCopied(true);
-      feedback.correct();
-      setTimeout(() => setShowCopied(false), 2000);
-    }
-  };
 
   const handlePlayAgainClick = () => {
     feedback.tap();
@@ -283,36 +250,26 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
           </motion.span>
         </div>
 
-        {/* Action buttons */}
+        {/* Social Share Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
+          className="mb-4"
+        >
+          <SocialShareButtons
+            text={shareText}
+            score={result.score}
+          />
+        </motion.div>
+
+        {/* Action buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0 }}
           className="space-y-3"
         >
-          <button onClick={handleShare} className="btn-secondary w-full relative">
-            <AnimatePresence mode="wait">
-              {showCopied ? (
-                <motion.span
-                  key="copied"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  ✓ Copied to Clipboard!
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="share"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  📤 Share Results
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
           <div className="grid grid-cols-2 gap-3">
             <button onClick={handlePlayAgainClick} className="btn-primary">
               Play Again
@@ -321,6 +278,16 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
               Home
             </button>
           </div>
+        </motion.div>
+
+        {/* Ad placement */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="mt-6"
+        >
+          <ResultsAd />
         </motion.div>
       </motion.div>
     </div>

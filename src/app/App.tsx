@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { HomePage } from './routes/HomePage';
@@ -11,6 +12,7 @@ import { Leaderboard } from '@/components/leaderboard';
 import { Settings } from '@/components/settings';
 import { ProgressCharts } from '@/components/charts';
 import { useUserStore } from '@/stores/userStore';
+import { checkReferralCode } from '@/services/referral';
 
 function OnboardingGuard({ children }: { children: React.ReactNode }) {
   const hasCompletedOnboarding = useUserStore((state) => state.hasCompletedOnboarding);
@@ -24,6 +26,11 @@ function OnboardingGuard({ children }: { children: React.ReactNode }) {
 }
 
 export function App() {
+  // Check for referral code in URL on mount
+  useEffect(() => {
+    checkReferralCode();
+  }, []);
+
   return (
     <BrowserRouter>
       <OnboardingGuard>
