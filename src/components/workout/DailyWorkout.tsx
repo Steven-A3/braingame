@@ -54,7 +54,6 @@ export function DailyWorkout() {
 
   const [showConfetti, setShowConfetti] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
 
   // Generate today's workout seed
   const todaysSeed = useMemo(() => {
@@ -86,7 +85,15 @@ export function DailyWorkout() {
 
   const handleStartWorkout = () => {
     feedback.tap();
-    setShowIntro(false);
+    // Ensure workout is saved to store
+    if (dailyWorkoutGames.length === 0 && workoutGames.length > 0) {
+      startDailyWorkout(workoutGames);
+    }
+    // Navigate directly to the first game
+    const firstGameId = workoutGames[0];
+    if (firstGameId) {
+      navigate(`/play/${firstGameId}?workout=true`);
+    }
   };
 
   const handlePlayGame = (gameId: string) => {
@@ -99,8 +106,8 @@ export function DailyWorkout() {
     navigate('/');
   };
 
-  // Intro screen
-  if (showIntro && !dailyWorkoutCompleted && dailyWorkoutProgress === 0) {
+  // Intro screen - show when workout hasn't started yet
+  if (!dailyWorkoutCompleted && dailyWorkoutProgress === 0) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col">
         <div className="p-4">
