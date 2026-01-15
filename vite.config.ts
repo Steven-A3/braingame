@@ -10,15 +10,18 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'icons/*.png'],
       manifest: {
-        name: 'Daily Brain - Train Your Mind',
+        name: 'Daily Brain - Free Brain Training Games',
         short_name: 'Daily Brain',
-        description: 'A new brain training game every day',
+        description: 'Play 20+ free brain games daily! Improve memory, logic, focus, calculation, language and speed with science-backed cognitive training exercises.',
         theme_color: '#4a90d9',
         background_color: '#0f172a',
         display: 'standalone',
         orientation: 'portrait',
         start_url: '/',
-        categories: ['games', 'education', 'health'],
+        id: '/',
+        categories: ['games', 'education', 'health', 'lifestyle'],
+        lang: 'en',
+        dir: 'ltr',
         icons: [
           {
             src: '/icons/icon-72.png',
@@ -55,10 +58,24 @@ export default defineConfig({
         ],
         shortcuts: [
           {
-            name: "Today's Challenge",
+            name: "Today's Brain Game",
             short_name: 'Today',
-            description: "Play today's brain training game",
+            description: "Play today's daily brain training challenge",
             url: '/today',
+            icons: [{ src: '/icons/icon-96.png', sizes: '96x96' }]
+          },
+          {
+            name: "Daily Workout",
+            short_name: 'Workout',
+            description: "Complete your personalized brain workout",
+            url: '/workout',
+            icons: [{ src: '/icons/icon-96.png', sizes: '96x96' }]
+          },
+          {
+            name: "All Brain Games",
+            short_name: 'Games',
+            description: "Browse all 20+ brain training games",
+            url: '/games',
             icons: [{ src: '/icons/icon-96.png', sizes: '96x96' }]
           }
         ]
