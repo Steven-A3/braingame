@@ -8,22 +8,49 @@ import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { getDifficultyLabel } from '@/games/core/DifficultySystem';
 import { StreakDisplay } from '@/components/ui/StreakDisplay';
 import { BannerAd } from '@/components/ads/AdUnit';
+import { DailyQuests, useQuestStore } from '@/features/quests';
 
 export function HomePage() {
-  const { stats, completedToday, checkStreak } = useUserStore();
+  const { stats, completedToday, checkStreak, currency, getLevel } = useUserStore();
+  const { initializeQuests } = useQuestStore();
   const dailyChallenge = getDailyChallenge();
+  const levelInfo = getLevel();
 
-  // Check streak on mount
+  // Check streak and initialize quests on mount
   useEffect(() => {
     checkStreak();
-  }, [checkStreak]);
+    initializeQuests();
+  }, [checkStreak, initializeQuests]);
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-      {/* Header */}
-      <header className="text-center mb-6 pt-4">
-        <h1 className="text-2xl font-bold mb-1">Daily Brain</h1>
-        <p className="text-slate-400 text-sm">A new game every day</p>
+      {/* Header with Level and Currency */}
+      <header className="flex items-center justify-between mb-6 pt-4">
+        <div>
+          <h1 className="text-2xl font-bold mb-1">Daily Brain</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-purple-400 font-medium">
+              Level {levelInfo.level}
+            </span>
+            <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${(levelInfo.currentXP / levelInfo.requiredXP) * 100}%` }}
+                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex items-center gap-1 bg-slate-800/50 px-2 py-1 rounded-lg">
+            <span>🪙</span>
+            <span className="font-medium text-yellow-400">{currency.coins}</span>
+          </div>
+          <div className="flex items-center gap-1 bg-slate-800/50 px-2 py-1 rounded-lg">
+            <span>💎</span>
+            <span className="font-medium text-cyan-400">{currency.gems}</span>
+          </div>
+        </div>
       </header>
 
       {/* Streak display */}
@@ -150,6 +177,11 @@ export function HomePage() {
             </div>
           </div>
         </Link>
+      </div>
+
+      {/* Daily Quests */}
+      <div className="mb-6">
+        <DailyQuests compact maxDisplay={3} />
       </div>
 
       {/* Quick Stats */}

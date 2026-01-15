@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import type { GameResult, GameCategory } from '@/games/core/types';
 import type { BadgeProgress, Badge } from '@/services/badges';
 import { BADGES, calculateBadgeProgress, checkNewBadges } from '@/services/badges';
+import { getLevelFromXP } from '@/features/quests/types';
 
 interface UserStats {
   totalGamesPlayed: number;
@@ -12,6 +13,13 @@ interface UserStats {
   lastPlayDate: string | null;
   perfectGames: number;
   categoryGames: Record<GameCategory, number>;
+}
+
+// Currency and progression
+interface UserCurrency {
+  coins: number;
+  gems: number;
+  xp: number;
 }
 
 interface UserSettings {
@@ -52,8 +60,15 @@ interface UserState {
   // Settings
   settings: UserSettings;
 
+  // Currency & Progression
+  currency: UserCurrency;
+
   // Actions
   setName: (name: string) => void;
+  addCurrency: (coins?: number, gems?: number, xp?: number) => void;
+  spendCoins: (amount: number) => boolean;
+  spendGems: (amount: number) => boolean;
+  getLevel: () => { level: number; currentXP: number; requiredXP: number };
   completeOnboarding: () => void;
   startDailyWorkout: (games: string[]) => void;
   completeDailyWorkoutGame: (gameId: string) => void;
@@ -90,6 +105,12 @@ const initialSettings: UserSettings = {
   notificationsEnabled: false,
 };
 
+const initialCurrency: UserCurrency = {
+  coins: 0,
+  gems: 0,
+  xp: 0,
+};
+
 export const useUserStore = create<UserState>()(
   persist(
     (set, get) => ({
@@ -116,8 +137,49 @@ export const useUserStore = create<UserState>()(
       hasInstalledPWA: false,
       playedDates: [],
       settings: { ...initialSettings },
+      currency: { ...initialCurrency },
 
       setName: (name) => set({ name }),
+
+      addCurrency: (coins = 0, gems = 0, xp = 0) => {
+        const state = get();
+        set({
+          currency: {
+            coins: state.currency.coins + coins,
+            gems: state.currency.gems + gems,
+            xp: state.currency.xp + xp,
+          },
+        });
+      },
+
+      spendCoins: (amount) => {
+        const state = get();
+        if (state.currency.coins < amount) return false;
+        set({
+          currency: {
+            ...state.currency,
+            coins: state.currency.coins - amount,
+          },
+        });
+        return true;
+      },
+
+      spendGems: (amount) => {
+        const state = get();
+        if (state.currency.gems < amount) return false;
+        set({
+          currency: {
+            ...state.currency,
+            gems: state.currency.gems - amount,
+          },
+        });
+        return true;
+      },
+
+      getLevel: () => {
+        const state = get();
+        return getLevelFromXP(state.currency.xp);
+      },
 
       completeOnboarding: () => set({ hasCompletedOnboarding: true }),
 
@@ -374,12 +436,13 @@ export const useUserStore = create<UserState>()(
           hasInstalledPWA: false,
           playedDates: [],
           settings: { ...initialSettings },
+          currency: { ...initialCurrency },
         });
       },
     }),
     {
       name: 'daily-brain-user',
-      version: 4,
+      version: 5,
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as UserState;
         if (version < 2) {
@@ -414,6 +477,19 @@ export const useUserStore = create<UserState>()(
           return {
             ...state,
             settings: { ...initialSettings },
+          };
+        }
+        if (version < 5) {
+          // Migrate to version 5 - add currency
+          // Give existing users starter coins based on their progress
+          const bonusCoins = Math.min(state.stats?.totalGamesPlayed || 0, 100) * 5;
+          return {
+            ...state,
+            currency: {
+              coins: bonusCoins,
+              gems: 0,
+              xp: (state.stats?.totalGamesPlayed || 0) * 10,
+            },
           };
         }
         return state;

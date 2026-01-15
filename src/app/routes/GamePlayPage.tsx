@@ -1,12 +1,14 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGameInfo } from '@/games/registry';
 import { calculateDifficulty } from '@/games/core/DifficultySystem';
 import { getGameSeed } from '@/games/core/SeededRNG';
 import { useUserStore } from '@/stores/userStore';
+import { useQuestStore } from '@/features/quests';
 import type { GameConfig, GameResult } from '@/games/core/types';
 import { ResultsScreen } from '@/components/game/ResultsScreen';
+import { QuestRewardPopup } from '@/features/quests';
 
 // Game components (lazy loaded in production, direct imports for simplicity)
 // Memory
@@ -75,8 +77,26 @@ export function GamePlayPage() {
   const recordGameResult = useUserStore((state) => state.recordGameResult);
   const completeDailyWorkoutGame = useUserStore((state) => state.completeDailyWorkoutGame);
 
+  // Quest tracking
+  const { initializeQuests, updateQuestProgress, pendingRewards, claimReward, clearPendingRewards } = useQuestStore();
+  const [showQuestReward, setShowQuestReward] = useState(false);
+  const [currentRewardQuest, setCurrentRewardQuest] = useState<typeof pendingRewards[0] | null>(null);
+
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [showResults, setShowResults] = useState(false);
+
+  // Initialize quests on mount
+  useEffect(() => {
+    initializeQuests();
+  }, [initializeQuests]);
+
+  // Show quest rewards when they become available
+  useEffect(() => {
+    if (pendingRewards.length > 0 && showResults && !showQuestReward) {
+      setCurrentRewardQuest(pendingRewards[0]);
+      setShowQuestReward(true);
+    }
+  }, [pendingRewards, showResults, showQuestReward]);
 
   const gameInfo = gameId ? getGameInfo(gameId) : null;
 
@@ -95,11 +115,28 @@ export function GamePlayPage() {
     setShowResults(true);
     recordGameResult(result);
 
+    // Update quest progress
+    updateQuestProgress(result);
+
     // Track workout progress if in workout mode
     if (isWorkout && gameId) {
       completeDailyWorkoutGame(gameId);
     }
-  }, [recordGameResult, isWorkout, gameId, completeDailyWorkoutGame]);
+  }, [recordGameResult, updateQuestProgress, isWorkout, gameId, completeDailyWorkoutGame]);
+
+  // Handle quest reward claim
+  const handleClaimQuestReward = useCallback(() => {
+    if (currentRewardQuest) {
+      claimReward(currentRewardQuest.id);
+      setShowQuestReward(false);
+      setCurrentRewardQuest(null);
+    }
+  }, [currentRewardQuest, claimReward]);
+
+  const handleCloseQuestReward = useCallback(() => {
+    setShowQuestReward(false);
+    clearPendingRewards();
+  }, [clearPendingRewards]);
 
   const handleExit = useCallback(() => {
     if (isWorkout) {
@@ -149,37 +186,46 @@ export function GamePlayPage() {
   }
 
   return (
-    <AnimatePresence mode="wait">
-      {showResults && gameResult ? (
-        <motion.div
-          key="results"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <ResultsScreen
-            result={gameResult}
-            gameInfo={gameInfo}
-            onPlayAgain={handlePlayAgain}
-            onGoHome={handleExit}
-          />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="game"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="min-h-screen"
-        >
-          <GameComponent
-            config={config}
-            onComplete={handleComplete}
-            onExit={handleExit}
-            onQuit={handleExit}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        {showResults && gameResult ? (
+          <motion.div
+            key="results"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ResultsScreen
+              result={gameResult}
+              gameInfo={gameInfo}
+              onPlayAgain={handlePlayAgain}
+              onGoHome={handleExit}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="game"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="min-h-screen"
+          >
+            <GameComponent
+              config={config}
+              onComplete={handleComplete}
+              onExit={handleExit}
+              onQuit={handleExit}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Quest reward popup */}
+      <QuestRewardPopup
+        quest={currentRewardQuest}
+        onClaim={handleClaimQuestReward}
+        onClose={handleCloseQuestReward}
+      />
+    </>
   );
 }
