@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
@@ -54,34 +54,37 @@ export function DailyWorkout() {
 
   const [showConfetti, setShowConfetti] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
-
   const [showIntro, setShowIntro] = useState(true);
 
-  // Generate today's workout
+  // Generate today's workout seed
   const todaysSeed = useMemo(() => {
     const today = new Date();
     return getGameSeed('daily-workout', today);
   }, []);
 
-  const workoutGames = useMemo(() => {
-    if (dailyWorkoutGames.length > 0) {
-      return dailyWorkoutGames;
-    }
-    return generateWorkoutGames(todaysSeed);
-  }, [todaysSeed, dailyWorkoutGames]);
+  // Use ref to keep games stable across re-renders
+  const gamesRef = useRef<string[]>([]);
 
-  // Start workout if not already started
+  // Initialize games once
+  if (gamesRef.current.length === 0) {
+    if (dailyWorkoutGames.length > 0) {
+      gamesRef.current = dailyWorkoutGames;
+    } else {
+      gamesRef.current = generateWorkoutGames(todaysSeed);
+    }
+  }
+
+  // The stable list of workout games
+  const workoutGames = gamesRef.current;
+
+  // Start workout in store if not already started
   useEffect(() => {
-    if (dailyWorkoutGames.length === 0) {
+    if (dailyWorkoutGames.length === 0 && workoutGames.length > 0) {
       startDailyWorkout(workoutGames);
     }
   }, [dailyWorkoutGames, workoutGames, startDailyWorkout]);
 
   const handleStartWorkout = () => {
-    // Ensure workout is started in the store before transitioning
-    if (dailyWorkoutGames.length === 0 && workoutGames.length > 0) {
-      startDailyWorkout(workoutGames);
-    }
     feedback.tap();
     setShowIntro(false);
   };
@@ -96,8 +99,8 @@ export function DailyWorkout() {
     navigate('/');
   };
 
-  // Intro screen - only show when games are ready
-  if (showIntro && !dailyWorkoutCompleted && dailyWorkoutProgress === 0 && workoutGames.length > 0) {
+  // Intro screen
+  if (showIntro && !dailyWorkoutCompleted && dailyWorkoutProgress === 0) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col">
         <div className="p-4">
