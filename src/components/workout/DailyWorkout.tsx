@@ -78,6 +78,10 @@ export function DailyWorkout() {
   }, [dailyWorkoutGames, workoutGames, startDailyWorkout]);
 
   const handleStartWorkout = () => {
+    // Ensure workout is started in the store before transitioning
+    if (dailyWorkoutGames.length === 0 && workoutGames.length > 0) {
+      startDailyWorkout(workoutGames);
+    }
     feedback.tap();
     setShowIntro(false);
   };
@@ -92,8 +96,8 @@ export function DailyWorkout() {
     navigate('/');
   };
 
-  // Intro screen
-  if (showIntro && !dailyWorkoutCompleted && dailyWorkoutProgress === 0) {
+  // Intro screen - only show when games are ready
+  if (showIntro && !dailyWorkoutCompleted && dailyWorkoutProgress === 0 && workoutGames.length > 0) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col">
         <div className="p-4">
@@ -226,6 +230,15 @@ export function DailyWorkout() {
   // Workout progress screen
   const currentGameId = workoutGames[dailyWorkoutProgress];
   const currentGame = getGameInfo(currentGameId);
+
+  // Safety check: if workoutGames is empty, show loading
+  if (workoutGames.length === 0) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center">
+        <div className="text-xl text-slate-400">Loading workout...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col">
