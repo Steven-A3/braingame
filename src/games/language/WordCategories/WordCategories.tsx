@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WordCategoriesEngine, WordCategoriesState } from './WordCategoriesEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface WordCategoriesProps {
@@ -15,6 +16,7 @@ export function WordCategories({ config, onComplete, onQuit }: WordCategoriesPro
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [categoriesState, setCategoriesState] = useState<WordCategoriesState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const gameFeedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new WordCategoriesEngine(config);
@@ -48,8 +50,15 @@ export function WordCategories({ config, onComplete, onQuit }: WordCategoriesPro
   }, []);
 
   const handleCategoryClick = useCallback((categoryName: string) => {
+    const state = engineRef.current?.getGameState();
+    const isCorrect = state?.currentWord?.category === categoryName;
+    if (isCorrect) {
+      gameFeedback.correct();
+    } else {
+      gameFeedback.wrong();
+    }
     engineRef.current?.handleInput(categoryName);
-  }, []);
+  }, [gameFeedback]);
 
   if (!isReady || !gameState || !categoriesState) {
     return (

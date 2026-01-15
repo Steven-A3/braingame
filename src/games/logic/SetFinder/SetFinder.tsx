@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { SetFinderEngine, SetFinderState, SetCard } from './SetFinderEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface SetFinderProps {
@@ -92,6 +93,7 @@ export function SetFinder({ config, onComplete, onQuit }: SetFinderProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [finderState, setFinderState] = useState<SetFinderState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new SetFinderEngine(config);
@@ -125,8 +127,9 @@ export function SetFinder({ config, onComplete, onQuit }: SetFinderProps) {
   }, []);
 
   const handleCardClick = useCallback((cardId: number) => {
+    feedback.tap();
     engineRef.current?.handleInput({ type: 'select', cardId });
-  }, []);
+  }, [feedback]);
 
   const handleHint = useCallback(() => {
     engineRef.current?.handleInput({ type: 'hint' });

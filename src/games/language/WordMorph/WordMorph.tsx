@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { WordMorphEngine } from './WordMorphEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface WordMorphProps {
   config: GameConfig;
@@ -20,6 +21,7 @@ export function WordMorph({ config, onComplete, onExit }: WordMorphProps) {
   const [validMoves, setValidMoves] = useState<string[]>([]);
   const [showHint, setShowHint] = useState(false);
   const [feedback, setFeedback] = useState<'valid' | 'invalid' | null>(null);
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -55,13 +57,15 @@ export function WordMorph({ config, onComplete, onExit }: WordMorphProps) {
 
     if (newMoves > prevMoves) {
       setFeedback('valid');
+      gameFeedback.correct();
       setInputValue('');
     } else {
       setFeedback('invalid');
+      gameFeedback.wrong();
     }
 
     setTimeout(() => setFeedback(null), 300);
-  }, [inputValue, level]);
+  }, [inputValue, level, gameFeedback]);
 
   const handleUndo = useCallback(() => {
     engineRef.current?.undoMove();

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FractionMatchEngine, FractionMatchState } from './FractionMatchEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface FractionMatchProps {
@@ -15,6 +16,7 @@ export function FractionMatch({ config, onComplete, onQuit }: FractionMatchProps
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [matchState, setMatchState] = useState<FractionMatchState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const gameFeedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new FractionMatchEngine(config);
@@ -48,8 +50,14 @@ export function FractionMatch({ config, onComplete, onQuit }: FractionMatchProps
   }, []);
 
   const handleOptionClick = useCallback((optionId: number) => {
+    const state = engineRef.current?.getGameState();
+    if (optionId === state?.correctOptionId) {
+      gameFeedback.correct();
+    } else {
+      gameFeedback.wrong();
+    }
     engineRef.current?.handleInput(optionId);
-  }, []);
+  }, [gameFeedback]);
 
   if (!isReady || !gameState || !matchState) {
     return (

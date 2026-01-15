@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnagramBlitzEngine, AnagramBlitzState } from './AnagramBlitzEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface AnagramBlitzProps {
@@ -16,6 +17,7 @@ export function AnagramBlitz({ config, onComplete, onQuit }: AnagramBlitzProps) 
   const [anagramState, setAnagramState] = useState<AnagramBlitzState | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -55,13 +57,14 @@ export function AnagramBlitz({ config, onComplete, onQuit }: AnagramBlitzProps) 
   const handleLetterClick = useCallback((index: number) => {
     if (!anagramState || selectedIndices.includes(index)) return;
 
+    gameFeedback.tap();
     const letter = anagramState.letters[index];
     setSelectedIndices(prev => [...prev, index]);
 
     if (engineRef.current) {
       engineRef.current.handleInput({ type: 'letter', letter });
     }
-  }, [anagramState, selectedIndices]);
+  }, [anagramState, selectedIndices, gameFeedback]);
 
   const handleBackspace = useCallback(() => {
     setSelectedIndices(prev => prev.slice(0, -1));
@@ -73,9 +76,16 @@ export function AnagramBlitz({ config, onComplete, onQuit }: AnagramBlitzProps) 
   const handleSubmit = useCallback(() => {
     setSelectedIndices([]);
     if (engineRef.current) {
+      const state = engineRef.current.getGameState();
+      const isValid = state?.possibleWords.includes(state?.currentInput.toLowerCase() ?? '');
+      if (isValid) {
+        gameFeedback.correct();
+      } else {
+        gameFeedback.wrong();
+      }
       engineRef.current.handleInput({ type: 'submit' });
     }
-  }, []);
+  }, [gameFeedback]);
 
   const handleShuffle = useCallback(() => {
     setSelectedIndices([]);

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { SpatialRecallEngine, SpatialRecallState } from './SpatialRecallEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface SpatialRecallProps {
@@ -15,6 +16,7 @@ export function SpatialRecall({ config, onComplete, onQuit }: SpatialRecallProps
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [spatialState, setSpatialState] = useState<SpatialRecallState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new SpatialRecallEngine(config);
@@ -48,8 +50,17 @@ export function SpatialRecall({ config, onComplete, onQuit }: SpatialRecallProps
   }, []);
 
   const handleCellClick = useCallback((cellId: number) => {
+    const state = engineRef.current?.getGameState();
+    const cell = state?.grid.find(c => c.id === cellId);
+    if (cell) {
+      if (cell.isTarget) {
+        feedback.correct();
+      } else {
+        feedback.wrong();
+      }
+    }
     engineRef.current?.handleInput(cellId);
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !spatialState) {
     return (

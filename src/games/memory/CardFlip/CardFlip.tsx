@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CardFlipEngine, CardFlipState, Card } from './CardFlipEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface CardFlipProps {
@@ -15,6 +16,7 @@ export function CardFlip({ config, onComplete, onQuit }: CardFlipProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [flipState, setFlipState] = useState<CardFlipState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new CardFlipEngine(config);
@@ -51,9 +53,10 @@ export function CardFlip({ config, onComplete, onQuit }: CardFlipProps) {
 
   const handleCardClick = useCallback((cardId: number) => {
     if (engineRef.current) {
+      feedback.tap();
       engineRef.current.handleInput(cardId);
     }
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !flipState) {
     return (
@@ -151,15 +154,7 @@ export function CardFlip({ config, onComplete, onQuit }: CardFlipProps) {
 
         {/* Match feedback */}
         {flipState.lastMatchCorrect !== null && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`mt-4 text-lg font-bold ${
-              flipState.lastMatchCorrect ? 'text-green-400' : 'text-red-400'
-            }`}
-          >
-            {flipState.lastMatchCorrect ? '✓ Match!' : '✗ Try again'}
-          </motion.div>
+          <MatchFeedback isCorrect={flipState.lastMatchCorrect} feedback={feedback} />
         )}
       </div>
     </div>
@@ -217,5 +212,28 @@ function GameCard({ card, onClick, disabled }: GameCardProps) {
         </div>
       </motion.div>
     </motion.button>
+  );
+}
+
+// Separate component to trigger feedback effect
+function MatchFeedback({ isCorrect, feedback }: { isCorrect: boolean; feedback: ReturnType<typeof useGameFeedback> }) {
+  useEffect(() => {
+    if (isCorrect) {
+      feedback.correct();
+    } else {
+      feedback.wrong();
+    }
+  }, [isCorrect, feedback]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={`mt-4 text-lg font-bold ${
+        isCorrect ? 'text-green-400' : 'text-red-400'
+      }`}
+    >
+      {isCorrect ? '✓ Match!' : '✗ Try again'}
+    </motion.div>
   );
 }

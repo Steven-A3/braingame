@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { NumberChainEngine, NumberChainState } from './NumberChainEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface NumberChainProps {
@@ -15,6 +16,7 @@ export function NumberChain({ config, onComplete, onQuit }: NumberChainProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [chainState, setChainState] = useState<NumberChainState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const gameFeedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new NumberChainEngine(config);
@@ -48,12 +50,14 @@ export function NumberChain({ config, onComplete, onQuit }: NumberChainProps) {
   }, []);
 
   const handleOperation = useCallback((op: string) => {
+    gameFeedback.tap();
     engineRef.current?.handleInput({ type: 'operation', value: op });
-  }, []);
+  }, [gameFeedback]);
 
   const handleNumber = useCallback((id: number) => {
+    gameFeedback.tap();
     engineRef.current?.handleInput({ type: 'number', value: id });
-  }, []);
+  }, [gameFeedback]);
 
   const handleUndo = useCallback(() => {
     engineRef.current?.handleInput({ type: 'undo' });

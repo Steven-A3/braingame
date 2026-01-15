@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { ReflexTapEngine } from './ReflexTapEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface ReflexTapProps {
   config: GameConfig;
@@ -22,6 +23,7 @@ export function ReflexTap({ config, onComplete, onExit }: ReflexTapProps) {
   const [avgReactionTime, setAvgReactionTime] = useState(0);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | 'early' | null>(null);
   const [instruction, setInstruction] = useState<string>('');
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -82,19 +84,22 @@ export function ReflexTap({ config, onComplete, onExit }: ReflexTapProps) {
     if (waiting) {
       // Tapped too early!
       setFeedback('early');
+      gameFeedback.wrong();
       engineRef.current.handleInput(true);
     } else if (target) {
       if (target.isGo) {
         setFeedback('correct');
+        gameFeedback.correct();
       } else {
         setFeedback('wrong');
+        gameFeedback.wrong();
       }
       if (timeoutTimerRef.current) clearTimeout(timeoutTimerRef.current);
       engineRef.current.handleInput(true);
     }
 
     setTimeout(() => setFeedback(null), 300);
-  }, [waiting, target, gameState?.status]);
+  }, [waiting, target, gameState?.status, gameFeedback]);
 
   if (!gameState) {
     return (

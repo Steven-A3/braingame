@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EstimationStationEngine, EstimationStationState } from './EstimationStationEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface EstimationStationProps {
@@ -15,6 +16,7 @@ export function EstimationStation({ config, onComplete, onQuit }: EstimationStat
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [estimationState, setEstimationState] = useState<EstimationStationState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -52,9 +54,16 @@ export function EstimationStation({ config, onComplete, onQuit }: EstimationStat
 
   const handleAnswer = useCallback((answer: number) => {
     if (engineRef.current) {
+      const state = engineRef.current.getGameState();
+      const isCorrect = answer === state?.currentQuestion?.actualAnswer;
+      if (isCorrect) {
+        feedback.correct();
+      } else {
+        feedback.wrong();
+      }
       engineRef.current.handleInput(answer);
     }
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !estimationState) {
     return (

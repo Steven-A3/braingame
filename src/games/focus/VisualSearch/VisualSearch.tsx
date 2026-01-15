@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { VisualSearchEngine, VisualSearchState, SearchItem } from './VisualSearchEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface VisualSearchProps {
@@ -98,6 +99,7 @@ export function VisualSearch({ config, onComplete, onQuit }: VisualSearchProps) 
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [searchState, setSearchState] = useState<VisualSearchState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new VisualSearchEngine(config);
@@ -131,8 +133,15 @@ export function VisualSearch({ config, onComplete, onQuit }: VisualSearchProps) 
   }, []);
 
   const handleItemClick = useCallback((itemId: number) => {
+    const state = engineRef.current?.getGameState();
+    const item = state?.items.find(i => i.id === itemId);
+    if (item?.isTarget) {
+      feedback.correct();
+    } else {
+      feedback.wrong();
+    }
     engineRef.current?.handleInput(itemId);
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !searchState) {
     return (

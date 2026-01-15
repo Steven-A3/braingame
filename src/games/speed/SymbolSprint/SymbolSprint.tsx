@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { SymbolSprintEngine, SymbolSprintState } from './SymbolSprintEngine';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 
 interface SymbolSprintProps {
@@ -15,6 +16,7 @@ export function SymbolSprint({ config, onComplete, onQuit }: SymbolSprintProps) 
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [sprintState, setSprintState] = useState<SymbolSprintState | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const feedback = useGameFeedback();
 
   useEffect(() => {
     const engine = new SymbolSprintEngine(config);
@@ -48,8 +50,15 @@ export function SymbolSprint({ config, onComplete, onQuit }: SymbolSprintProps) 
   }, []);
 
   const handleCellTap = useCallback((cellId: number) => {
+    const state = engineRef.current?.getGameState();
+    const cell = state?.gridSymbols.find(c => c.id === cellId);
+    if (cell?.symbol === state?.targetSymbol) {
+      feedback.correct();
+    } else {
+      feedback.wrong();
+    }
     engineRef.current?.handleInput(cellId);
-  }, []);
+  }, [feedback]);
 
   if (!isReady || !gameState || !sprintState) {
     return (

@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { MathSprintEngine } from './MathSprintEngine';
 import type { GameConfig, GameState, GameResult } from '@/games/core/types';
 import { GameHeader } from '@/components/game/GameHeader';
+import { useGameFeedback } from '@/hooks/useGameFeedback';
 
 interface MathSprintProps {
   config: GameConfig;
@@ -20,6 +21,7 @@ export function MathSprint({ config, onComplete, onExit }: MathSprintProps) {
   const [inputValue, setInputValue] = useState('');
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [progress, setProgress] = useState({ current: 1, total: 5 });
+  const gameFeedback = useGameFeedback();
 
   // Initialize engine
   useEffect(() => {
@@ -85,10 +87,17 @@ export function MathSprint({ config, onComplete, onExit }: MathSprintProps) {
     const answer = parseInt(inputValue, 10);
     const isCorrect = answer === problem.answer;
     setFeedback(isCorrect ? 'correct' : 'wrong');
+
+    if (isCorrect) {
+      gameFeedback.correct();
+    } else {
+      gameFeedback.wrong();
+    }
+
     engineRef.current.handleInput(answer);
 
     setTimeout(() => setFeedback(null), 300);
-  }, [problem, inputValue]);
+  }, [problem, inputValue, gameFeedback]);
 
   if (!gameState || !problem) {
     return (
