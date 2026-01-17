@@ -9,6 +9,7 @@ import { useQuestStore } from '@/features/quests';
 import type { GameConfig, GameResult } from '@/games/core/types';
 import { ResultsScreen } from '@/components/game/ResultsScreen';
 import { QuestRewardPopup } from '@/features/quests';
+import { trackGameComplete, trackGameStart, trackQuestClaimed } from '@/services/analytics';
 
 // Game components (lazy loaded in production, direct imports for simplicity)
 // Memory
@@ -85,10 +86,15 @@ export function GamePlayPage() {
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [showResults, setShowResults] = useState(false);
 
-  // Initialize quests on mount
+  const gameInfo = gameId ? getGameInfo(gameId) : null;
+
+  // Initialize quests on mount and track game start
   useEffect(() => {
     initializeQuests();
-  }, [initializeQuests]);
+    if (gameInfo) {
+      trackGameStart(gameInfo.id, gameInfo.category);
+    }
+  }, [initializeQuests, gameInfo]);
 
   // Show quest rewards when they become available
   useEffect(() => {
@@ -97,8 +103,6 @@ export function GamePlayPage() {
       setShowQuestReward(true);
     }
   }, [pendingRewards, showResults, showQuestReward]);
-
-  const gameInfo = gameId ? getGameInfo(gameId) : null;
 
   // Get game config
   const config: GameConfig = useMemo(() => {
@@ -115,6 +119,16 @@ export function GamePlayPage() {
     setShowResults(true);
     recordGameResult(result);
 
+    // Track game completion in analytics
+    trackGameComplete(
+      result.gameId,
+      result.category,
+      result.score,
+      result.accuracy,
+      result.duration,
+      result.levelsCompleted
+    );
+
     // Update quest progress
     updateQuestProgress(result);
 
@@ -127,6 +141,14 @@ export function GamePlayPage() {
   // Handle quest reward claim
   const handleClaimQuestReward = useCallback(() => {
     if (currentRewardQuest) {
+      // Track quest reward claim in analytics
+      trackQuestClaimed(
+        currentRewardQuest.id,
+        currentRewardQuest.reward.coins,
+        currentRewardQuest.reward.xp,
+        currentRewardQuest.reward.gems
+      );
+
       claimReward(currentRewardQuest.id);
       setShowQuestReward(false);
       setCurrentRewardQuest(null);

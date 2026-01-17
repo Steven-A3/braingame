@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { useFeedback } from '@/hooks/useFeedback';
+import { trackShare } from '@/services/analytics';
 
 interface SocialShareButtonsProps {
   text: string;
   url?: string;
-  score?: number;
 }
 
 // Social media icons as simple SVG components
@@ -33,7 +33,7 @@ const CopyIcon = () => (
   </svg>
 );
 
-export function SocialShareButtons({ text, url = 'https://dailybrain.one', score }: SocialShareButtonsProps) {
+export function SocialShareButtons({ text, url = 'https://dailybrain.one' }: SocialShareButtonsProps) {
   const feedback = useFeedback();
 
   const shareUrl = url;
@@ -64,8 +64,8 @@ export function SocialShareButtons({ text, url = 'https://dailybrain.one', score
   const handleShare = (platform: string, shareUrl: string) => {
     feedback.tap();
 
-    // Track share event (could connect to analytics)
-    console.log(`Shared to ${platform}`, { score });
+    // Track share event in Google Analytics
+    trackShare(platform.toLowerCase(), 'game_result');
 
     // Open share dialog
     window.open(shareUrl, '_blank', 'width=600,height=400,menubar=no,toolbar=no');

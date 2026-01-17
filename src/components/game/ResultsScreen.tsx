@@ -259,7 +259,6 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
         >
           <SocialShareButtons
             text={shareText}
-            score={result.score}
           />
         </motion.div>
 
