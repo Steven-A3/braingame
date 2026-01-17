@@ -55,9 +55,30 @@ export function Onboarding({ onComplete }: OnboardingProps) {
     }
   };
 
+  const handlePrev = () => {
+    if (currentStep > 0) {
+      feedback.tap();
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   const handleSkip = () => {
     feedback.tap();
     onComplete();
+  };
+
+  const handleDragEnd = (_: unknown, info: { offset: { x: number }; velocity: { x: number } }) => {
+    const swipeThreshold = 50;
+    const velocityThreshold = 500;
+
+    // Swipe left (next) - negative offset/velocity
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      handleNext();
+    }
+    // Swipe right (previous) - positive offset/velocity
+    else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      handlePrev();
+    }
   };
 
   const step = STEPS[currentStep];
@@ -75,8 +96,14 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         </button>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
+      {/* Content - Swipeable area */}
+      <motion.div
+        className="flex-1 flex flex-col items-center justify-center p-6 cursor-grab active:cursor-grabbing touch-pan-y"
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.2}
+        onDragEnd={handleDragEnd}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={step.id}
@@ -84,7 +111,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3 }}
-            className="text-center max-w-sm"
+            className="text-center max-w-sm pointer-events-none"
           >
             {/* Icon */}
             <motion.div
@@ -121,7 +148,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             )}
           </motion.div>
         </AnimatePresence>
-      </div>
+      </motion.div>
 
       {/* Progress dots & button */}
       <div className="p-6">
