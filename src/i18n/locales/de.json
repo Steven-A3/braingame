@@ -195,7 +195,17 @@
     "terms": "Nutzungsbedingungen",
     "inviteFriends": "Freunde einladen",
     "rateApp": "App bewerten",
-    "feedback": "Feedback senden"
+    "feedback": "Feedback senden",
+    "dataManagement": "Datenverwaltung",
+    "gamesPlayed": "Gespielte Spiele",
+    "dayStreak": "Tage in Folge",
+    "exportData": "Daten exportieren",
+    "downloadProgress": "Fortschritt herunterladen",
+    "resetAllData": "Alle Daten zurücksetzen",
+    "cannotBeUndone": "Dies kann nicht rückgängig gemacht werden",
+    "resetConfirmTitle": "Alle Daten zurücksetzen?",
+    "resetConfirmMessage": "Dies löscht dauerhaft Ihren gesamten Fortschritt, Statistiken, Abzeichen und Spielverlauf. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "exportSuccess": "Daten erfolgreich exportiert!"
   },
   "onboarding": {
     "language": {

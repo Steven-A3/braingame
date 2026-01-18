@@ -195,7 +195,17 @@
     "terms": "Termini di servizio",
     "inviteFriends": "Invita amici",
     "rateApp": "Valuta l'app",
-    "feedback": "Invia feedback"
+    "feedback": "Invia feedback",
+    "dataManagement": "Gestione dati",
+    "gamesPlayed": "Partite giocate",
+    "dayStreak": "Giorni consecutivi",
+    "exportData": "Esporta dati",
+    "downloadProgress": "Scarica i tuoi progressi",
+    "resetAllData": "Reimposta tutti i dati",
+    "cannotBeUndone": "Questa azione non può essere annullata",
+    "resetConfirmTitle": "Reimpostare tutti i dati?",
+    "resetConfirmMessage": "Questo eliminerà permanentemente tutti i tuoi progressi, statistiche, badge e cronologia di gioco. Questa azione non può essere annullata.",
+    "exportSuccess": "Dati esportati con successo!"
   },
   "onboarding": {
     "language": {

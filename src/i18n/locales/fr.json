@@ -195,7 +195,17 @@
     "terms": "Conditions d'utilisation",
     "inviteFriends": "Inviter des amis",
     "rateApp": "Noter l'application",
-    "feedback": "Envoyer un commentaire"
+    "feedback": "Envoyer un commentaire",
+    "dataManagement": "Gestion des données",
+    "gamesPlayed": "Parties jouées",
+    "dayStreak": "Jours consécutifs",
+    "exportData": "Exporter les données",
+    "downloadProgress": "Télécharger votre progression",
+    "resetAllData": "Réinitialiser toutes les données",
+    "cannotBeUndone": "Cette action est irréversible",
+    "resetConfirmTitle": "Réinitialiser toutes les données ?",
+    "resetConfirmMessage": "Cela supprimera définitivement toute votre progression, vos statistiques, badges et historique de jeu. Cette action est irréversible.",
+    "exportSuccess": "Données exportées avec succès !"
   },
   "onboarding": {
     "language": {

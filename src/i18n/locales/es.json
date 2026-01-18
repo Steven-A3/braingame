@@ -195,7 +195,17 @@
     "terms": "Términos de servicio",
     "inviteFriends": "Invitar amigos",
     "rateApp": "Valorar la app",
-    "feedback": "Enviar comentarios"
+    "feedback": "Enviar comentarios",
+    "dataManagement": "Gestión de datos",
+    "gamesPlayed": "Juegos jugados",
+    "dayStreak": "Días consecutivos",
+    "exportData": "Exportar datos",
+    "downloadProgress": "Descargar tu progreso",
+    "resetAllData": "Restablecer todos los datos",
+    "cannotBeUndone": "Esta acción no se puede deshacer",
+    "resetConfirmTitle": "¿Restablecer todos los datos?",
+    "resetConfirmMessage": "Esto eliminará permanentemente todo tu progreso, estadísticas, insignias e historial de juegos. Esta acción no se puede deshacer.",
+    "exportSuccess": "¡Datos exportados con éxito!"
   },
   "onboarding": {
     "language": {

@@ -195,7 +195,17 @@
     "terms": "Terms of Service",
     "inviteFriends": "Invite Friends",
     "rateApp": "Rate App",
-    "feedback": "Send Feedback"
+    "feedback": "Send Feedback",
+    "dataManagement": "Data Management",
+    "gamesPlayed": "Games Played",
+    "dayStreak": "Day Streak",
+    "exportData": "Export Data",
+    "downloadProgress": "Download your progress",
+    "resetAllData": "Reset All Data",
+    "cannotBeUndone": "This cannot be undone",
+    "resetConfirmTitle": "Reset All Data?",
+    "resetConfirmMessage": "This will permanently delete all your progress, stats, badges, and game history. This action cannot be undone.",
+    "exportSuccess": "Data exported successfully!"
   },
   "onboarding": {
     "language": {
