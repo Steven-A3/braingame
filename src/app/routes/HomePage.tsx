@@ -8,7 +8,6 @@ import { useUserStore } from '@/stores/userStore';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { getDifficultyLabel } from '@/games/core/DifficultySystem';
 import { StreakDisplay } from '@/components/ui/StreakDisplay';
-import { BannerAd } from '@/components/ads/AdUnit';
 import { DailyQuests, useQuestStore } from '@/features/quests';
 
 export function HomePage() {
@@ -192,7 +191,7 @@ export function HomePage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-3 gap-3 mb-4">
         <div className="card text-center py-4">
           <div className="text-2xl font-bold text-primary-400">
             {stats.totalGamesPlayed}
@@ -212,9 +211,6 @@ export function HomePage() {
           <div className="text-xs text-slate-400">{t('common.score')}</div>
         </div>
       </div>
-
-      {/* Ad Banner */}
-      <BannerAd />
 
       {/* Theme of the month */}
       <div className="text-center text-slate-500 text-sm pb-4">
