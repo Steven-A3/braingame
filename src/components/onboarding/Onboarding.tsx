@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useFeedback } from '@/hooks/useFeedback';
 
 interface OnboardingProps {
@@ -9,39 +10,32 @@ interface OnboardingProps {
 const STEPS = [
   {
     id: 'welcome',
-    title: 'Welcome to Daily Brain',
-    description: 'Train your mind with fun, scientifically-inspired games.',
     icon: '🧠',
   },
   {
     id: 'categories',
-    title: '6 Cognitive Areas',
-    description: 'Challenge yourself across memory, logic, focus, calculation, language, and speed.',
     icon: '🎯',
     categories: [
-      { name: 'Memory', icon: '🔮', color: 'bg-purple-500' },
-      { name: 'Logic', icon: '🧩', color: 'bg-blue-500' },
-      { name: 'Focus', icon: '🎨', color: 'bg-green-500' },
-      { name: 'Calculation', icon: '➕', color: 'bg-orange-500' },
-      { name: 'Language', icon: '📝', color: 'bg-pink-500' },
-      { name: 'Speed', icon: '⚡', color: 'bg-yellow-500' },
+      { key: 'memory', icon: '🔮', color: 'bg-purple-500' },
+      { key: 'logic', icon: '🧩', color: 'bg-blue-500' },
+      { key: 'focus', icon: '🎨', color: 'bg-green-500' },
+      { key: 'calculation', icon: '➕', color: 'bg-orange-500' },
+      { key: 'language', icon: '📝', color: 'bg-pink-500' },
+      { key: 'speed', icon: '⚡', color: 'bg-yellow-500' },
     ],
   },
   {
     id: 'daily',
-    title: 'Daily Workouts',
-    description: 'Complete curated 5-game sessions to build a streak and track your progress.',
     icon: '📅',
   },
   {
     id: 'compete',
-    title: 'Compete & Improve',
-    description: 'Climb the leaderboards, earn badges, and watch your brain stats grow!',
     icon: '🏆',
   },
 ];
 
 export function Onboarding({ onComplete }: OnboardingProps) {
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const feedback = useFeedback();
 
@@ -92,7 +86,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
           onClick={handleSkip}
           className="text-slate-400 hover:text-white text-sm"
         >
-          Skip
+          {t('onboarding.skip')}
         </button>
       </div>
 
@@ -124,24 +118,24 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             </motion.div>
 
             {/* Title */}
-            <h1 className="text-2xl font-bold mb-3">{step.title}</h1>
+            <h1 className="text-2xl font-bold mb-3">{t(`onboarding.${step.id}.title`)}</h1>
 
             {/* Description */}
-            <p className="text-slate-400 mb-8">{step.description}</p>
+            <p className="text-slate-400 mb-8">{t(`onboarding.${step.id}.description`)}</p>
 
             {/* Categories grid (step 2) */}
             {step.id === 'categories' && step.categories && (
               <div className="grid grid-cols-3 gap-3 mb-8">
                 {step.categories.map((cat, idx) => (
                   <motion.div
-                    key={cat.name}
+                    key={cat.key}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 + idx * 0.1 }}
                     className={`${cat.color} rounded-xl p-3 text-center`}
                   >
                     <div className="text-2xl mb-1">{cat.icon}</div>
-                    <div className="text-xs font-medium">{cat.name}</div>
+                    <div className="text-xs font-medium">{t(`games.categories.${cat.key}`)}</div>
                   </motion.div>
                 ))}
               </div>
@@ -169,7 +163,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
           onClick={handleNext}
           className="btn-primary w-full"
         >
-          {isLastStep ? "Let's Go!" : 'Next'}
+          {isLastStep ? t('onboarding.getStarted') : t('onboarding.next')}
         </button>
       </div>
     </div>
