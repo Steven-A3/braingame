@@ -9,6 +9,7 @@ import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import { getDifficultyLabel } from '@/games/core/DifficultySystem';
 import { StreakDisplay } from '@/components/ui/StreakDisplay';
 import { DailyQuests, useQuestStore } from '@/features/quests';
+import { Elly } from '@/components/mascot';
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -32,18 +33,21 @@ export function HomePage() {
     <div className="p-4 max-w-lg mx-auto">
       {/* Header with Level and Currency */}
       <header className="flex items-center justify-between mb-6 pt-4">
-        <div>
-          <h1 className="text-2xl font-bold mb-1">{t('app.name')}</h1>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-purple-400 font-medium">
-              {t('common.level')} {levelInfo.level}
-            </span>
-            <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${(levelInfo.currentXP / levelInfo.requiredXP) * 100}%` }}
-                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-              />
+        <div className="flex items-center gap-3">
+          <Elly size={40} state="neutral" animate={false} />
+          <div>
+            <h1 className="text-2xl font-bold mb-1">{t('app.name')}</h1>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-purple-400 font-medium">
+                {t('common.level')} {levelInfo.level}
+              </span>
+              <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(levelInfo.currentXP / levelInfo.requiredXP) * 100}%` }}
+                  className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                />
+              </div>
             </div>
           </div>
         </div>

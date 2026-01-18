@@ -3,23 +3,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useFeedback } from '@/hooks/useFeedback';
 import { languages } from '@/i18n';
+import { Elly } from '@/components/mascot';
+import type { EllyState } from '@/components/mascot';
 
 interface OnboardingProps {
   onComplete: () => void;
 }
 
-const STEPS = [
+const STEPS: Array<{
+  id: string;
+  icon?: string;
+  ellyState?: EllyState;
+  useElly?: boolean;
+  categories?: Array<{ key: string; icon: string; color: string }>;
+}> = [
   {
     id: 'language',
     icon: '🌍',
   },
   {
     id: 'welcome',
-    icon: '🧠',
+    useElly: true,
+    ellyState: 'neutral',
   },
   {
     id: 'categories',
-    icon: '🎯',
+    useElly: true,
+    ellyState: 'happy',
     categories: [
       { key: 'memory', icon: '🔮', color: 'bg-purple-500' },
       { key: 'logic', icon: '🧩', color: 'bg-blue-500' },
@@ -31,11 +41,13 @@ const STEPS = [
   },
   {
     id: 'daily',
-    icon: '📅',
+    useElly: true,
+    ellyState: 'neutral',
   },
   {
     id: 'compete',
-    icon: '🏆',
+    useElly: true,
+    ellyState: 'happy',
   },
 ];
 
@@ -117,14 +129,18 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             transition={{ duration: 0.3 }}
             className="text-center max-w-sm pointer-events-none"
           >
-            {/* Icon */}
+            {/* Icon or Elly */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
-              className="text-7xl mb-6"
+              className="mb-6 flex justify-center"
             >
-              {step.icon}
+              {step.useElly ? (
+                <Elly size={100} state={step.ellyState || 'neutral'} />
+              ) : (
+                <span className="text-7xl">{step.icon}</span>
+              )}
             </motion.div>
 
             {/* Title */}
