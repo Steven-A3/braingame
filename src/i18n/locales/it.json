@@ -198,6 +198,10 @@
     "feedback": "Invia feedback"
   },
   "onboarding": {
+    "language": {
+      "title": "Scegli la lingua",
+      "description": "Seleziona la tua lingua preferita. Puoi cambiarla in qualsiasi momento nelle impostazioni."
+    },
     "welcome": {
       "title": "Benvenuto su Daily Brain",
       "description": "Allena la tua mente con giochi divertenti e ispirati alla scienza."

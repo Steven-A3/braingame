@@ -198,6 +198,10 @@
     "feedback": "Envoyer un commentaire"
   },
   "onboarding": {
+    "language": {
+      "title": "Choisissez votre langue",
+      "description": "Sélectionnez votre langue préférée. Vous pouvez la modifier à tout moment dans les paramètres."
+    },
     "welcome": {
       "title": "Bienvenue sur Daily Brain",
       "description": "Entraînez votre esprit avec des jeux amusants et inspirés de la science."
