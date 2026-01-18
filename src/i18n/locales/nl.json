@@ -46,5 +46,6 @@
     "weeksAgo": "{{count}}w"
   },
   "share": { "title": "Deel Je Score", "message": "Ik scoorde {{score}} in {{game}} op Daily Brain! Kun jij me verslaan?", "copied": "Gekopieerd naar klembord!" },
-  "invite": { "title": "Vrienden Uitnodigen", "description": "Deel je verwijscode en verdien beloningen wanneer vrienden zich aanmelden!", "yourCode": "Je Verwijscode", "yourLink": "Je Verwijslink", "copy": "Kopieer", "share": "Delen", "copied": "Code gekopieerd!", "friendsJoined": "{{count}} vriend heeft zich aangemeld!", "friendsJoined_other": "{{count}} vrienden hebben zich aangemeld!" }
+  "invite": { "title": "Vrienden Uitnodigen", "description": "Deel je verwijscode en verdien beloningen wanneer vrienden zich aanmelden!", "yourCode": "Je Verwijscode", "yourLink": "Je Verwijslink", "copy": "Kopieer", "share": "Delen", "copied": "Code gekopieerd!", "friendsJoined": "{{count}} vriend heeft zich aangemeld!", "friendsJoined_other": "{{count}} vrienden hebben zich aangemeld!" },
+  "pwa": { "updateAvailable": "Update beschikbaar", "updateMessage": "Een nieuwe versie is klaar. Update nu voor de nieuwste functies!", "updateNow": "Nu updaten", "later": "Later" }
 }

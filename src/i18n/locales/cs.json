@@ -350,5 +350,11 @@
     "topPercent": "Nejlepších {{percent}}%",
     "now": "Nyní",
     "weeksAgo": "{{count}}t"
+  },
+  "pwa": {
+    "updateAvailable": "Aktualizace dostupná",
+    "updateMessage": "Nová verze je připravena. Aktualizujte nyní pro nejnovější funkce!",
+    "updateNow": "Aktualizovat nyní",
+    "later": "Později"
   }
 }

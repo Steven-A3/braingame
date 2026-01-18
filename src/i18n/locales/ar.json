@@ -348,5 +348,11 @@
     "topPercent": "أفضل {{percent}}%",
     "now": "الآن",
     "weeksAgo": "{{count}}أ"
+  },
+  "pwa": {
+    "updateAvailable": "تحديث متاح",
+    "updateMessage": "إصدار جديد جاهز. حدّث الآن للحصول على أحدث الميزات!",
+    "updateNow": "تحديث الآن",
+    "later": "لاحقاً"
   }
 }

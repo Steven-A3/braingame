@@ -350,5 +350,11 @@
     "topPercent": "Top {{percent}}%",
     "now": "Teraz",
     "weeksAgo": "{{count}}t"
+  },
+  "pwa": {
+    "updateAvailable": "Dostępna aktualizacja",
+    "updateMessage": "Nowa wersja jest gotowa. Zaktualizuj teraz, aby uzyskać najnowsze funkcje!",
+    "updateNow": "Zaktualizuj teraz",
+    "later": "Później"
   }
 }

@@ -348,5 +348,11 @@
     "topPercent": "İlk {{percent}}%",
     "now": "Şimdi",
     "weeksAgo": "{{count}}h"
+  },
+  "pwa": {
+    "updateAvailable": "Güncelleme Mevcut",
+    "updateMessage": "Yeni bir sürüm hazır. En son özelliklere sahip olmak için şimdi güncelleyin!",
+    "updateNow": "Şimdi Güncelle",
+    "later": "Sonra"
   }
 }

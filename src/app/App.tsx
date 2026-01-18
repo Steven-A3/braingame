@@ -13,6 +13,7 @@ import { DailyWorkout } from '@/components/workout';
 import { Leaderboard } from '@/components/leaderboard';
 import { Settings } from '@/components/settings';
 import { ProgressCharts } from '@/components/charts';
+import { UpdatePrompt } from '@/components/pwa';
 import { useUserStore } from '@/stores/userStore';
 import { checkReferralCode } from '@/services/referral';
 
@@ -71,6 +72,7 @@ export function App() {
             <Route path="/quests" element={<QuestsPage />} />
           </Routes>
         </OnboardingGuard>
+        <UpdatePrompt />
       </BrowserRouter>
     </Suspense>
   );

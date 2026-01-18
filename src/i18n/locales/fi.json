@@ -349,5 +349,11 @@
     "topPercent": "Paras {{percent}}%",
     "now": "Nyt",
     "weeksAgo": "{{count}}v"
+  },
+  "pwa": {
+    "updateAvailable": "Päivitys saatavilla",
+    "updateMessage": "Uusi versio on valmis. Päivitä nyt saadaksesi uusimmat ominaisuudet!",
+    "updateNow": "Päivitä nyt",
+    "later": "Myöhemmin"
   }
 }
