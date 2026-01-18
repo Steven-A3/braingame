@@ -214,10 +214,10 @@ export function HomePage() {
       </div>
 
       {/* Ad Banner */}
-      <BannerAd className="mb-6" />
+      <BannerAd />
 
       {/* Theme of the month */}
-      <div className="text-center text-slate-500 text-sm">
+      <div className="text-center text-slate-500 text-sm pb-4">
         {dailyChallenge.theme}
       </div>
     </div>
