@@ -195,7 +195,17 @@
     "terms": "Servicevilkår",
     "inviteFriends": "Inviter venner",
     "rateApp": "Bedøm app",
-    "feedback": "Send feedback"
+    "feedback": "Send feedback",
+    "dataManagement": "Datahåndtering",
+    "gamesPlayed": "Spil spillet",
+    "dayStreak": "Dage i træk",
+    "exportData": "Eksporter data",
+    "downloadProgress": "Download din fremgang",
+    "resetAllData": "Nulstil alle data",
+    "cannotBeUndone": "Dette kan ikke fortrydes",
+    "resetConfirmTitle": "Nulstil alle data?",
+    "resetConfirmMessage": "Dette vil permanent slette al din fremgang, statistik, badges og spilhistorik. Denne handling kan ikke fortrydes.",
+    "exportSuccess": "Data eksporteret succesfuldt!"
   },
   "onboarding": {
     "language": {

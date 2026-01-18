@@ -133,7 +133,7 @@ export function Settings() {
 
         {/* Data Management */}
         <div className="card">
-          <h2 className="font-semibold mb-4">Data Management</h2>
+          <h2 className="font-semibold mb-4">{t('settings.dataManagement')}</h2>
 
           {/* Stats summary */}
           <div className="bg-slate-800 rounded-xl p-4 mb-4">
@@ -142,13 +142,13 @@ export function Settings() {
                 <div className="text-2xl font-bold text-primary-400">
                   {stats.totalGamesPlayed}
                 </div>
-                <div className="text-xs text-slate-400">Games Played</div>
+                <div className="text-xs text-slate-400">{t('settings.gamesPlayed')}</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-primary-400">
                   {stats.currentStreak}
                 </div>
-                <div className="text-xs text-slate-400">Day Streak</div>
+                <div className="text-xs text-slate-400">{t('settings.dayStreak')}</div>
               </div>
             </div>
           </div>
@@ -161,9 +161,9 @@ export function Settings() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">📤</span>
               <div className="text-left">
-                <div className="font-medium">Export Data</div>
+                <div className="font-medium">{t('settings.exportData')}</div>
                 <div className="text-sm text-slate-400">
-                  Download your progress
+                  {t('settings.downloadProgress')}
                 </div>
               </div>
             </div>
@@ -178,9 +178,9 @@ export function Settings() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">🗑️</span>
               <div className="text-left">
-                <div className="font-medium text-red-400">Reset All Data</div>
+                <div className="font-medium text-red-400">{t('settings.resetAllData')}</div>
                 <div className="text-sm text-red-400/70">
-                  This cannot be undone
+                  {t('settings.cannotBeUndone')}
                 </div>
               </div>
             </div>
@@ -227,10 +227,9 @@ export function Settings() {
             >
               <div className="text-center">
                 <div className="text-5xl mb-4">⚠️</div>
-                <h3 className="text-xl font-bold mb-2">Reset All Data?</h3>
+                <h3 className="text-xl font-bold mb-2">{t('settings.resetConfirmTitle')}</h3>
                 <p className="text-slate-400 mb-6">
-                  This will permanently delete all your progress, stats, badges,
-                  and game history. This action cannot be undone.
+                  {t('settings.resetConfirmMessage')}
                 </p>
                 <div className="flex gap-3">
                   <button
@@ -261,7 +260,7 @@ export function Settings() {
             exit={{ opacity: 0, y: 50 }}
             className="fixed bottom-24 left-4 right-4 mx-auto max-w-sm bg-green-500 text-white p-4 rounded-xl text-center font-medium shadow-lg"
           >
-            Data exported successfully!
+            {t('settings.exportSuccess')}
           </motion.div>
         )}
       </AnimatePresence>
