@@ -120,6 +120,9 @@ i18n
       caches: ['localStorage'],
       lookupLocalStorage: 'dailybrain-language',
     },
+    react: {
+      useSuspense: true,
+    },
   });
 
 export default i18n;
