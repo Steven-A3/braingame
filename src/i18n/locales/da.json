@@ -198,6 +198,10 @@
     "feedback": "Send feedback"
   },
   "onboarding": {
+    "language": {
+      "title": "Vælg dit sprog",
+      "description": "Vælg dit foretrukne sprog. Du kan ændre det når som helst i indstillinger."
+    },
     "welcome": {
       "title": "Velkommen til Daily Brain",
       "description": "Træn din hjerne med sjove, videnskabeligt inspirerede spil."

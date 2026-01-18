@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useFeedback } from '@/hooks/useFeedback';
+import { languages } from '@/i18n';
 
 interface OnboardingProps {
   onComplete: () => void;
 }
 
 const STEPS = [
+  {
+    id: 'language',
+    icon: '🌍',
+  },
   {
     id: 'welcome',
     icon: '🧠',
@@ -35,9 +40,14 @@ const STEPS = [
 ];
 
 export function Onboarding({ onComplete }: OnboardingProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [currentStep, setCurrentStep] = useState(0);
   const feedback = useFeedback();
+
+  const handleLanguageSelect = (langCode: string) => {
+    feedback.tap();
+    i18n.changeLanguage(langCode);
+  };
 
   const handleNext = () => {
     feedback.tap();
@@ -123,7 +133,30 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             {/* Description */}
             <p className="text-slate-400 mb-8">{t(`onboarding.${step.id}.description`)}</p>
 
-            {/* Categories grid (step 2) */}
+            {/* Language selection grid */}
+            {step.id === 'language' && (
+              <div className="grid grid-cols-2 gap-2 mb-4 max-h-64 overflow-y-auto pointer-events-auto">
+                {languages.map((lang, idx) => (
+                  <motion.button
+                    key={lang.code}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.02 }}
+                    onClick={() => handleLanguageSelect(lang.code)}
+                    className={`flex items-center gap-2 p-3 rounded-xl transition-all ${
+                      i18n.language === lang.code || i18n.language.startsWith(lang.code.split('-')[0]) && lang.code === i18n.language
+                        ? 'bg-primary-500 text-white ring-2 ring-primary-400'
+                        : 'bg-slate-800 hover:bg-slate-700'
+                    }`}
+                  >
+                    <span className="text-xl">{lang.flag}</span>
+                    <span className="text-sm font-medium truncate">{lang.nativeName}</span>
+                  </motion.button>
+                ))}
+              </div>
+            )}
+
+            {/* Categories grid */}
             {step.id === 'categories' && step.categories && (
               <div className="grid grid-cols-3 gap-3 mb-8">
                 {step.categories.map((cat, idx) => (
