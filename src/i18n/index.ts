@@ -25,6 +25,15 @@ import id from './locales/id.json';
 import th from './locales/th.json';
 import vi from './locales/vi.json';
 import ar from './locales/ar.json';
+import tr from './locales/tr.json';
+import hi from './locales/hi.json';
+import nl from './locales/nl.json';
+import uk from './locales/uk.json';
+import fil from './locales/fil.json';
+import ms from './locales/ms.json';
+import ro from './locales/ro.json';
+import el from './locales/el.json';
+import he from './locales/he.json';
 
 export const languages = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
@@ -49,6 +58,15 @@ export const languages = [
   { code: 'th', name: 'Thai', nativeName: 'ไทย', flag: '🇹🇭' },
   { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt', flag: '🇻🇳' },
   { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦', rtl: true },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱' },
+  { code: 'uk', name: 'Ukrainian', nativeName: 'Українська', flag: '🇺🇦' },
+  { code: 'fil', name: 'Filipino', nativeName: 'Filipino', flag: '🇵🇭' },
+  { code: 'ms', name: 'Malay', nativeName: 'Bahasa Melayu', flag: '🇲🇾' },
+  { code: 'ro', name: 'Romanian', nativeName: 'Română', flag: '🇷🇴' },
+  { code: 'el', name: 'Greek', nativeName: 'Ελληνικά', flag: '🇬🇷' },
+  { code: 'he', name: 'Hebrew', nativeName: 'עברית', flag: '🇮🇱', rtl: true },
 ] as const;
 
 export type LanguageCode = typeof languages[number]['code'];
@@ -76,6 +94,15 @@ const resources = {
   th: { translation: th },
   vi: { translation: vi },
   ar: { translation: ar },
+  tr: { translation: tr },
+  hi: { translation: hi },
+  nl: { translation: nl },
+  uk: { translation: uk },
+  fil: { translation: fil },
+  ms: { translation: ms },
+  ro: { translation: ro },
+  el: { translation: el },
+  he: { translation: he },
 };
 
 i18n
