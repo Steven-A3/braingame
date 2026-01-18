@@ -1,20 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { useFeedback } from '@/hooks/useFeedback';
 
-const navItems = [
-  { path: '/', label: 'Home', icon: HomeIcon },
-  { path: '/games', label: 'Games', icon: GamesIcon },
-  { path: '/profile', label: 'Profile', icon: ProfileIcon },
-];
-
 export function BottomNav() {
+  const { t } = useTranslation();
   const { tap } = useFeedback();
+
+  const navItems = [
+    { path: '/', labelKey: 'nav.home', icon: HomeIcon },
+    { path: '/games', labelKey: 'nav.games', icon: GamesIcon },
+    { path: '/profile', labelKey: 'settings.profile', icon: ProfileIcon },
+  ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-slate-800/95 backdrop-blur-lg border-t border-slate-700 safe-bottom">
       <div className="flex justify-around items-center h-16 max-w-lg mx-auto">
-        {navItems.map(({ path, label, icon: Icon }) => (
+        {navItems.map(({ path, labelKey, icon: Icon }) => (
           <NavLink
             key={path}
             to={path}
@@ -27,7 +29,7 @@ export function BottomNav() {
             }
           >
             <Icon className="w-6 h-6" />
-            <span className="text-xs font-medium">{label}</span>
+            <span className="text-xs font-medium">{t(labelKey)}</span>
           </NavLink>
         ))}
       </div>

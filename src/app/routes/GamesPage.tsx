@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { GAMES } from '@/games/registry';
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '@/games/core/types';
+import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
 import { InFeedAd } from '@/components/ads/AdUnit';
 
 const CATEGORIES: GameCategory[] = ['memory', 'logic', 'focus', 'calculation', 'language', 'speed'];
 
 export function GamesPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="p-4 max-w-lg mx-auto">
       <header className="mb-6 pt-4">
-        <h1 className="text-2xl font-bold">Game Library</h1>
-        <p className="text-slate-400 text-sm">All brain training games</p>
+        <h1 className="text-2xl font-bold">{t('games.allGames')}</h1>
+        <p className="text-slate-400 text-sm">{t('app.tagline')}</p>
       </header>
 
       {/* Category sections */}
@@ -29,7 +32,7 @@ export function GamesPage() {
                   className="font-semibold"
                   style={{ color: CATEGORY_COLORS[category] }}
                 >
-                  {CATEGORY_LABELS[category]}
+                  {t(`games.categories.${category}`)}
                 </h2>
               </div>
 
@@ -52,8 +55,8 @@ export function GamesPage() {
                         {game.icon}
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-medium">{game.name}</h3>
-                        <p className="text-sm text-slate-400">{game.description}</p>
+                        <h3 className="font-medium">{t(`games.names.${game.id}`, { defaultValue: game.name })}</h3>
+                        <p className="text-sm text-slate-400">{t(`games.descriptions.${game.id}`, { defaultValue: game.description })}</p>
                       </div>
                       <div className="text-slate-500">
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { getDailyChallenge } from '@/services/dailyContent';
 import { useUserStore } from '@/stores/userStore';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
@@ -11,10 +12,16 @@ import { BannerAd } from '@/components/ads/AdUnit';
 import { DailyQuests, useQuestStore } from '@/features/quests';
 
 export function HomePage() {
+  const { t } = useTranslation();
   const { stats, completedToday, checkStreak, currency, getLevel } = useUserStore();
   const { initializeQuests } = useQuestStore();
   const dailyChallenge = getDailyChallenge();
   const levelInfo = getLevel();
+
+  // Get translated game name and description
+  const gameName = t(`games.names.${dailyChallenge.game.id}`, { defaultValue: dailyChallenge.game.name });
+  const gameDescription = t(`games.descriptions.${dailyChallenge.game.id}`, { defaultValue: dailyChallenge.game.description });
+  const categoryName = t(`games.categories.${dailyChallenge.game.category}`, { defaultValue: dailyChallenge.game.category });
 
   // Check streak and initialize quests on mount
   useEffect(() => {
@@ -27,10 +34,10 @@ export function HomePage() {
       {/* Header with Level and Currency */}
       <header className="flex items-center justify-between mb-6 pt-4">
         <div>
-          <h1 className="text-2xl font-bold mb-1">Daily Brain</h1>
+          <h1 className="text-2xl font-bold mb-1">{t('app.name')}</h1>
           <div className="flex items-center gap-2">
             <span className="text-sm text-purple-400 font-medium">
-              Level {levelInfo.level}
+              {t('common.level')} {levelInfo.level}
             </span>
             <div className="w-16 h-1.5 bg-slate-700 rounded-full overflow-hidden">
               <motion.div
@@ -85,9 +92,9 @@ export function HomePage() {
 
           {/* Game info */}
           <div className="flex-1">
-            <h2 className="text-xl font-bold mb-1">{dailyChallenge.game.name}</h2>
+            <h2 className="text-xl font-bold mb-1">{gameName}</h2>
             <p className="text-slate-400 text-sm mb-2">
-              {dailyChallenge.game.description}
+              {gameDescription}
             </p>
 
             {/* Meta info */}
@@ -99,7 +106,7 @@ export function HomePage() {
                   color: CATEGORY_COLORS[dailyChallenge.game.category],
                 }}
               >
-                {CATEGORY_ICONS[dailyChallenge.game.category]} {dailyChallenge.game.category}
+                {CATEGORY_ICONS[dailyChallenge.game.category]} {categoryName}
               </span>
               <span className="px-2 py-1 bg-slate-700 rounded-full text-slate-300">
                 {dailyChallenge.game.duration}
@@ -119,7 +126,7 @@ export function HomePage() {
             completedToday && 'bg-green-600 hover:bg-green-700'
           )}
         >
-          {completedToday ? '✓ Play Again' : '▶ Play Now'}
+          {completedToday ? `✓ ${t('results.playAgain')}` : `▶ ${t('games.play')}`}
         </Link>
       </motion.div>
 
@@ -132,8 +139,8 @@ export function HomePage() {
           <div className="flex items-center gap-3">
             <div className="text-3xl">🏋️</div>
             <div>
-              <div className="font-semibold">Daily Workout</div>
-              <div className="text-xs text-slate-400">5 curated games</div>
+              <div className="font-semibold">{t('home.dailyWorkout')}</div>
+              <div className="text-xs text-slate-400">{t('workout.subtitle', { defaultValue: '5 curated games' })}</div>
             </div>
           </div>
         </Link>
@@ -144,8 +151,8 @@ export function HomePage() {
           <div className="flex items-center gap-3">
             <div className="text-3xl">🏆</div>
             <div>
-              <div className="font-semibold">Leaderboard</div>
-              <div className="text-xs text-slate-400">Your best scores</div>
+              <div className="font-semibold">{t('nav.leaderboard')}</div>
+              <div className="text-xs text-slate-400">{t('leaderboard.title', { defaultValue: 'Your best scores' })}</div>
             </div>
           </div>
         </Link>
@@ -160,8 +167,8 @@ export function HomePage() {
           <div className="flex items-center gap-3">
             <div className="text-3xl">📊</div>
             <div>
-              <div className="font-semibold">Progress</div>
-              <div className="text-xs text-slate-400">Charts & trends</div>
+              <div className="font-semibold">{t('nav.progress')}</div>
+              <div className="text-xs text-slate-400">{t('progress.stats', { defaultValue: 'Charts & trends' })}</div>
             </div>
           </div>
         </Link>
@@ -172,8 +179,8 @@ export function HomePage() {
           <div className="flex items-center gap-3">
             <div className="text-3xl">⚙️</div>
             <div>
-              <div className="font-semibold">Settings</div>
-              <div className="text-xs text-slate-400">Preferences</div>
+              <div className="font-semibold">{t('nav.settings')}</div>
+              <div className="text-xs text-slate-400">{t('settings.profile', { defaultValue: 'Preferences' })}</div>
             </div>
           </div>
         </Link>
@@ -190,19 +197,19 @@ export function HomePage() {
           <div className="text-2xl font-bold text-primary-400">
             {stats.totalGamesPlayed}
           </div>
-          <div className="text-xs text-slate-400">Games Played</div>
+          <div className="text-xs text-slate-400">{t('progress.totalGames')}</div>
         </div>
         <div className="card text-center py-4">
           <div className="text-2xl font-bold text-primary-400">
             {stats.longestStreak}
           </div>
-          <div className="text-xs text-slate-400">Best Streak</div>
+          <div className="text-xs text-slate-400">{t('progress.bestStreak')}</div>
         </div>
         <div className="card text-center py-4">
           <div className="text-2xl font-bold text-primary-400">
             {stats.totalScore.toLocaleString()}
           </div>
-          <div className="text-xs text-slate-400">Total Score</div>
+          <div className="text-xs text-slate-400">{t('common.score')}</div>
         </div>
       </div>
 
