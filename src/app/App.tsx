@@ -7,6 +7,7 @@ import { TodayPage } from './routes/TodayPage';
 import { GamesPage } from './routes/GamesPage';
 import { ProfilePage } from './routes/ProfilePage';
 import { GamePlayPage } from './routes/GamePlayPage';
+import { QuestsPage } from './routes/QuestsPage';
 import { Onboarding } from '@/components/onboarding';
 import { DailyWorkout } from '@/components/workout';
 import { Leaderboard } from '@/components/leaderboard';
@@ -67,6 +68,7 @@ export function App() {
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/progress" element={<ProgressCharts />} />
+            <Route path="/quests" element={<QuestsPage />} />
           </Routes>
         </OnboardingGuard>
       </BrowserRouter>

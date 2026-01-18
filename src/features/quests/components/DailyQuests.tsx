@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuestStore } from '../questStore';
 import { useUserStore } from '@/stores/userStore';
@@ -15,6 +15,7 @@ interface DailyQuestsProps {
 
 export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { quests, initializeQuests, claimReward, claimAllRewards, getTotalRewards } = useQuestStore();
   const { currency, getLevel } = useUserStore();
   const [timeLeft, setTimeLeft] = useState(formatTimeUntilReset());
@@ -113,6 +114,12 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
       {/* Header */}
       <div className="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
         <div className="p-4 max-w-lg mx-auto">
+          <button
+            onClick={() => navigate(-1)}
+            className="text-slate-400 hover:text-white mb-3"
+          >
+            ← {t('common.back')}
+          </button>
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold">{t('quests.title')}</h1>
