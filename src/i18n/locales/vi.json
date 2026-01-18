@@ -345,6 +345,8 @@
     "categoryBalance": "Cân bằng danh mục",
     "categoryDetails": "Chi tiết danh mục",
     "gamesPlayed": "Đã chơi {{count}} trò",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Bây giờ",
+    "weeksAgo": "{{count}}t"
   }
 }

@@ -19,12 +19,12 @@ export function BrainStatsDashboard() {
   const weekLabels = useMemo(() => {
     const labels: string[] = [];
     for (let i = 7; i >= 0; i--) {
-      if (i === 0) labels.push('Now');
-      else if (i === 7) labels.push('8w');
-      else labels.push(`${i}w`);
+      if (i === 0) labels.push(t('stats.now'));
+      else if (i === 7) labels.push(t('stats.weeksAgo', { count: 8 }));
+      else labels.push(t('stats.weeksAgo', { count: i }));
     }
     return labels;
-  }, []);
+  }, [t]);
 
   if (stats.totalGamesPlayed === 0) {
     return (

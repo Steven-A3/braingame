@@ -8,6 +8,7 @@ import { BadgeNotification, BadgeList } from '@/components/ui/BadgeCard';
 import { BrainStatsDashboard } from '@/components/stats/BrainStatsDashboard';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
+import i18n from '@/i18n';
 
 type TabType = 'stats' | 'badges' | 'history';
 
@@ -322,7 +323,8 @@ function formatDate(dateStr: string, t: (key: string) => string): string {
   if (dateStr === today.toISOString().split('T')[0]) return t('common.today');
   if (dateStr === yesterday.toISOString().split('T')[0]) return t('common.yesterday');
 
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const locale = i18n.language || 'en';
+  return date.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
 }
 
 function formatGameName(gameId: string): string {

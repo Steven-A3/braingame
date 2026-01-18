@@ -345,6 +345,8 @@
     "categoryBalance": "Kategori Dengesi",
     "categoryDetails": "Kategori Detayları",
     "gamesPlayed": "{{count}} oyun oynandı",
-    "topPercent": "İlk {{percent}}%"
+    "topPercent": "İlk {{percent}}%",
+    "now": "Şimdi",
+    "weeksAgo": "{{count}}h"
   }
 }

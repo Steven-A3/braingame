@@ -346,6 +346,8 @@
     "categoryBalance": "Kategoriatasapaino",
     "categoryDetails": "Kategoriatiedot",
     "gamesPlayed": "{{count}} peliä pelattu",
-    "topPercent": "Paras {{percent}}%"
+    "topPercent": "Paras {{percent}}%",
+    "now": "Nyt",
+    "weeksAgo": "{{count}}v"
   }
 }

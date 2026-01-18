@@ -330,7 +330,9 @@
     "categoryBalance": "Category Balance",
     "categoryDetails": "Category Details",
     "gamesPlayed": "{{count}} games played",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Now",
+    "weeksAgo": "{{count}}w"
   },
   "share": {
     "title": "Share your score",

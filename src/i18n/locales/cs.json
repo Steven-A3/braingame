@@ -347,6 +347,8 @@
     "categoryBalance": "Rovnováha kategorií",
     "categoryDetails": "Podrobnosti kategorií",
     "gamesPlayed": "Odehráno {{count}} her",
-    "topPercent": "Nejlepších {{percent}}%"
+    "topPercent": "Nejlepších {{percent}}%",
+    "now": "Nyní",
+    "weeksAgo": "{{count}}t"
   }
 }

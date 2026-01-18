@@ -346,6 +346,8 @@
     "categoryBalance": "Ισορροπία Κατηγοριών",
     "categoryDetails": "Λεπτομέρειες Κατηγοριών",
     "gamesPlayed": "Παίχτηκαν {{count}} παιχνίδια",
-    "topPercent": "Κορυφαίο {{percent}}%"
+    "topPercent": "Κορυφαίο {{percent}}%",
+    "now": "Τώρα",
+    "weeksAgo": "{{count}}ε"
   }
 }

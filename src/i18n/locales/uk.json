@@ -347,6 +347,8 @@
     "categoryBalance": "Баланс категорій",
     "categoryDetails": "Деталі категорій",
     "gamesPlayed": "Зіграно {{count}} ігор",
-    "topPercent": "Топ {{percent}}%"
+    "topPercent": "Топ {{percent}}%",
+    "now": "Зараз",
+    "weeksAgo": "{{count}}т"
   }
 }

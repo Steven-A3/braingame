@@ -347,6 +347,8 @@
     "categoryBalance": "Równowaga kategorii",
     "categoryDetails": "Szczegóły kategorii",
     "gamesPlayed": "Zagrano {{count}} gier",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Teraz",
+    "weeksAgo": "{{count}}t"
   }
 }

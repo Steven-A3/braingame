@@ -345,6 +345,8 @@
     "categoryBalance": "カテゴリーバランス",
     "categoryDetails": "カテゴリー詳細",
     "gamesPlayed": "{{count}}ゲームプレイ済み",
-    "topPercent": "トップ{{percent}}%"
+    "topPercent": "トップ{{percent}}%",
+    "now": "現在",
+    "weeksAgo": "{{count}}週"
   }
 }

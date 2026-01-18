@@ -345,6 +345,8 @@
     "categoryBalance": "分类平衡",
     "categoryDetails": "分类详情",
     "gamesPlayed": "已玩{{count}}场游戏",
-    "topPercent": "前{{percent}}%"
+    "topPercent": "前{{percent}}%",
+    "now": "现在",
+    "weeksAgo": "{{count}}周"
   }
 }

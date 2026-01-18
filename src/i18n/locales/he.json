@@ -345,6 +345,8 @@
     "categoryBalance": "איזון קטגוריות",
     "categoryDetails": "פרטי קטגוריות",
     "gamesPlayed": "{{count}} משחקים שוחקו",
-    "topPercent": "מובילים {{percent}}%"
+    "topPercent": "מובילים {{percent}}%",
+    "now": "עכשיו",
+    "weeksAgo": "{{count}}ש"
   }
 }

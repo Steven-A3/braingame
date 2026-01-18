@@ -346,6 +346,8 @@
     "categoryBalance": "Kategoribalans",
     "categoryDetails": "Kategoridetaljer",
     "gamesPlayed": "{{count}} spel spelade",
-    "topPercent": "Topp {{percent}}%"
+    "topPercent": "Topp {{percent}}%",
+    "now": "Nu",
+    "weeksAgo": "{{count}}v"
   }
 }
