@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "I-train ang utak mo araw-araw" },
   "nav": { "home": "Home", "today": "Ngayon", "games": "Laro", "progress": "Progreso", "settings": "Settings", "leaderboard": "Leaderboard" },
-  "home": { "welcome": "Welcome back!", "dailyWorkout": "Daily na Workout", "startWorkout": "Magsimula ng Workout", "continueWorkout": "Magpatuloy", "completedToday": "Tapos na Ngayon!", "streak": "Araw na Sunod-sunod", "quickPlay": "Quick Play", "categories": "Mga Kategorya", "dailyQuests": "Daily na Quest", "viewAll": "Tingnan Lahat" },
+  "home": { "welcome": "Welcome back!", "dailyWorkout": "Daily na Workout", "startWorkout": "Magsimula ng Workout", "continueWorkout": "Magpatuloy", "completedToday": "Tapos na Ngayon!", "streak": "Araw na Sunod-sunod", "quickPlay": "Quick Play", "categories": "Mga Kategorya", "dailyQuests": "Daily na Quest", "viewAll": "Tingnan Lahat", "workoutSubtitle": "5 piling laro", "leaderboardSubtitle": "Pinakamataas na score mo", "progressSubtitle": "Mga chart at trend", "settingsSubtitle": "Mga kagustuhan" },
   "games": {
     "allGames": "Lahat ng Laro", "play": "Maglaro", "locked": "Naka-lock",
     "categories": { "memory": "Memorya", "logic": "Lohika", "focus": "Pokus", "calculation": "Pagkalkula", "language": "Wika", "speed": "Bilis" },

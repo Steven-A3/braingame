@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Тренуйте мозок щодня" },
   "nav": { "home": "Головна", "today": "Сьогодні", "games": "Ігри", "progress": "Прогрес", "settings": "Налаштування", "leaderboard": "Рейтинг" },
-  "home": { "welcome": "З поверненням!", "dailyWorkout": "Щоденне тренування", "startWorkout": "Почати тренування", "continueWorkout": "Продовжити", "completedToday": "Завершено сьогодні!", "streak": "Днів поспіль", "quickPlay": "Швидка гра", "categories": "Категорії", "dailyQuests": "Щоденні завдання", "viewAll": "Показати всі" },
+  "home": { "welcome": "З поверненням!", "dailyWorkout": "Щоденне тренування", "startWorkout": "Почати тренування", "continueWorkout": "Продовжити", "completedToday": "Завершено сьогодні!", "streak": "Днів поспіль", "quickPlay": "Швидка гра", "categories": "Категорії", "dailyQuests": "Щоденні завдання", "viewAll": "Показати всі", "workoutSubtitle": "5 обраних ігор", "leaderboardSubtitle": "Ваші найкращі результати", "progressSubtitle": "Графіки та тренди", "settingsSubtitle": "Налаштування" },
   "games": {
     "allGames": "Усі ігри", "play": "Грати", "locked": "Заблоковано",
     "categories": { "memory": "Пам'ять", "logic": "Логіка", "focus": "Увага", "calculation": "Обчислення", "language": "Мова", "speed": "Швидкість" },

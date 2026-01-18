@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Rèn luyện trí não mỗi ngày" },
   "nav": { "home": "Trang chủ", "today": "Hôm nay", "games": "Trò chơi", "progress": "Tiến độ", "settings": "Cài đặt", "leaderboard": "Bảng xếp hạng" },
-  "home": { "welcome": "Chào mừng trở lại!", "dailyWorkout": "Luyện tập hàng ngày", "startWorkout": "Bắt đầu luyện tập", "continueWorkout": "Tiếp tục", "completedToday": "Hoàn thành hôm nay!", "streak": "Ngày liên tiếp", "quickPlay": "Chơi nhanh", "categories": "Danh mục", "dailyQuests": "Nhiệm vụ hàng ngày", "viewAll": "Xem tất cả" },
+  "home": { "welcome": "Chào mừng trở lại!", "dailyWorkout": "Luyện tập hàng ngày", "startWorkout": "Bắt đầu luyện tập", "continueWorkout": "Tiếp tục", "completedToday": "Hoàn thành hôm nay!", "streak": "Ngày liên tiếp", "quickPlay": "Chơi nhanh", "categories": "Danh mục", "dailyQuests": "Nhiệm vụ hàng ngày", "viewAll": "Xem tất cả", "workoutSubtitle": "5 trò chơi chọn lọc", "leaderboardSubtitle": "Điểm cao nhất của bạn", "progressSubtitle": "Biểu đồ & xu hướng", "settingsSubtitle": "Tùy chọn" },
   "games": {
     "allGames": "Tất cả trò chơi", "play": "Chơi", "locked": "Đã khóa",
     "categories": { "memory": "Trí nhớ", "logic": "Logic", "focus": "Tập trung", "calculation": "Tính toán", "language": "Ngôn ngữ", "speed": "Tốc độ" },

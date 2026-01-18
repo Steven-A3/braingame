@@ -21,7 +21,11 @@
     "quickPlay": "Hurtig spil",
     "categories": "Kategorier",
     "dailyQuests": "Daglige missioner",
-    "viewAll": "Se alle"
+    "viewAll": "Se alle",
+    "workoutSubtitle": "5 udvalgte spil",
+    "leaderboardSubtitle": "Dine bedste resultater",
+    "progressSubtitle": "Grafer og tendenser",
+    "settingsSubtitle": "Præferencer"
   },
   "games": {
     "allGames": "Alle spil",

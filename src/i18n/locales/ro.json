@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Antrenează-ți creierul zilnic" },
   "nav": { "home": "Acasă", "today": "Astăzi", "games": "Jocuri", "progress": "Progres", "settings": "Setări", "leaderboard": "Clasament" },
-  "home": { "welcome": "Bine ai revenit!", "dailyWorkout": "Antrenament Zilnic", "startWorkout": "Începe Antrenamentul", "continueWorkout": "Continuă", "completedToday": "Completat Astăzi!", "streak": "Zile Consecutive", "quickPlay": "Joc Rapid", "categories": "Categorii", "dailyQuests": "Misiuni Zilnice", "viewAll": "Vezi Tot" },
+  "home": { "welcome": "Bine ai revenit!", "dailyWorkout": "Antrenament Zilnic", "startWorkout": "Începe Antrenamentul", "continueWorkout": "Continuă", "completedToday": "Completat Astăzi!", "streak": "Zile Consecutive", "quickPlay": "Joc Rapid", "categories": "Categorii", "dailyQuests": "Misiuni Zilnice", "viewAll": "Vezi Tot", "workoutSubtitle": "5 jocuri selectate", "leaderboardSubtitle": "Cele mai bune scoruri", "progressSubtitle": "Grafice și tendințe", "settingsSubtitle": "Preferințe" },
   "games": {
     "allGames": "Toate Jocurile", "play": "Joacă", "locked": "Blocat",
     "categories": { "memory": "Memorie", "logic": "Logică", "focus": "Concentrare", "calculation": "Calcul", "language": "Limbaj", "speed": "Viteză" },

@@ -139,7 +139,7 @@ export function HomePage() {
             <div className="text-3xl">🏋️</div>
             <div>
               <div className="font-semibold">{t('home.dailyWorkout')}</div>
-              <div className="text-xs text-slate-400">{t('workout.subtitle', { defaultValue: '5 curated games' })}</div>
+              <div className="text-xs text-slate-400">{t('home.workoutSubtitle')}</div>
             </div>
           </div>
         </Link>
@@ -151,7 +151,7 @@ export function HomePage() {
             <div className="text-3xl">🏆</div>
             <div>
               <div className="font-semibold">{t('nav.leaderboard')}</div>
-              <div className="text-xs text-slate-400">{t('leaderboard.title', { defaultValue: 'Your best scores' })}</div>
+              <div className="text-xs text-slate-400">{t('home.leaderboardSubtitle')}</div>
             </div>
           </div>
         </Link>
@@ -167,7 +167,7 @@ export function HomePage() {
             <div className="text-3xl">📊</div>
             <div>
               <div className="font-semibold">{t('nav.progress')}</div>
-              <div className="text-xs text-slate-400">{t('progress.stats', { defaultValue: 'Charts & trends' })}</div>
+              <div className="text-xs text-slate-400">{t('home.progressSubtitle')}</div>
             </div>
           </div>
         </Link>
@@ -179,7 +179,7 @@ export function HomePage() {
             <div className="text-3xl">⚙️</div>
             <div>
               <div className="font-semibold">{t('nav.settings')}</div>
-              <div className="text-xs text-slate-400">{t('settings.profile', { defaultValue: 'Preferences' })}</div>
+              <div className="text-xs text-slate-400">{t('home.settingsSubtitle')}</div>
             </div>
           </div>
         </Link>

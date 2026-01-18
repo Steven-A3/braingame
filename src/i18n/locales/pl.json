@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Trenuj umysł codziennie" },
   "nav": { "home": "Start", "today": "Dziś", "games": "Gry", "progress": "Postępy", "settings": "Ustawienia", "leaderboard": "Ranking" },
-  "home": { "welcome": "Witaj ponownie!", "dailyWorkout": "Dzienny trening", "startWorkout": "Rozpocznij trening", "continueWorkout": "Kontynuuj", "completedToday": "Ukończone dziś!", "streak": "Dni z rzędu", "quickPlay": "Szybka gra", "categories": "Kategorie", "dailyQuests": "Dzienne misje", "viewAll": "Zobacz wszystkie" },
+  "home": { "welcome": "Witaj ponownie!", "dailyWorkout": "Dzienny trening", "startWorkout": "Rozpocznij trening", "continueWorkout": "Kontynuuj", "completedToday": "Ukończone dziś!", "streak": "Dni z rzędu", "quickPlay": "Szybka gra", "categories": "Kategorie", "dailyQuests": "Dzienne misje", "viewAll": "Zobacz wszystkie", "workoutSubtitle": "5 wybranych gier", "leaderboardSubtitle": "Twoje najlepsze wyniki", "progressSubtitle": "Wykresy i trendy", "settingsSubtitle": "Preferencje" },
   "games": {
     "allGames": "Wszystkie gry", "play": "Graj", "locked": "Zablokowane",
     "categories": { "memory": "Pamięć", "logic": "Logika", "focus": "Skupienie", "calculation": "Obliczenia", "language": "Język", "speed": "Szybkość" },

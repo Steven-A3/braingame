@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Beyninizi her gün eğitin" },
   "nav": { "home": "Ana Sayfa", "today": "Bugün", "games": "Oyunlar", "progress": "İlerleme", "settings": "Ayarlar", "leaderboard": "Skor Tablosu" },
-  "home": { "welcome": "Tekrar hoş geldiniz!", "dailyWorkout": "Günlük Antrenman", "startWorkout": "Antrenmana Başla", "continueWorkout": "Devam Et", "completedToday": "Bugün Tamamlandı!", "streak": "Günlük Seri", "quickPlay": "Hızlı Oyna", "categories": "Kategoriler", "dailyQuests": "Günlük Görevler", "viewAll": "Tümünü Gör" },
+  "home": { "welcome": "Tekrar hoş geldiniz!", "dailyWorkout": "Günlük Antrenman", "startWorkout": "Antrenmana Başla", "continueWorkout": "Devam Et", "completedToday": "Bugün Tamamlandı!", "streak": "Günlük Seri", "quickPlay": "Hızlı Oyna", "categories": "Kategoriler", "dailyQuests": "Günlük Görevler", "viewAll": "Tümünü Gör", "workoutSubtitle": "5 seçilmiş oyun", "leaderboardSubtitle": "En iyi skorların", "progressSubtitle": "Grafikler ve trendler", "settingsSubtitle": "Tercihler" },
   "games": {
     "allGames": "Tüm Oyunlar", "play": "Oyna", "locked": "Kilitli",
     "categories": { "memory": "Hafıza", "logic": "Mantık", "focus": "Odaklanma", "calculation": "Hesaplama", "language": "Dil", "speed": "Hız" },

@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Latih otak anda setiap hari" },
   "nav": { "home": "Laman Utama", "today": "Hari Ini", "games": "Permainan", "progress": "Kemajuan", "settings": "Tetapan", "leaderboard": "Papan Pendahulu" },
-  "home": { "welcome": "Selamat kembali!", "dailyWorkout": "Latihan Harian", "startWorkout": "Mulakan Latihan", "continueWorkout": "Teruskan", "completedToday": "Selesai Hari Ini!", "streak": "Hari Berturutan", "quickPlay": "Main Pantas", "categories": "Kategori", "dailyQuests": "Misi Harian", "viewAll": "Lihat Semua" },
+  "home": { "welcome": "Selamat kembali!", "dailyWorkout": "Latihan Harian", "startWorkout": "Mulakan Latihan", "continueWorkout": "Teruskan", "completedToday": "Selesai Hari Ini!", "streak": "Hari Berturutan", "quickPlay": "Main Pantas", "categories": "Kategori", "dailyQuests": "Misi Harian", "viewAll": "Lihat Semua", "workoutSubtitle": "5 permainan terpilih", "leaderboardSubtitle": "Skor terbaik anda", "progressSubtitle": "Carta & trend", "settingsSubtitle": "Keutamaan" },
   "games": {
     "allGames": "Semua Permainan", "play": "Main", "locked": "Dikunci",
     "categories": { "memory": "Ingatan", "logic": "Logik", "focus": "Fokus", "calculation": "Pengiraan", "language": "Bahasa", "speed": "Kelajuan" },

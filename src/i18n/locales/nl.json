@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Train je hersenen elke dag" },
   "nav": { "home": "Home", "today": "Vandaag", "games": "Spellen", "progress": "Voortgang", "settings": "Instellingen", "leaderboard": "Scorebord" },
-  "home": { "welcome": "Welkom terug!", "dailyWorkout": "Dagelijkse Training", "startWorkout": "Start Training", "continueWorkout": "Doorgaan", "completedToday": "Vandaag Voltooid!", "streak": "Dag Reeks", "quickPlay": "Snel Spelen", "categories": "Categorieën", "dailyQuests": "Dagelijkse Missies", "viewAll": "Alles Bekijken" },
+  "home": { "welcome": "Welkom terug!", "dailyWorkout": "Dagelijkse Training", "startWorkout": "Start Training", "continueWorkout": "Doorgaan", "completedToday": "Vandaag Voltooid!", "streak": "Dag Reeks", "quickPlay": "Snel Spelen", "categories": "Categorieën", "dailyQuests": "Dagelijkse Missies", "viewAll": "Alles Bekijken", "workoutSubtitle": "5 geselecteerde spellen", "leaderboardSubtitle": "Jouw beste scores", "progressSubtitle": "Grafieken & trends", "settingsSubtitle": "Voorkeuren" },
   "games": {
     "allGames": "Alle Spellen", "play": "Spelen", "locked": "Vergrendeld",
     "categories": { "memory": "Geheugen", "logic": "Logica", "focus": "Focus", "calculation": "Rekenen", "language": "Taal", "speed": "Snelheid" },

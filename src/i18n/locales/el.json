@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Εκπαιδεύστε τον εγκέφαλό σας καθημερινά" },
   "nav": { "home": "Αρχική", "today": "Σήμερα", "games": "Παιχνίδια", "progress": "Πρόοδος", "settings": "Ρυθμίσεις", "leaderboard": "Κατάταξη" },
-  "home": { "welcome": "Καλώς ήρθατε ξανά!", "dailyWorkout": "Καθημερινή Άσκηση", "startWorkout": "Έναρξη Άσκησης", "continueWorkout": "Συνέχεια", "completedToday": "Ολοκληρώθηκε Σήμερα!", "streak": "Μέρες Σερί", "quickPlay": "Γρήγορο Παιχνίδι", "categories": "Κατηγορίες", "dailyQuests": "Καθημερινές Αποστολές", "viewAll": "Προβολή Όλων" },
+  "home": { "welcome": "Καλώς ήρθατε ξανά!", "dailyWorkout": "Καθημερινή Άσκηση", "startWorkout": "Έναρξη Άσκησης", "continueWorkout": "Συνέχεια", "completedToday": "Ολοκληρώθηκε Σήμερα!", "streak": "Μέρες Σερί", "quickPlay": "Γρήγορο Παιχνίδι", "categories": "Κατηγορίες", "dailyQuests": "Καθημερινές Αποστολές", "viewAll": "Προβολή Όλων", "workoutSubtitle": "5 επιλεγμένα παιχνίδια", "leaderboardSubtitle": "Τα καλύτερα σκορ σου", "progressSubtitle": "Γραφήματα & τάσεις", "settingsSubtitle": "Προτιμήσεις" },
   "games": {
     "allGames": "Όλα τα Παιχνίδια", "play": "Παίξε", "locked": "Κλειδωμένο",
     "categories": { "memory": "Μνήμη", "logic": "Λογική", "focus": "Συγκέντρωση", "calculation": "Υπολογισμός", "language": "Γλώσσα", "speed": "Ταχύτητα" },

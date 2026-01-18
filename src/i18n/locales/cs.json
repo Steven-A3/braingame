@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Trénuj mysl každý den" },
   "nav": { "home": "Domů", "today": "Dnes", "games": "Hry", "progress": "Pokrok", "settings": "Nastavení", "leaderboard": "Žebříček" },
-  "home": { "welcome": "Vítej zpět!", "dailyWorkout": "Denní trénink", "startWorkout": "Začít trénink", "continueWorkout": "Pokračovat", "completedToday": "Dnes dokončeno!", "streak": "Dnů v řadě", "quickPlay": "Rychlá hra", "categories": "Kategorie", "dailyQuests": "Denní mise", "viewAll": "Zobrazit vše" },
+  "home": { "welcome": "Vítej zpět!", "dailyWorkout": "Denní trénink", "startWorkout": "Začít trénink", "continueWorkout": "Pokračovat", "completedToday": "Dnes dokončeno!", "streak": "Dnů v řadě", "quickPlay": "Rychlá hra", "categories": "Kategorie", "dailyQuests": "Denní mise", "viewAll": "Zobrazit vše", "workoutSubtitle": "5 vybraných her", "leaderboardSubtitle": "Tvé nejlepší skóre", "progressSubtitle": "Grafy a trendy", "settingsSubtitle": "Předvolby" },
   "games": {
     "allGames": "Všechny hry", "play": "Hrát", "locked": "Zamčeno",
     "categories": { "memory": "Paměť", "logic": "Logika", "focus": "Soustředění", "calculation": "Počítání", "language": "Jazyk", "speed": "Rychlost" },

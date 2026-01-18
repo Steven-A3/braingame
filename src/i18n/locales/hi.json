@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "हर दिन अपने दिमाग को प्रशिक्षित करें" },
   "nav": { "home": "होम", "today": "आज", "games": "गेम्स", "progress": "प्रगति", "settings": "सेटिंग्स", "leaderboard": "लीडरबोर्ड" },
-  "home": { "welcome": "वापस स्वागत है!", "dailyWorkout": "दैनिक वर्कआउट", "startWorkout": "वर्कआउट शुरू करें", "continueWorkout": "जारी रखें", "completedToday": "आज पूरा हुआ!", "streak": "दिन की लकीर", "quickPlay": "क्विक प्ले", "categories": "श्रेणियाँ", "dailyQuests": "दैनिक क्वेस्ट", "viewAll": "सभी देखें" },
+  "home": { "welcome": "वापस स्वागत है!", "dailyWorkout": "दैनिक वर्कआउट", "startWorkout": "वर्कआउट शुरू करें", "continueWorkout": "जारी रखें", "completedToday": "आज पूरा हुआ!", "streak": "दिन की लकीर", "quickPlay": "क्विक प्ले", "categories": "श्रेणियाँ", "dailyQuests": "दैनिक क्वेस्ट", "viewAll": "सभी देखें", "workoutSubtitle": "5 चुने हुए गेम", "leaderboardSubtitle": "आपके सर्वश्रेष्ठ स्कोर", "progressSubtitle": "चार्ट और ट्रेंड", "settingsSubtitle": "प्राथमिकताएं" },
   "games": {
     "allGames": "सभी गेम्स", "play": "खेलें", "locked": "लॉक",
     "categories": { "memory": "स्मृति", "logic": "तर्क", "focus": "फोकस", "calculation": "गणना", "language": "भाषा", "speed": "गति" },

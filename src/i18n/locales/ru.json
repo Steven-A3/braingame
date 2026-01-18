@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Тренируй разум каждый день" },
   "nav": { "home": "Главная", "today": "Сегодня", "games": "Игры", "progress": "Прогресс", "settings": "Настройки", "leaderboard": "Рейтинг" },
-  "home": { "welcome": "С возвращением!", "dailyWorkout": "Ежедневная тренировка", "startWorkout": "Начать тренировку", "continueWorkout": "Продолжить", "completedToday": "Выполнено сегодня!", "streak": "Дней подряд", "quickPlay": "Быстрая игра", "categories": "Категории", "dailyQuests": "Ежедневные задания", "viewAll": "Показать все" },
+  "home": { "welcome": "С возвращением!", "dailyWorkout": "Ежедневная тренировка", "startWorkout": "Начать тренировку", "continueWorkout": "Продолжить", "completedToday": "Выполнено сегодня!", "streak": "Дней подряд", "quickPlay": "Быстрая игра", "categories": "Категории", "dailyQuests": "Ежедневные задания", "viewAll": "Показать все", "workoutSubtitle": "5 подобранных игр", "leaderboardSubtitle": "Ваши лучшие результаты", "progressSubtitle": "Графики и тренды", "settingsSubtitle": "Настройки" },
   "games": {
     "allGames": "Все игры", "play": "Играть", "locked": "Заблокировано",
     "categories": { "memory": "Память", "logic": "Логика", "focus": "Концентрация", "calculation": "Счёт", "language": "Язык", "speed": "Скорость" },

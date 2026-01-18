@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "每天锻炼大脑" },
   "nav": { "home": "首页", "today": "今天", "games": "游戏", "progress": "进度", "settings": "设置", "leaderboard": "排行榜" },
-  "home": { "welcome": "欢迎回来！", "dailyWorkout": "每日训练", "startWorkout": "开始训练", "continueWorkout": "继续", "completedToday": "今日已完成！", "streak": "连续天数", "quickPlay": "快速开始", "categories": "分类", "dailyQuests": "每日任务", "viewAll": "查看全部" },
+  "home": { "welcome": "欢迎回来！", "dailyWorkout": "每日训练", "startWorkout": "开始训练", "continueWorkout": "继续", "completedToday": "今日已完成！", "streak": "连续天数", "quickPlay": "快速开始", "categories": "分类", "dailyQuests": "每日任务", "viewAll": "查看全部", "workoutSubtitle": "5个精选游戏", "leaderboardSubtitle": "你的最高分", "progressSubtitle": "图表与趋势", "settingsSubtitle": "偏好设置" },
   "games": {
     "allGames": "所有游戏", "play": "开始", "locked": "锁定",
     "categories": { "memory": "记忆力", "logic": "逻辑", "focus": "专注力", "calculation": "计算", "language": "语言", "speed": "速度" },
