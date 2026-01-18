@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "매일 두뇌를 훈련하세요" },
   "nav": { "home": "홈", "today": "오늘", "games": "게임", "progress": "진행", "settings": "설정", "leaderboard": "순위" },
-  "home": { "welcome": "다시 오셨군요!", "dailyWorkout": "일일 훈련", "startWorkout": "훈련 시작", "continueWorkout": "계속하기", "completedToday": "오늘 완료!", "streak": "연속 일수", "quickPlay": "빠른 플레이", "categories": "카테고리", "dailyQuests": "일일 퀘스트", "viewAll": "모두 보기" },
+  "home": { "welcome": "다시 오셨군요!", "dailyWorkout": "일일 훈련", "startWorkout": "훈련 시작", "continueWorkout": "계속하기", "completedToday": "오늘 완료!", "streak": "연속 일수", "quickPlay": "빠른 플레이", "categories": "카테고리", "dailyQuests": "일일 퀘스트", "viewAll": "모두 보기", "workoutSubtitle": "엄선된 5개 게임", "leaderboardSubtitle": "최고 점수", "progressSubtitle": "차트 및 추세", "settingsSubtitle": "환경설정" },
   "games": {
     "allGames": "모든 게임", "play": "플레이", "locked": "잠김",
     "categories": { "memory": "기억력", "logic": "논리", "focus": "집중력", "calculation": "계산", "language": "언어", "speed": "속도" },

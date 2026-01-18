@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "每天鍛鍊大腦" },
   "nav": { "home": "首頁", "today": "今天", "games": "遊戲", "progress": "進度", "settings": "設定", "leaderboard": "排行榜" },
-  "home": { "welcome": "歡迎回來！", "dailyWorkout": "每日訓練", "startWorkout": "開始訓練", "continueWorkout": "繼續", "completedToday": "今日已完成！", "streak": "連續天數", "quickPlay": "快速開始", "categories": "分類", "dailyQuests": "每日任務", "viewAll": "查看全部" },
+  "home": { "welcome": "歡迎回來！", "dailyWorkout": "每日訓練", "startWorkout": "開始訓練", "continueWorkout": "繼續", "completedToday": "今日已完成！", "streak": "連續天數", "quickPlay": "快速開始", "categories": "分類", "dailyQuests": "每日任務", "viewAll": "查看全部", "workoutSubtitle": "5個精選遊戲", "leaderboardSubtitle": "你的最高分", "progressSubtitle": "圖表與趨勢", "settingsSubtitle": "偏好設定" },
   "games": {
     "allGames": "所有遊戲", "play": "開始", "locked": "鎖定",
     "categories": { "memory": "記憶力", "logic": "邏輯", "focus": "專注力", "calculation": "計算", "language": "語言", "speed": "速度" },

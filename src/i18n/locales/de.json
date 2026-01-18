@@ -21,7 +21,11 @@
     "quickPlay": "Schnellspiel",
     "categories": "Kategorien",
     "dailyQuests": "Tägliche Aufgaben",
-    "viewAll": "Alle anzeigen"
+    "viewAll": "Alle anzeigen",
+    "workoutSubtitle": "5 ausgewählte Spiele",
+    "leaderboardSubtitle": "Deine besten Ergebnisse",
+    "progressSubtitle": "Diagramme & Trends",
+    "settingsSubtitle": "Einstellungen"
   },
   "games": {
     "allGames": "Alle Spiele",

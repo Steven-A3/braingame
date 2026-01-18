@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Träna ditt sinne dagligen" },
   "nav": { "home": "Hem", "today": "Idag", "games": "Spel", "progress": "Framsteg", "settings": "Inställningar", "leaderboard": "Topplista" },
-  "home": { "welcome": "Välkommen tillbaka!", "dailyWorkout": "Daglig träning", "startWorkout": "Starta träning", "continueWorkout": "Fortsätt", "completedToday": "Klart idag!", "streak": "Dagar i rad", "quickPlay": "Snabbspel", "categories": "Kategorier", "dailyQuests": "Dagliga uppdrag", "viewAll": "Visa alla" },
+  "home": { "welcome": "Välkommen tillbaka!", "dailyWorkout": "Daglig träning", "startWorkout": "Starta träning", "continueWorkout": "Fortsätt", "completedToday": "Klart idag!", "streak": "Dagar i rad", "quickPlay": "Snabbspel", "categories": "Kategorier", "dailyQuests": "Dagliga uppdrag", "viewAll": "Visa alla", "workoutSubtitle": "5 utvalda spel", "leaderboardSubtitle": "Dina bästa resultat", "progressSubtitle": "Diagram och trender", "settingsSubtitle": "Inställningar" },
   "games": {
     "allGames": "Alla spel", "play": "Spela", "locked": "Låst",
     "categories": { "memory": "Minne", "logic": "Logik", "focus": "Fokus", "calculation": "Beräkning", "language": "Språk", "speed": "Hastighet" },

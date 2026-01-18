@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "ฝึกสมองทุกวัน" },
   "nav": { "home": "หน้าหลัก", "today": "วันนี้", "games": "เกม", "progress": "ความก้าวหน้า", "settings": "การตั้งค่า", "leaderboard": "อันดับ" },
-  "home": { "welcome": "ยินดีต้อนรับกลับ!", "dailyWorkout": "ฝึกประจำวัน", "startWorkout": "เริ่มฝึก", "continueWorkout": "ดำเนินการต่อ", "completedToday": "เสร็จสิ้นวันนี้!", "streak": "วันติดต่อกัน", "quickPlay": "เล่นด่วน", "categories": "หมวดหมู่", "dailyQuests": "ภารกิจประจำวัน", "viewAll": "ดูทั้งหมด" },
+  "home": { "welcome": "ยินดีต้อนรับกลับ!", "dailyWorkout": "ฝึกประจำวัน", "startWorkout": "เริ่มฝึก", "continueWorkout": "ดำเนินการต่อ", "completedToday": "เสร็จสิ้นวันนี้!", "streak": "วันติดต่อกัน", "quickPlay": "เล่นด่วน", "categories": "หมวดหมู่", "dailyQuests": "ภารกิจประจำวัน", "viewAll": "ดูทั้งหมด", "workoutSubtitle": "5 เกมคัดสรร", "leaderboardSubtitle": "คะแนนที่ดีที่สุดของคุณ", "progressSubtitle": "แผนภูมิและแนวโน้ม", "settingsSubtitle": "การตั้งค่า" },
   "games": {
     "allGames": "เกมทั้งหมด", "play": "เล่น", "locked": "ล็อค",
     "categories": { "memory": "ความจำ", "logic": "ตรรกะ", "focus": "สมาธิ", "calculation": "การคำนวณ", "language": "ภาษา", "speed": "ความเร็ว" },

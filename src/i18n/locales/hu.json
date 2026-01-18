@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Edzd az elméd naponta" },
   "nav": { "home": "Főoldal", "today": "Ma", "games": "Játékok", "progress": "Haladás", "settings": "Beállítások", "leaderboard": "Ranglista" },
-  "home": { "welcome": "Üdv újra!", "dailyWorkout": "Napi edzés", "startWorkout": "Edzés indítása", "continueWorkout": "Folytatás", "completedToday": "Ma befejezve!", "streak": "Nap egymás után", "quickPlay": "Gyors játék", "categories": "Kategóriák", "dailyQuests": "Napi küldetések", "viewAll": "Összes" },
+  "home": { "welcome": "Üdv újra!", "dailyWorkout": "Napi edzés", "startWorkout": "Edzés indítása", "continueWorkout": "Folytatás", "completedToday": "Ma befejezve!", "streak": "Nap egymás után", "quickPlay": "Gyors játék", "categories": "Kategóriák", "dailyQuests": "Napi küldetések", "viewAll": "Összes", "workoutSubtitle": "5 válogatott játék", "leaderboardSubtitle": "Legjobb eredményeid", "progressSubtitle": "Grafikonok és trendek", "settingsSubtitle": "Beállítások" },
   "games": {
     "allGames": "Minden játék", "play": "Játék", "locked": "Zárolva",
     "categories": { "memory": "Memória", "logic": "Logika", "focus": "Fókusz", "calculation": "Számolás", "language": "Nyelv", "speed": "Gyorsaság" },

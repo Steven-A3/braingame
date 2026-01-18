@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "Harjoita aivojasi päivittäin" },
   "nav": { "home": "Koti", "today": "Tänään", "games": "Pelit", "progress": "Edistyminen", "settings": "Asetukset", "leaderboard": "Tulostaulukko" },
-  "home": { "welcome": "Tervetuloa takaisin!", "dailyWorkout": "Päivittäinen harjoitus", "startWorkout": "Aloita harjoitus", "continueWorkout": "Jatka", "completedToday": "Valmis tänään!", "streak": "Peräkkäistä päivää", "quickPlay": "Pikapeli", "categories": "Kategoriat", "dailyQuests": "Päivittäiset tehtävät", "viewAll": "Näytä kaikki" },
+  "home": { "welcome": "Tervetuloa takaisin!", "dailyWorkout": "Päivittäinen harjoitus", "startWorkout": "Aloita harjoitus", "continueWorkout": "Jatka", "completedToday": "Valmis tänään!", "streak": "Peräkkäistä päivää", "quickPlay": "Pikapeli", "categories": "Kategoriat", "dailyQuests": "Päivittäiset tehtävät", "viewAll": "Näytä kaikki", "workoutSubtitle": "5 valittua peliä", "leaderboardSubtitle": "Parhaat tuloksesi", "progressSubtitle": "Kaaviot ja trendit", "settingsSubtitle": "Asetukset" },
   "games": {
     "allGames": "Kaikki pelit", "play": "Pelaa", "locked": "Lukittu",
     "categories": { "memory": "Muisti", "logic": "Logiikka", "focus": "Keskittyminen", "calculation": "Laskenta", "language": "Kieli", "speed": "Nopeus" },

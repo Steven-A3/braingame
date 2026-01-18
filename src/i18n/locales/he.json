@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "אמנו את המוח שלכם כל יום" },
   "nav": { "home": "בית", "today": "היום", "games": "משחקים", "progress": "התקדמות", "settings": "הגדרות", "leaderboard": "טבלת מובילים" },
-  "home": { "welcome": "ברוכים השבים!", "dailyWorkout": "אימון יומי", "startWorkout": "התחל אימון", "continueWorkout": "המשך", "completedToday": "הושלם היום!", "streak": "ימים רצופים", "quickPlay": "משחק מהיר", "categories": "קטגוריות", "dailyQuests": "משימות יומיות", "viewAll": "צפה בהכל" },
+  "home": { "welcome": "ברוכים השבים!", "dailyWorkout": "אימון יומי", "startWorkout": "התחל אימון", "continueWorkout": "המשך", "completedToday": "הושלם היום!", "streak": "ימים רצופים", "quickPlay": "משחק מהיר", "categories": "קטגוריות", "dailyQuests": "משימות יומיות", "viewAll": "צפה בהכל", "workoutSubtitle": "5 משחקים נבחרים", "leaderboardSubtitle": "הציונים הטובים שלך", "progressSubtitle": "גרפים ומגמות", "settingsSubtitle": "העדפות" },
   "games": {
     "allGames": "כל המשחקים", "play": "שחק", "locked": "נעול",
     "categories": { "memory": "זיכרון", "logic": "לוגיקה", "focus": "ריכוז", "calculation": "חישוב", "language": "שפה", "speed": "מהירות" },

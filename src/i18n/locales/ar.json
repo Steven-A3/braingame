@@ -1,7 +1,7 @@
 {
   "app": { "name": "Daily Brain", "tagline": "درّب عقلك يومياً" },
   "nav": { "home": "الرئيسية", "today": "اليوم", "games": "الألعاب", "progress": "التقدم", "settings": "الإعدادات", "leaderboard": "لوحة المتصدرين" },
-  "home": { "welcome": "مرحباً بعودتك!", "dailyWorkout": "التمرين اليومي", "startWorkout": "ابدأ التمرين", "continueWorkout": "متابعة", "completedToday": "مكتمل اليوم!", "streak": "أيام متتالية", "quickPlay": "لعب سريع", "categories": "الفئات", "dailyQuests": "المهام اليومية", "viewAll": "عرض الكل" },
+  "home": { "welcome": "مرحباً بعودتك!", "dailyWorkout": "التمرين اليومي", "startWorkout": "ابدأ التمرين", "continueWorkout": "متابعة", "completedToday": "مكتمل اليوم!", "streak": "أيام متتالية", "quickPlay": "لعب سريع", "categories": "الفئات", "dailyQuests": "المهام اليومية", "viewAll": "عرض الكل", "workoutSubtitle": "5 ألعاب مختارة", "leaderboardSubtitle": "أفضل نتائجك", "progressSubtitle": "الرسوم والاتجاهات", "settingsSubtitle": "التفضيلات" },
   "games": {
     "allGames": "جميع الألعاب", "play": "العب", "locked": "مقفل",
     "categories": { "memory": "الذاكرة", "logic": "المنطق", "focus": "التركيز", "calculation": "الحساب", "language": "اللغة", "speed": "السرعة" },

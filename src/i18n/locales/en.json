@@ -21,7 +21,11 @@
     "quickPlay": "Quick Play",
     "categories": "Categories",
     "dailyQuests": "Daily Quests",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "workoutSubtitle": "5 curated games",
+    "leaderboardSubtitle": "Your best scores",
+    "progressSubtitle": "Charts & trends",
+    "settingsSubtitle": "Preferences"
   },
   "games": {
     "allGames": "All Games",
