@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 import type { Quest } from '../types';
 import { DIFFICULTY_COLORS } from '../types';
 import { useFeedback } from '@/hooks/useFeedback';
+import { getQuestTranslationKey, getQuestDescriptionKey, extractCategoryFromTitle } from '../questTranslations';
 
 interface QuestCardProps {
   quest: Quest;
@@ -11,9 +13,26 @@ interface QuestCardProps {
 }
 
 export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
+  const { t } = useTranslation();
   const feedback = useFeedback();
   const progress = Math.min(quest.progress / quest.target, 1);
   const isClaimable = quest.completed && !quest.claimed;
+
+  // Translate quest title
+  const titleKey = getQuestTranslationKey(quest.title);
+  const categoryFromTitle = extractCategoryFromTitle(quest.title);
+  const categoryKey = quest.requirement.category || categoryFromTitle;
+  const categoryName = categoryKey ? t(`games.categories.${categoryKey}`) : '';
+  const translatedTitle = titleKey ? t(titleKey, { category: categoryName }) : quest.title;
+
+  // Translate quest description
+  const descKey = getQuestDescriptionKey(quest.requirement.type, quest.target);
+  const translatedDescription = descKey
+    ? t(descKey, { target: quest.target, category: categoryName })
+    : quest.description;
+
+  // Translate difficulty
+  const translatedDifficulty = t(`quests.difficulty.${quest.difficulty}`);
 
   const handleClaim = () => {
     if (isClaimable && onClaim) {
@@ -34,7 +53,7 @@ export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
       >
         <span className="text-2xl">{quest.icon}</span>
         <div className="flex-1 min-w-0">
-          <div className="font-medium text-sm truncate">{quest.title}</div>
+          <div className="font-medium text-sm truncate">{translatedTitle}</div>
           <div className="flex items-center gap-2">
             <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
               <motion.div
@@ -58,7 +77,7 @@ export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
             onClick={handleClaim}
             className="px-3 py-1.5 bg-yellow-500 text-black text-xs font-bold rounded-lg"
           >
-            Claim
+            {t('quests.claim')}
           </motion.button>
         )}
       </motion.div>
@@ -91,7 +110,7 @@ export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
         <div className="flex-1 min-w-0">
           {/* Title and difficulty badge */}
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-semibold truncate">{quest.title}</h3>
+            <h3 className="font-semibold truncate">{translatedTitle}</h3>
             <span
               className="px-2 py-0.5 rounded-full text-xs font-medium"
               style={{
@@ -99,17 +118,17 @@ export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
                 color: DIFFICULTY_COLORS[quest.difficulty],
               }}
             >
-              {quest.difficulty}
+              {translatedDifficulty}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-slate-400 mb-3">{quest.description}</p>
+          <p className="text-sm text-slate-400 mb-3">{translatedDescription}</p>
 
           {/* Progress bar */}
           <div className="mb-3">
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-slate-400">Progress</span>
+              <span className="text-slate-400">{t('quests.progress')}</span>
               <span className={quest.completed ? 'text-green-400' : 'text-slate-300'}>
                 {quest.progress}/{quest.target}
               </span>
@@ -158,7 +177,7 @@ export function QuestCard({ quest, onClaim, compact = false }: QuestCardProps) {
           onClick={handleClaim}
           className="w-full mt-4 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-xl shadow-lg shadow-yellow-500/25"
         >
-          ✨ Claim Reward
+          ✨ {t('quests.claimReward')}
         </motion.button>
       )}
 
