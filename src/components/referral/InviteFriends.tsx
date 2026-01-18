@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { getReferralLink, generateReferralShareText, getReferralStats } from '@/services/referral';
 import { useFeedback } from '@/hooks/useFeedback';
 
 export function InviteFriends() {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const feedback = useFeedback();
   const referralLink = getReferralLink();
@@ -37,7 +39,7 @@ export function InviteFriends() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Daily Brain - Brain Training Games',
+          title: `${t('app.name')} - ${t('app.tagline')}`,
           text: shareText,
           url: referralLink,
         });
@@ -69,8 +71,8 @@ export function InviteFriends() {
       <div className="flex items-center gap-3 mb-4">
         <div className="text-3xl">🎁</div>
         <div>
-          <h3 className="font-semibold text-lg">Invite Friends</h3>
-          <p className="text-sm text-slate-400">Share Daily Brain with your friends</p>
+          <h3 className="font-semibold text-lg">{t('invite.title')}</h3>
+          <p className="text-sm text-slate-400">{t('invite.description')}</p>
         </div>
       </div>
 
@@ -80,7 +82,7 @@ export function InviteFriends() {
           <div className="flex items-center gap-2">
             <span className="text-green-400">🎉</span>
             <span className="text-green-400 font-medium">
-              {stats.count} friend{stats.count !== 1 ? 's' : ''} joined!
+              {t('invite.friendsJoined', { count: stats.count })}
             </span>
           </div>
         </div>
@@ -88,7 +90,7 @@ export function InviteFriends() {
 
       {/* Referral Link */}
       <div className="bg-slate-800 rounded-lg p-3 mb-4">
-        <p className="text-xs text-slate-400 mb-1">Your referral link</p>
+        <p className="text-xs text-slate-400 mb-1">{t('invite.yourLink')}</p>
         <div className="flex items-center gap-2">
           <code className="text-sm text-primary-400 flex-1 truncate">
             {referralLink}
@@ -97,7 +99,7 @@ export function InviteFriends() {
             onClick={handleCopyLink}
             className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded text-sm transition-colors"
           >
-            {copied ? '✓' : 'Copy'}
+            {copied ? '✓' : t('invite.copy')}
           </button>
         </div>
       </div>
@@ -109,7 +111,7 @@ export function InviteFriends() {
           onClick={handleShare}
           className="flex-1 btn-primary"
         >
-          📤 Share
+          📤 {t('invite.share')}
         </motion.button>
         <motion.button
           whileTap={{ scale: 0.95 }}
@@ -136,7 +138,7 @@ export function InviteFriends() {
       {/* Referral Code */}
       <div className="mt-4 text-center">
         <p className="text-xs text-slate-500">
-          Your code: <span className="font-mono text-slate-400">{stats.code}</span>
+          {t('invite.yourCode')}: <span className="font-mono text-slate-400">{stats.code}</span>
         </p>
       </div>
     </div>

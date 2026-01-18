@@ -274,8 +274,11 @@
     "title": "Invita amici",
     "description": "Condividi il tuo codice referral e guadagna ricompense quando gli amici si uniscono!",
     "yourCode": "Il tuo codice referral",
-    "copy": "Copia codice",
+    "yourLink": "Il tuo link referral",
+    "copy": "Copia",
     "share": "Condividi",
-    "copied": "Codice copiato!"
+    "copied": "Codice copiato!",
+    "friendsJoined": "{{count}} amico si è unito!",
+    "friendsJoined_other": "{{count}} amici si sono uniti!"
   }
 }

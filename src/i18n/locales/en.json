@@ -274,8 +274,11 @@
     "title": "Invite Friends",
     "description": "Share your referral code and earn rewards when friends join!",
     "yourCode": "Your Referral Code",
+    "yourLink": "Your referral link",
     "copy": "Copy Code",
     "share": "Share",
-    "copied": "Code copied!"
+    "copied": "Code copied!",
+    "friendsJoined": "{{count}} friend joined!",
+    "friendsJoined_other": "{{count}} friends joined!"
   }
 }
