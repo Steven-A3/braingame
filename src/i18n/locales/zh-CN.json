@@ -348,5 +348,11 @@
     "topPercent": "前{{percent}}%",
     "now": "现在",
     "weeksAgo": "{{count}}周"
+  },
+  "pwa": {
+    "updateAvailable": "可用更新",
+    "updateMessage": "新版本已准备就绪。立即更新以获取最新功能！",
+    "updateNow": "立即更新",
+    "later": "稍后"
   }
 }

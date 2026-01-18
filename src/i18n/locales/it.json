@@ -349,5 +349,11 @@
     "copied": "Codice copiato!",
     "friendsJoined": "{{count}} amico si è unito!",
     "friendsJoined_other": "{{count}} amici si sono uniti!"
+  },
+  "pwa": {
+    "updateAvailable": "Aggiornamento disponibile",
+    "updateMessage": "Una nuova versione è pronta. Aggiorna ora per le ultime funzionalità!",
+    "updateNow": "Aggiorna ora",
+    "later": "Più tardi"
   }
 }

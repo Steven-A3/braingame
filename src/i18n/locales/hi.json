@@ -348,5 +348,11 @@
     "topPercent": "शीर्ष {{percent}}%",
     "now": "अभी",
     "weeksAgo": "{{count}}स"
+  },
+  "pwa": {
+    "updateAvailable": "अपडेट उपलब्ध",
+    "updateMessage": "एक नया संस्करण तैयार है। नवीनतम सुविधाओं के लिए अभी अपडेट करें!",
+    "updateNow": "अभी अपडेट करें",
+    "later": "बाद में"
   }
 }

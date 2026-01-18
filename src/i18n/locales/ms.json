@@ -348,5 +348,11 @@
     "topPercent": "Teratas {{percent}}%",
     "now": "Sekarang",
     "weeksAgo": "{{count}}m"
+  },
+  "pwa": {
+    "updateAvailable": "Kemas Kini Tersedia",
+    "updateMessage": "Versi baharu sudah bersedia. Kemas kini sekarang untuk ciri terkini!",
+    "updateNow": "Kemas Kini Sekarang",
+    "later": "Kemudian"
   }
 }

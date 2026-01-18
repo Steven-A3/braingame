@@ -348,5 +348,11 @@
     "topPercent": "Top {{percent}}%",
     "now": "Bây giờ",
     "weeksAgo": "{{count}}t"
+  },
+  "pwa": {
+    "updateAvailable": "Có bản cập nhật",
+    "updateMessage": "Phiên bản mới đã sẵn sàng. Cập nhật ngay để nhận các tính năng mới nhất!",
+    "updateNow": "Cập nhật ngay",
+    "later": "Để sau"
   }
 }

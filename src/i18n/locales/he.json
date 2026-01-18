@@ -348,5 +348,11 @@
     "topPercent": "מובילים {{percent}}%",
     "now": "עכשיו",
     "weeksAgo": "{{count}}ש"
+  },
+  "pwa": {
+    "updateAvailable": "עדכון זמין",
+    "updateMessage": "גרסה חדשה מוכנה. עדכן עכשיו לקבלת התכונות האחרונות!",
+    "updateNow": "עדכן עכשיו",
+    "later": "מאוחר יותר"
   }
 }

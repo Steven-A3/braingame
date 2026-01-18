@@ -348,5 +348,11 @@
     "topPercent": "Felső {{percent}}%",
     "now": "Most",
     "weeksAgo": "{{count}}h"
+  },
+  "pwa": {
+    "updateAvailable": "Frissítés elérhető",
+    "updateMessage": "Egy új verzió készen áll. Frissítsen most a legújabb funkciókért!",
+    "updateNow": "Frissítés most",
+    "later": "Később"
   }
 }

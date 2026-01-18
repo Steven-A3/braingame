@@ -349,5 +349,11 @@
     "topPercent": "Topp {{percent}}%",
     "now": "Nu",
     "weeksAgo": "{{count}}v"
+  },
+  "pwa": {
+    "updateAvailable": "Uppdatering tillgänglig",
+    "updateMessage": "En ny version är redo. Uppdatera nu för de senaste funktionerna!",
+    "updateNow": "Uppdatera nu",
+    "later": "Senare"
   }
 }

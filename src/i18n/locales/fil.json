@@ -348,5 +348,11 @@
     "topPercent": "Nangungunang {{percent}}%",
     "now": "Ngayon",
     "weeksAgo": "{{count}}l"
+  },
+  "pwa": {
+    "updateAvailable": "May Available na Update",
+    "updateMessage": "Handa na ang bagong bersyon. Mag-update ngayon para sa pinakabagong features!",
+    "updateNow": "Mag-update Ngayon",
+    "later": "Mamaya"
   }
 }

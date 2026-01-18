@@ -349,5 +349,11 @@
     "topPercent": "Top {{percent}}%",
     "now": "Acum",
     "weeksAgo": "{{count}}s"
+  },
+  "pwa": {
+    "updateAvailable": "Actualizare disponibilă",
+    "updateMessage": "O nouă versiune este gata. Actualizați acum pentru cele mai noi funcții!",
+    "updateNow": "Actualizează acum",
+    "later": "Mai târziu"
   }
 }
