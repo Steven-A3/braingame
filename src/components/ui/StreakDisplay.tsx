@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface StreakDisplayProps {
   currentStreak: number;
@@ -7,6 +8,8 @@ interface StreakDisplayProps {
 }
 
 export function StreakDisplay({ currentStreak, completedToday }: StreakDisplayProps) {
+  const { t, i18n } = useTranslation();
+
   // Generate last 7 days
   const days = [];
   const today = new Date();
@@ -16,7 +19,7 @@ export function StreakDisplay({ currentStreak, completedToday }: StreakDisplayPr
     date.setDate(date.getDate() - i);
     days.push({
       date,
-      dayName: date.toLocaleDateString('en-US', { weekday: 'short' }).charAt(0),
+      dayName: date.toLocaleDateString(i18n.language, { weekday: 'short' }).charAt(0).toUpperCase(),
       isToday: i === 0,
       isPast: i > 0,
     });
@@ -25,7 +28,7 @@ export function StreakDisplay({ currentStreak, completedToday }: StreakDisplayPr
   if (currentStreak === 0 && !completedToday) {
     return (
       <div className="card mb-6 text-center py-6">
-        <div className="text-slate-400 mb-2">Start your streak today!</div>
+        <div className="text-slate-400 mb-2">{t('home.streak', { defaultValue: 'Start your streak today!' })}</div>
         <div className="text-4xl">🔥</div>
       </div>
     );
@@ -48,13 +51,13 @@ export function StreakDisplay({ currentStreak, completedToday }: StreakDisplayPr
           </motion.span>
           <div>
             <div className="text-3xl font-bold">{currentStreak}</div>
-            <div className="text-sm text-slate-400">day streak</div>
+            <div className="text-sm text-slate-400">{t('common.days', { defaultValue: 'day streak' })}</div>
           </div>
         </div>
 
         {completedToday && (
           <div className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
-            ✓ Today done!
+            ✓ {t('home.completedToday')}
           </div>
         )}
       </div>

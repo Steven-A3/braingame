@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useQuestStore } from '../questStore';
 import { useUserStore } from '@/stores/userStore';
 import { QuestCard } from './QuestCard';
@@ -13,6 +14,7 @@ interface DailyQuestsProps {
 }
 
 export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProps) {
+  const { t } = useTranslation();
   const { quests, initializeQuests, claimReward, claimAllRewards, getTotalRewards } = useQuestStore();
   const { currency, getLevel } = useUserStore();
   const [timeLeft, setTimeLeft] = useState(formatTimeUntilReset());
@@ -63,9 +65,9 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
           <div className="flex items-center gap-2">
             <span className="text-2xl">📋</span>
             <div>
-              <h3 className="font-semibold">Daily Quests</h3>
+              <h3 className="font-semibold">{t('quests.title')}</h3>
               <p className="text-xs text-slate-400">
-                {completedCount}/{quests.length} completed • Resets in {timeLeft}
+                {completedCount}/{quests.length} {t('quests.completed')} • {timeLeft}
               </p>
             </div>
           </div>
@@ -75,7 +77,7 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
               onClick={handleClaimAll}
               className="px-3 py-1.5 bg-yellow-500 text-black text-xs font-bold rounded-lg"
             >
-              Claim All
+              {t('quests.claim')}
             </motion.button>
           )}
         </div>
@@ -98,7 +100,7 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
             to="/quests"
             className="block text-center text-sm text-primary-400 hover:text-primary-300 mt-3 pt-3 border-t border-slate-700/50"
           >
-            View all {quests.length} quests →
+            {t('home.viewAll')} ({quests.length}) →
           </Link>
         )}
       </div>
@@ -113,13 +115,13 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
         <div className="p-4 max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold">Daily Quests</h1>
+              <h1 className="text-2xl font-bold">{t('quests.title')}</h1>
               <p className="text-sm text-slate-400">
-                Resets in {timeLeft}
+                {timeLeft}
               </p>
             </div>
             <div className="text-right">
-              <div className="text-sm text-slate-400">Level {levelInfo.level}</div>
+              <div className="text-sm text-slate-400">{t('common.level')} {levelInfo.level}</div>
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-yellow-400">🪙 {currency.coins}</span>
                 <span className="text-cyan-400">💎 {currency.gems}</span>
@@ -130,7 +132,7 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
           {/* XP Progress bar */}
           <div className="mb-2">
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-slate-400">XP Progress</span>
+              <span className="text-slate-400">{t('progress.xp')}</span>
               <span className="text-purple-400">
                 {levelInfo.currentXP}/{levelInfo.requiredXP}
               </span>
@@ -177,9 +179,9 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
                 </div>
               </div>
               <div>
-                <div className="font-medium">Quest Progress</div>
+                <div className="font-medium">{t('quests.progress')}</div>
                 <div className="text-sm text-slate-400">
-                  {claimedCount} rewards claimed
+                  {claimedCount} {t('quests.claimed')}
                 </div>
               </div>
             </div>
@@ -190,7 +192,7 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
                 onClick={handleClaimAll}
                 className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-xl text-sm"
               >
-                Claim All
+                {t('quests.claim')}
               </motion.button>
             )}
           </div>
@@ -221,8 +223,8 @@ export function DailyQuests({ compact = false, maxDisplay = 3 }: DailyQuestsProp
         {quests.length === 0 && (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">📋</div>
-            <h3 className="text-lg font-medium mb-2">No Quests Available</h3>
-            <p className="text-slate-400">Check back tomorrow for new quests!</p>
+            <h3 className="text-lg font-medium mb-2">{t('quests.title')}</h3>
+            <p className="text-slate-400">{t('common.loading')}</p>
           </div>
         )}
       </div>
