@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { InviteFriends } from '@/components/referral/InviteFriends';
+import { LanguageSelector } from './LanguageSelector';
 
 export function Settings() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     settings,
     updateSettings,
@@ -56,24 +59,29 @@ export function Settings() {
           onClick={() => navigate(-1)}
           className="text-slate-400 hover:text-white"
         >
-          ← Back
+          ← {t('common.back')}
         </button>
-        <h1 className="text-xl font-bold">Settings</h1>
+        <h1 className="text-xl font-bold">{t('settings.title')}</h1>
       </div>
 
       <div className="flex-1 p-4 space-y-4 max-w-lg mx-auto w-full">
+        {/* Language Selector */}
+        <div className="card">
+          <LanguageSelector />
+        </div>
+
         {/* Preferences */}
         <div className="card">
-          <h2 className="font-semibold mb-4">Preferences</h2>
+          <h2 className="font-semibold mb-4">{t('settings.profile')}</h2>
 
           {/* Sound Toggle */}
           <div className="flex items-center justify-between py-3 border-b border-slate-700">
             <div className="flex items-center gap-3">
               <span className="text-2xl">🔊</span>
               <div>
-                <div className="font-medium">Sound Effects</div>
+                <div className="font-medium">{t('settings.sound')}</div>
                 <div className="text-sm text-slate-400">
-                  Play sounds during games
+                  {t('common.done')}
                 </div>
               </div>
             </div>
@@ -83,20 +91,20 @@ export function Settings() {
             />
           </div>
 
-          {/* Reduced Motion Toggle */}
+          {/* Haptic Toggle */}
           <div className="flex items-center justify-between py-3 border-b border-slate-700">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">✨</span>
+              <span className="text-2xl">📳</span>
               <div>
-                <div className="font-medium">Reduced Motion</div>
+                <div className="font-medium">{t('settings.haptics')}</div>
                 <div className="text-sm text-slate-400">
-                  Minimize animations
+                  {t('common.done')}
                 </div>
               </div>
             </div>
             <ToggleSwitch
-              enabled={settings.reducedMotion}
-              onChange={(enabled) => updateSettings({ reducedMotion: enabled })}
+              enabled={!settings.reducedMotion}
+              onChange={(enabled) => updateSettings({ reducedMotion: !enabled })}
             />
           </div>
 
@@ -105,9 +113,9 @@ export function Settings() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">🔔</span>
               <div>
-                <div className="font-medium">Daily Reminders</div>
+                <div className="font-medium">{t('settings.notifications')}</div>
                 <div className="text-sm text-slate-400">
-                  Get notified to train
+                  {t('common.done')}
                 </div>
               </div>
             </div>
@@ -182,18 +190,18 @@ export function Settings() {
 
         {/* About */}
         <div className="card">
-          <h2 className="font-semibold mb-4">About</h2>
+          <h2 className="font-semibold mb-4">{t('settings.about')}</h2>
           <div className="space-y-3 text-sm text-slate-400">
             <div className="flex justify-between">
-              <span>Version</span>
+              <span>{t('settings.version')}</span>
               <span className="text-white">1.0.0</span>
             </div>
             <div className="flex justify-between">
-              <span>Total Games</span>
+              <span>{t('games.allGames')}</span>
               <span className="text-white">20</span>
             </div>
             <div className="flex justify-between">
-              <span>Categories</span>
+              <span>{t('home.categories')}</span>
               <span className="text-white">6</span>
             </div>
           </div>
@@ -229,13 +237,13 @@ export function Settings() {
                     onClick={() => setShowResetConfirm(false)}
                     className="flex-1 btn-ghost"
                   >
-                    Cancel
+                    {t('common.cancel')}
                   </button>
                   <button
                     onClick={handleResetData}
                     className="flex-1 py-3 px-4 rounded-xl bg-red-500 hover:bg-red-600 text-white font-medium transition-colors"
                   >
-                    Reset
+                    {t('common.confirm')}
                   </button>
                 </div>
               </div>

@@ -1,0 +1,230 @@
+{
+  "app": {
+    "name": "Daily Brain",
+    "tagline": "Træn din hjerne dagligt"
+  },
+  "nav": {
+    "home": "Hjem",
+    "today": "I dag",
+    "games": "Spil",
+    "progress": "Fremskridt",
+    "settings": "Indstillinger",
+    "leaderboard": "Rangliste"
+  },
+  "home": {
+    "welcome": "Velkommen tilbage!",
+    "dailyWorkout": "Daglig træning",
+    "startWorkout": "Start træning",
+    "continueWorkout": "Fortsæt",
+    "completedToday": "Fuldført i dag!",
+    "streak": "Dage i træk",
+    "quickPlay": "Hurtig spil",
+    "categories": "Kategorier",
+    "dailyQuests": "Daglige missioner",
+    "viewAll": "Se alle"
+  },
+  "games": {
+    "allGames": "Alle spil",
+    "play": "Spil",
+    "locked": "Låst",
+    "categories": {
+      "memory": "Hukommelse",
+      "logic": "Logik",
+      "focus": "Fokus",
+      "calculation": "Beregning",
+      "language": "Sprog",
+      "speed": "Hastighed"
+    },
+    "names": {
+      "pattern-echo": "Mønster-ekko",
+      "card-flip": "Vend kort",
+      "spatial-recall": "Rumlig hukommelse",
+      "number-memory": "Talhukommelse",
+      "grid-deduction": "Gitter-deduktion",
+      "sequence-solver": "Sekvensløser",
+      "set-finder": "Set-finder",
+      "color-stroop": "Stroop-test",
+      "target-tracker": "Målsporing",
+      "visual-search": "Visuel søgning",
+      "math-sprint": "Mate-sprint",
+      "estimation-station": "Estimeringsstation",
+      "number-chain": "Talkæde",
+      "fraction-match": "Brøk-match",
+      "word-morph": "Ordforvandling",
+      "anagram-blitz": "Anagram-blitz",
+      "word-categories": "Ordkategorier",
+      "reflex-tap": "Refleks-tryk",
+      "speed-match": "Hurtig-match",
+      "symbol-sprint": "Symbol-sprint"
+    },
+    "descriptions": {
+      "pattern-echo": "Husk og gentag sekvensen",
+      "card-flip": "Find matchende par",
+      "spatial-recall": "Husk positionerne",
+      "number-memory": "Husk talsekvenser",
+      "grid-deduction": "Løs logikpuslespillet",
+      "sequence-solver": "Find det næste tal",
+      "set-finder": "Find matchende sæt",
+      "color-stroop": "Navngiv farven, ikke ordet",
+      "target-tracker": "Spor bevægelige mål",
+      "visual-search": "Find det unikke element",
+      "math-sprint": "Løs opgaver hurtigt",
+      "estimation-station": "Estimer mængder præcist",
+      "number-chain": "Kæd operationer sammen",
+      "fraction-match": "Match ækvivalente brøker",
+      "word-morph": "Forvandl ord trin for trin",
+      "anagram-blitz": "Afkod ord hurtigt",
+      "word-categories": "Sorter ord efter kategori",
+      "reflex-tap": "Test din reaktionstid",
+      "speed-match": "Match kort hurtigt",
+      "symbol-sprint": "Match symboler hurtigt"
+    }
+  },
+  "results": {
+    "title": "Spil fuldført!",
+    "score": "Score",
+    "accuracy": "Præcision",
+    "time": "Tid",
+    "levels": "Niveauer",
+    "newHighScore": "Ny rekord!",
+    "playAgain": "Spil igen",
+    "home": "Hjem",
+    "nextGame": "Næste spil",
+    "shareScore": "Del din score"
+  },
+  "workout": {
+    "title": "Daglig træning",
+    "subtitle": "Gennemfør 5 spil for at afslutte din træning",
+    "game": "Spil",
+    "of": "af",
+    "completed": "Træning fuldført!",
+    "streakBonus": "Stribe-bonus",
+    "start": "Start",
+    "continue": "Fortsæt",
+    "done": "Færdig"
+  },
+  "quests": {
+    "title": "Daglige missioner",
+    "completed": "Fuldført",
+    "claim": "Indløs",
+    "claimed": "Indløst",
+    "progress": "Fremskridt",
+    "reward": "Belønning",
+    "xp": "XP",
+    "coins": "Mønter",
+    "gems": "Ædelsten",
+    "difficulty": {
+      "easy": "Let",
+      "medium": "Mellem",
+      "hard": "Svær",
+      "legendary": "Legendarisk"
+    }
+  },
+  "progress": {
+    "title": "Dine fremskridt",
+    "level": "Niveau",
+    "xp": "XP",
+    "totalGames": "Samlede spil",
+    "bestStreak": "Bedste stribe",
+    "badges": "Badges",
+    "stats": "Hjernestatistikker",
+    "history": "Historik",
+    "thisWeek": "Denne uge",
+    "thisMonth": "Denne måned",
+    "allTime": "Alt tid"
+  },
+  "leaderboard": {
+    "title": "Rangliste",
+    "rank": "Rang",
+    "player": "Spiller",
+    "score": "Score",
+    "you": "Dig",
+    "daily": "Daglig",
+    "weekly": "Ugentlig",
+    "allTime": "Samlet"
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "profile": "Profil",
+    "displayName": "Visningsnavn",
+    "language": "Sprog",
+    "sound": "Lydeffekter",
+    "haptics": "Haptisk feedback",
+    "notifications": "Notifikationer",
+    "darkMode": "Mørk tilstand",
+    "about": "Om",
+    "version": "Version",
+    "privacy": "Privatlivspolitik",
+    "terms": "Servicevilkår",
+    "inviteFriends": "Inviter venner",
+    "rateApp": "Bedøm app",
+    "feedback": "Send feedback"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Velkommen til Daily Brain",
+      "description": "Træn din hjerne med sjove, videnskabeligt inspirerede spil."
+    },
+    "categories": {
+      "title": "6 kognitive områder",
+      "description": "Udfordr dig selv inden for hukommelse, logik, fokus, beregning, sprog og hastighed."
+    },
+    "daily": {
+      "title": "Daglige træninger",
+      "description": "Gennemfør 5-spil sessioner for at bygge en stribe og spore dine fremskridt."
+    },
+    "compete": {
+      "title": "Konkurrér og forbedr dig",
+      "description": "Klatr på ranglisten, optjen badges og se dine statistikker vokse!"
+    },
+    "skip": "Spring over",
+    "next": "Næste",
+    "getStarted": "Lad os starte!"
+  },
+  "common": {
+    "loading": "Indlæser...",
+    "error": "Noget gik galt",
+    "retry": "Prøv igen",
+    "cancel": "Annuller",
+    "save": "Gem",
+    "confirm": "Bekræft",
+    "back": "Tilbage",
+    "close": "Luk",
+    "yes": "Ja",
+    "no": "Nej",
+    "ok": "OK",
+    "done": "Færdig",
+    "start": "Start",
+    "stop": "Stop",
+    "pause": "Pause",
+    "resume": "Genoptag",
+    "quit": "Afslut",
+    "continue": "Fortsæt",
+    "correct": "Korrekt!",
+    "incorrect": "Forkert",
+    "timeUp": "Tiden er udløbet!",
+    "level": "Niveau",
+    "score": "Score",
+    "best": "Bedste",
+    "new": "Ny",
+    "today": "I dag",
+    "yesterday": "I går",
+    "days": "dage",
+    "hours": "timer",
+    "minutes": "minutter",
+    "seconds": "sekunder"
+  },
+  "share": {
+    "title": "Del din score",
+    "message": "Jeg scorede {{score}} point i {{game}} på Daily Brain! Kan du slå mig?",
+    "copied": "Kopieret til udklipsholder!"
+  },
+  "invite": {
+    "title": "Inviter venner",
+    "description": "Del din henvisningskode og optjen belønninger, når venner tilmelder sig!",
+    "yourCode": "Din henvisningskode",
+    "copy": "Kopier kode",
+    "share": "Del",
+    "copied": "Kode kopieret!"
+  }
+}
