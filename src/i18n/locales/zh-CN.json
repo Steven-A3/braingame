@@ -1,0 +1,21 @@
+{
+  "app": { "name": "Daily Brain", "tagline": "每天锻炼大脑" },
+  "nav": { "home": "首页", "today": "今天", "games": "游戏", "progress": "进度", "settings": "设置", "leaderboard": "排行榜" },
+  "home": { "welcome": "欢迎回来！", "dailyWorkout": "每日训练", "startWorkout": "开始训练", "continueWorkout": "继续", "completedToday": "今日已完成！", "streak": "连续天数", "quickPlay": "快速开始", "categories": "分类", "dailyQuests": "每日任务", "viewAll": "查看全部" },
+  "games": {
+    "allGames": "所有游戏", "play": "开始", "locked": "锁定",
+    "categories": { "memory": "记忆力", "logic": "逻辑", "focus": "专注力", "calculation": "计算", "language": "语言", "speed": "速度" },
+    "names": { "pattern-echo": "图案回声", "card-flip": "翻牌配对", "spatial-recall": "空间记忆", "number-memory": "数字记忆", "grid-deduction": "网格推理", "sequence-solver": "数列解析", "set-finder": "集合查找", "color-stroop": "斯特鲁普测试", "target-tracker": "目标追踪", "visual-search": "视觉搜索", "math-sprint": "数学冲刺", "estimation-station": "估算站", "number-chain": "数字链", "fraction-match": "分数配对", "word-morph": "词语变形", "anagram-blitz": "字谜闪电战", "word-categories": "词语分类", "reflex-tap": "反应点击", "speed-match": "快速配对", "symbol-sprint": "符号冲刺" },
+    "descriptions": { "pattern-echo": "记住并重复图案序列", "card-flip": "找到匹配的卡片对", "spatial-recall": "记住位置", "number-memory": "记住数字序列", "grid-deduction": "解决逻辑谜题", "sequence-solver": "找出下一个数字", "set-finder": "找到匹配的集合", "color-stroop": "说出颜色而非文字", "target-tracker": "追踪移动的目标", "visual-search": "找出独特的项目", "math-sprint": "快速解决数学问题", "estimation-station": "准确估算数量", "number-chain": "连接运算", "fraction-match": "匹配等值分数", "word-morph": "逐步转换词语", "anagram-blitz": "快速解开字谜", "word-categories": "按类别分类词语", "reflex-tap": "测试反应时间", "speed-match": "快速匹配卡片", "symbol-sprint": "快速匹配符号" }
+  },
+  "results": { "title": "游戏完成！", "score": "分数", "accuracy": "准确率", "time": "时间", "levels": "关卡", "newHighScore": "新纪录！", "playAgain": "再玩一次", "home": "首页", "nextGame": "下一个游戏", "shareScore": "分享分数" },
+  "workout": { "title": "每日训练", "subtitle": "完成5个游戏以完成训练", "game": "游戏", "of": "/", "completed": "训练完成！", "streakBonus": "连续奖励", "start": "开始", "continue": "继续", "done": "完成" },
+  "quests": { "title": "每日任务", "completed": "已完成", "claim": "领取", "claimed": "已领取", "progress": "进度", "reward": "奖励", "xp": "经验", "coins": "金币", "gems": "宝石", "difficulty": { "easy": "简单", "medium": "中等", "hard": "困难", "legendary": "传奇" } },
+  "progress": { "title": "你的进度", "level": "等级", "xp": "经验", "totalGames": "总游戏数", "bestStreak": "最佳连续", "badges": "徽章", "stats": "大脑统计", "history": "历史", "thisWeek": "本周", "thisMonth": "本月", "allTime": "全部" },
+  "leaderboard": { "title": "排行榜", "rank": "排名", "player": "玩家", "score": "分数", "you": "你", "daily": "每日", "weekly": "每周", "allTime": "总榜" },
+  "settings": { "title": "设置", "profile": "个人资料", "displayName": "显示名称", "language": "语言", "sound": "音效", "haptics": "振动反馈", "notifications": "通知", "darkMode": "深色模式", "about": "关于", "version": "版本", "privacy": "隐私政策", "terms": "服务条款", "inviteFriends": "邀请好友", "rateApp": "评价应用", "feedback": "发送反馈" },
+  "onboarding": { "welcome": { "title": "欢迎来到 Daily Brain", "description": "用有趣的科学游戏锻炼你的大脑。" }, "categories": { "title": "6大认知领域", "description": "挑战记忆力、逻辑、专注力、计算、语言和速度。" }, "daily": { "title": "每日训练", "description": "完成5个游戏的训练来建立连续记录并追踪进度。" }, "compete": { "title": "竞争与进步", "description": "攀登排行榜，获得徽章，见证你的统计数据增长！" }, "skip": "跳过", "next": "下一步", "getStarted": "开始吧！" },
+  "common": { "loading": "加载中...", "error": "出错了", "retry": "重试", "cancel": "取消", "save": "保存", "confirm": "确认", "back": "返回", "close": "关闭", "yes": "是", "no": "否", "ok": "确定", "done": "完成", "start": "开始", "stop": "停止", "pause": "暂停", "resume": "继续", "quit": "退出", "continue": "继续", "correct": "正确！", "incorrect": "错误", "timeUp": "时间到！", "level": "等级", "score": "分数", "best": "最佳", "new": "新", "today": "今天", "yesterday": "昨天", "days": "天", "hours": "小时", "minutes": "分钟", "seconds": "秒" },
+  "share": { "title": "分享你的分数", "message": "我在 Daily Brain 的 {{game}} 中获得了 {{score}} 分！你能超过我吗？", "copied": "已复制到剪贴板！" },
+  "invite": { "title": "邀请好友", "description": "分享你的邀请码，好友加入后获得奖励！", "yourCode": "你的邀请码", "copy": "复制邀请码", "share": "分享", "copied": "邀请码已复制！" }
+}

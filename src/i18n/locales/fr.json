@@ -1,0 +1,230 @@
+{
+  "app": {
+    "name": "Daily Brain",
+    "tagline": "Entraînez votre esprit quotidiennement"
+  },
+  "nav": {
+    "home": "Accueil",
+    "today": "Aujourd'hui",
+    "games": "Jeux",
+    "progress": "Progrès",
+    "settings": "Paramètres",
+    "leaderboard": "Classement"
+  },
+  "home": {
+    "welcome": "Bon retour !",
+    "dailyWorkout": "Entraînement quotidien",
+    "startWorkout": "Commencer",
+    "continueWorkout": "Continuer",
+    "completedToday": "Terminé aujourd'hui !",
+    "streak": "Jours consécutifs",
+    "quickPlay": "Jeu rapide",
+    "categories": "Catégories",
+    "dailyQuests": "Quêtes quotidiennes",
+    "viewAll": "Voir tout"
+  },
+  "games": {
+    "allGames": "Tous les jeux",
+    "play": "Jouer",
+    "locked": "Verrouillé",
+    "categories": {
+      "memory": "Mémoire",
+      "logic": "Logique",
+      "focus": "Concentration",
+      "calculation": "Calcul",
+      "language": "Langage",
+      "speed": "Rapidité"
+    },
+    "names": {
+      "pattern-echo": "Écho de motifs",
+      "card-flip": "Retourne-cartes",
+      "spatial-recall": "Rappel spatial",
+      "number-memory": "Mémoire des nombres",
+      "grid-deduction": "Déduction en grille",
+      "sequence-solver": "Résolveur de séquence",
+      "set-finder": "Chercheur de sets",
+      "color-stroop": "Test de Stroop",
+      "target-tracker": "Suivi de cibles",
+      "visual-search": "Recherche visuelle",
+      "math-sprint": "Sprint mathématique",
+      "estimation-station": "Station d'estimation",
+      "number-chain": "Chaîne de nombres",
+      "fraction-match": "Association de fractions",
+      "word-morph": "Transformation de mots",
+      "anagram-blitz": "Blitz d'anagrammes",
+      "word-categories": "Catégories de mots",
+      "reflex-tap": "Réflexe tactile",
+      "speed-match": "Correspondance rapide",
+      "symbol-sprint": "Sprint de symboles"
+    },
+    "descriptions": {
+      "pattern-echo": "Mémorisez et répétez la séquence",
+      "card-flip": "Trouvez les paires correspondantes",
+      "spatial-recall": "Souvenez-vous des positions",
+      "number-memory": "Rappelez-vous des séquences de nombres",
+      "grid-deduction": "Résolvez le puzzle logique",
+      "sequence-solver": "Trouvez le prochain nombre",
+      "set-finder": "Trouvez des ensembles correspondants",
+      "color-stroop": "Nommez la couleur, pas le mot",
+      "target-tracker": "Suivez les cibles en mouvement",
+      "visual-search": "Trouvez l'élément unique",
+      "math-sprint": "Résolvez rapidement les problèmes",
+      "estimation-station": "Estimez les quantités",
+      "number-chain": "Enchaînez les opérations",
+      "fraction-match": "Associez les fractions équivalentes",
+      "word-morph": "Transformez les mots étape par étape",
+      "anagram-blitz": "Déchiffrez les mots rapidement",
+      "word-categories": "Triez les mots par catégorie",
+      "reflex-tap": "Testez votre temps de réaction",
+      "speed-match": "Associez les cartes rapidement",
+      "symbol-sprint": "Associez les symboles rapidement"
+    }
+  },
+  "results": {
+    "title": "Jeu terminé !",
+    "score": "Score",
+    "accuracy": "Précision",
+    "time": "Temps",
+    "levels": "Niveaux",
+    "newHighScore": "Nouveau record !",
+    "playAgain": "Rejouer",
+    "home": "Accueil",
+    "nextGame": "Jeu suivant",
+    "shareScore": "Partager votre score"
+  },
+  "workout": {
+    "title": "Entraînement quotidien",
+    "subtitle": "Complétez 5 jeux pour terminer votre entraînement",
+    "game": "Jeu",
+    "of": "sur",
+    "completed": "Entraînement terminé !",
+    "streakBonus": "Bonus de série",
+    "start": "Commencer",
+    "continue": "Continuer",
+    "done": "Terminé"
+  },
+  "quests": {
+    "title": "Quêtes quotidiennes",
+    "completed": "Terminé",
+    "claim": "Réclamer",
+    "claimed": "Réclamé",
+    "progress": "Progression",
+    "reward": "Récompense",
+    "xp": "XP",
+    "coins": "Pièces",
+    "gems": "Gemmes",
+    "difficulty": {
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile",
+      "legendary": "Légendaire"
+    }
+  },
+  "progress": {
+    "title": "Vos progrès",
+    "level": "Niveau",
+    "xp": "XP",
+    "totalGames": "Total de jeux",
+    "bestStreak": "Meilleure série",
+    "badges": "Badges",
+    "stats": "Statistiques cérébrales",
+    "history": "Historique",
+    "thisWeek": "Cette semaine",
+    "thisMonth": "Ce mois",
+    "allTime": "Tout le temps"
+  },
+  "leaderboard": {
+    "title": "Classement",
+    "rank": "Rang",
+    "player": "Joueur",
+    "score": "Score",
+    "you": "Vous",
+    "daily": "Quotidien",
+    "weekly": "Hebdomadaire",
+    "allTime": "Général"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "profile": "Profil",
+    "displayName": "Nom d'affichage",
+    "language": "Langue",
+    "sound": "Effets sonores",
+    "haptics": "Retour haptique",
+    "notifications": "Notifications",
+    "darkMode": "Mode sombre",
+    "about": "À propos",
+    "version": "Version",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "inviteFriends": "Inviter des amis",
+    "rateApp": "Noter l'application",
+    "feedback": "Envoyer un commentaire"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Bienvenue sur Daily Brain",
+      "description": "Entraînez votre esprit avec des jeux amusants et inspirés de la science."
+    },
+    "categories": {
+      "title": "6 domaines cognitifs",
+      "description": "Défiez-vous dans la mémoire, la logique, la concentration, le calcul, le langage et la rapidité."
+    },
+    "daily": {
+      "title": "Entraînements quotidiens",
+      "description": "Complétez des sessions de 5 jeux pour construire votre série et suivre vos progrès."
+    },
+    "compete": {
+      "title": "Compétition et amélioration",
+      "description": "Grimpez dans les classements, gagnez des badges et voyez vos stats progresser !"
+    },
+    "skip": "Passer",
+    "next": "Suivant",
+    "getStarted": "C'est parti !"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "ok": "OK",
+    "done": "Terminé",
+    "start": "Commencer",
+    "stop": "Arrêter",
+    "pause": "Pause",
+    "resume": "Reprendre",
+    "quit": "Quitter",
+    "continue": "Continuer",
+    "correct": "Correct !",
+    "incorrect": "Incorrect",
+    "timeUp": "Temps écoulé !",
+    "level": "Niveau",
+    "score": "Score",
+    "best": "Meilleur",
+    "new": "Nouveau",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "days": "jours",
+    "hours": "heures",
+    "minutes": "minutes",
+    "seconds": "secondes"
+  },
+  "share": {
+    "title": "Partager votre score",
+    "message": "J'ai marqué {{score}} points dans {{game}} sur Daily Brain ! Pouvez-vous me battre ?",
+    "copied": "Copié dans le presse-papiers !"
+  },
+  "invite": {
+    "title": "Inviter des amis",
+    "description": "Partagez votre code de parrainage et gagnez des récompenses quand vos amis rejoignent !",
+    "yourCode": "Votre code de parrainage",
+    "copy": "Copier le code",
+    "share": "Partager",
+    "copied": "Code copié !"
+  }
+}

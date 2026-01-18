@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './app/App';
 import './styles/globals.css';
+import './i18n'; // Initialize i18n
 
 // Register service worker
 if ('serviceWorker' in navigator) {
