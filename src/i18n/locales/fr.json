@@ -274,8 +274,11 @@
     "title": "Inviter des amis",
     "description": "Partagez votre code de parrainage et gagnez des récompenses quand vos amis rejoignent !",
     "yourCode": "Votre code de parrainage",
-    "copy": "Copier le code",
+    "yourLink": "Votre lien de parrainage",
+    "copy": "Copier",
     "share": "Partager",
-    "copied": "Code copié !"
+    "copied": "Code copié !",
+    "friendsJoined": "{{count}} ami a rejoint !",
+    "friendsJoined_other": "{{count}} amis ont rejoint !"
   }
 }

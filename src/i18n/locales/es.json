@@ -274,8 +274,11 @@
     "title": "Invitar amigos",
     "description": "¡Comparte tu código de referido y gana recompensas cuando tus amigos se unan!",
     "yourCode": "Tu código de referido",
-    "copy": "Copiar código",
+    "yourLink": "Tu enlace de referido",
+    "copy": "Copiar",
     "share": "Compartir",
-    "copied": "¡Código copiado!"
+    "copied": "¡Código copiado!",
+    "friendsJoined": "¡{{count}} amigo se unió!",
+    "friendsJoined_other": "¡{{count}} amigos se unieron!"
   }
 }

@@ -274,8 +274,11 @@
     "title": "Convidar amigos",
     "description": "Compartilhe seu código de indicação e ganhe recompensas quando seus amigos entrarem!",
     "yourCode": "Seu código de indicação",
-    "copy": "Copiar código",
+    "yourLink": "Seu link de indicação",
+    "copy": "Copiar",
     "share": "Compartilhar",
-    "copied": "Código copiado!"
+    "copied": "Código copiado!",
+    "friendsJoined": "{{count}} amigo entrou!",
+    "friendsJoined_other": "{{count}} amigos entraram!"
   }
 }

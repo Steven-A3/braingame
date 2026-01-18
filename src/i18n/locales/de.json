@@ -274,8 +274,11 @@
     "title": "Freunde einladen",
     "description": "Teile deinen Empfehlungscode und verdiene Belohnungen, wenn Freunde beitreten!",
     "yourCode": "Dein Empfehlungscode",
-    "copy": "Code kopieren",
+    "yourLink": "Dein Empfehlungslink",
+    "copy": "Kopieren",
     "share": "Teilen",
-    "copied": "Code kopiert!"
+    "copied": "Code kopiert!",
+    "friendsJoined": "{{count}} Freund ist beigetreten!",
+    "friendsJoined_other": "{{count}} Freunde sind beigetreten!"
   }
 }

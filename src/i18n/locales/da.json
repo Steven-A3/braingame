@@ -274,8 +274,11 @@
     "title": "Inviter venner",
     "description": "Del din henvisningskode og optjen belønninger, når venner tilmelder sig!",
     "yourCode": "Din henvisningskode",
-    "copy": "Kopier kode",
+    "yourLink": "Dit henvisningslink",
+    "copy": "Kopier",
     "share": "Del",
-    "copied": "Kode kopieret!"
+    "copied": "Kode kopieret!",
+    "friendsJoined": "{{count}} ven har tilmeldt sig!",
+    "friendsJoined_other": "{{count}} venner har tilmeldt sig!"
   }
 }
