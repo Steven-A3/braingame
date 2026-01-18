@@ -50,6 +50,8 @@ Games are organized by category under `src/games/`:
 - Translation keys: `t('section.key')` or with variables `t('key', { count: 5 })`
 - Game names/categories: `t('games.names.game-id')`, `t('games.categories.memory')`
 
+**Supported languages**: en, fr, es, pt, de, it, da, sv, no, fi, pl, hu, cs, ru, ko, ja, zh-CN, zh-TW, id, th, vi, ar, tr, hi, nl, uk, fil, ms, ro, el, he
+
 ### PWA Configuration
 
 - Configured in `vite.config.ts` using `vite-plugin-pwa`
