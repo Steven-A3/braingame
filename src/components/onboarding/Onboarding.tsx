@@ -133,26 +133,32 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             {/* Description */}
             <p className="text-slate-400 mb-8">{t(`onboarding.${step.id}.description`)}</p>
 
-            {/* Language selection grid */}
+            {/* Language selection dropdown */}
             {step.id === 'language' && (
-              <div className="grid grid-cols-2 gap-2 mb-4 max-h-64 overflow-y-auto pointer-events-auto">
-                {languages.map((lang, idx) => (
-                  <motion.button
-                    key={lang.code}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + idx * 0.02 }}
-                    onClick={() => handleLanguageSelect(lang.code)}
-                    className={`flex items-center gap-2 p-3 rounded-xl transition-all ${
-                      i18n.language === lang.code || i18n.language.startsWith(lang.code.split('-')[0]) && lang.code === i18n.language
-                        ? 'bg-primary-500 text-white ring-2 ring-primary-400'
-                        : 'bg-slate-800 hover:bg-slate-700'
-                    }`}
-                  >
-                    <span className="text-xl">{lang.flag}</span>
-                    <span className="text-sm font-medium truncate">{lang.nativeName}</span>
-                  </motion.button>
-                ))}
+              <div className="pointer-events-auto w-full max-w-xs mx-auto">
+                {/* Current language display */}
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <span className="text-4xl">
+                    {languages.find(l => l.code === i18n.language || i18n.language.startsWith(l.code.split('-')[0]))?.flag || '🌐'}
+                  </span>
+                  <span className="text-xl font-semibold">
+                    {languages.find(l => l.code === i18n.language || i18n.language.startsWith(l.code.split('-')[0]))?.nativeName || i18n.language}
+                  </span>
+                </div>
+
+                {/* Dropdown select */}
+                <select
+                  value={i18n.language}
+                  onChange={(e) => handleLanguageSelect(e.target.value)}
+                  className="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white text-center text-lg font-medium appearance-none cursor-pointer hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.5rem' }}
+                >
+                  {languages.map((lang) => (
+                    <option key={lang.code} value={lang.code}>
+                      {lang.flag} {lang.nativeName}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
 
