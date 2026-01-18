@@ -11,6 +11,8 @@ import de from './locales/de.json';
 import it from './locales/it.json';
 import da from './locales/da.json';
 import sv from './locales/sv.json';
+import no from './locales/no.json';
+import fi from './locales/fi.json';
 import pl from './locales/pl.json';
 import hu from './locales/hu.json';
 import cs from './locales/cs.json';
@@ -33,6 +35,8 @@ export const languages = [
   { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹' },
   { code: 'da', name: 'Danish', nativeName: 'Dansk', flag: '🇩🇰' },
   { code: 'sv', name: 'Swedish', nativeName: 'Svenska', flag: '🇸🇪' },
+  { code: 'no', name: 'Norwegian', nativeName: 'Norsk', flag: '🇳🇴' },
+  { code: 'fi', name: 'Finnish', nativeName: 'Suomi', flag: '🇫🇮' },
   { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱' },
   { code: 'hu', name: 'Hungarian', nativeName: 'Magyar', flag: '🇭🇺' },
   { code: 'cs', name: 'Czech', nativeName: 'Čeština', flag: '🇨🇿' },
@@ -58,6 +62,8 @@ const resources = {
   it: { translation: it },
   da: { translation: da },
   sv: { translation: sv },
+  no: { translation: no },
+  fi: { translation: fi },
   pl: { translation: pl },
   hu: { translation: hu },
   cs: { translation: cs },
