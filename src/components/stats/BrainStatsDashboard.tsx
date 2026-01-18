@@ -1,13 +1,15 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { RadarChart } from './RadarChart';
 import { LineChart, Sparkline } from './LineChart';
 import { useUserStore } from '@/stores/userStore';
 import { calculateBrainStats, getTrendIcon, getTrendColor, getRankColor } from '@/services/brainStats';
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '@/games/core/types';
+import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
 
 export function BrainStatsDashboard() {
+  const { t } = useTranslation();
   const { gameHistory, stats } = useUserStore();
 
   const brainStats = useMemo(() => {
@@ -29,9 +31,9 @@ export function BrainStatsDashboard() {
       <div className="p-4">
         <div className="card text-center py-8">
           <div className="text-5xl mb-4">🧠</div>
-          <h3 className="text-lg font-semibold mb-2">No Stats Yet</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('stats.noStatsYet')}</h3>
           <p className="text-slate-400 text-sm">
-            Play some games to see your brain stats!
+            {t('stats.playToSeeStats')}
           </p>
         </div>
       </div>
@@ -48,7 +50,7 @@ export function BrainStatsDashboard() {
       >
         <div className="flex items-center justify-between mb-4">
           <div>
-            <div className="text-sm text-slate-400">Brain Score</div>
+            <div className="text-sm text-slate-400">{t('stats.brainScore')}</div>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-bold text-primary-400">
                 {brainStats.overallScore}
@@ -66,7 +68,7 @@ export function BrainStatsDashboard() {
             className="text-right px-4 py-2 rounded-lg"
             style={{ backgroundColor: `${getRankColor(brainStats.rank)}20` }}
           >
-            <div className="text-xs text-slate-400">Rank</div>
+            <div className="text-xs text-slate-400">{t('stats.rank')}</div>
             <div
               className="text-xl font-bold"
               style={{ color: getRankColor(brainStats.rank) }}
@@ -78,7 +80,7 @@ export function BrainStatsDashboard() {
 
         {/* Weekly Progress Chart */}
         <div>
-          <div className="text-sm text-slate-400 mb-2">Weekly Progress</div>
+          <div className="text-sm text-slate-400 mb-2">{t('stats.weeklyProgress')}</div>
           <LineChart
             data={brainStats.weeklyProgress}
             labels={weekLabels}
@@ -94,7 +96,7 @@ export function BrainStatsDashboard() {
         transition={{ delay: 0.1 }}
         className="card"
       >
-        <h3 className="font-semibold mb-4">Category Balance</h3>
+        <h3 className="font-semibold mb-4">{t('stats.categoryBalance')}</h3>
         <div className="flex justify-center">
           <RadarChart data={brainStats.categoryScores} size={240} />
         </div>
@@ -107,7 +109,7 @@ export function BrainStatsDashboard() {
         transition={{ delay: 0.2 }}
         className="card"
       >
-        <h3 className="font-semibold mb-4">Category Details</h3>
+        <h3 className="font-semibold mb-4">{t('stats.categoryDetails')}</h3>
         <div className="space-y-4">
           {brainStats.categoryScores.map((cat, index) => (
             <CategoryRow
@@ -119,6 +121,7 @@ export function BrainStatsDashboard() {
               percentile={cat.percentile}
               delay={index * 0.05}
               recentScores={getRecentCategoryScores(gameHistory, cat.category)}
+              t={t}
             />
           ))}
         </div>
@@ -135,6 +138,7 @@ interface CategoryRowProps {
   percentile: number;
   delay: number;
   recentScores: number[];
+  t: (key: string, options?: Record<string, unknown>) => string;
 }
 
 function CategoryRow({
@@ -145,6 +149,7 @@ function CategoryRow({
   percentile,
   delay,
   recentScores,
+  t,
 }: CategoryRowProps) {
   return (
     <motion.div
@@ -164,7 +169,7 @@ function CategoryRow({
       {/* Info */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="font-medium text-sm">{CATEGORY_LABELS[category]}</span>
+          <span className="font-medium text-sm">{t(`games.categories.${category}`)}</span>
           <span
             className="text-xs"
             style={{ color: getTrendColor(trend) }}
@@ -173,7 +178,7 @@ function CategoryRow({
           </span>
         </div>
         <div className="text-xs text-slate-500">
-          {gamesPlayed} games played
+          {t('stats.gamesPlayed', { count: gamesPlayed })}
         </div>
       </div>
 
@@ -198,7 +203,7 @@ function CategoryRow({
           {score}
         </div>
         <div className="text-xs text-slate-500">
-          Top {100 - percentile}%
+          {t('stats.topPercent', { percent: 100 - percentile })}
         </div>
       </div>
     </motion.div>
