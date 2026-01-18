@@ -345,6 +345,8 @@
     "categoryBalance": "Keseimbangan Kategori",
     "categoryDetails": "Detail Kategori",
     "gamesPlayed": "{{count}} permainan dimainkan",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Sekarang",
+    "weeksAgo": "{{count}}m"
   }
 }

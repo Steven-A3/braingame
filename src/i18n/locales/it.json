@@ -297,7 +297,9 @@
     "categoryBalance": "Equilibrio delle categorie",
     "categoryDetails": "Dettagli delle categorie",
     "gamesPlayed": "{{count}} giochi giocati",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Ora",
+    "weeksAgo": "{{count}}s"
   },
   "common": {
     "loading": "Caricamento...",

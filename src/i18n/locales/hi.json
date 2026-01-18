@@ -345,6 +345,8 @@
     "categoryBalance": "श्रेणी संतुलन",
     "categoryDetails": "श्रेणी विवरण",
     "gamesPlayed": "{{count}} गेम खेले गए",
-    "topPercent": "शीर्ष {{percent}}%"
+    "topPercent": "शीर्ष {{percent}}%",
+    "now": "अभी",
+    "weeksAgo": "{{count}}स"
   }
 }

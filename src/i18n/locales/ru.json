@@ -347,6 +347,8 @@
     "categoryBalance": "Баланс категорий",
     "categoryDetails": "Детали категорий",
     "gamesPlayed": "Сыграно {{count}} игр",
-    "topPercent": "Топ {{percent}}%"
+    "topPercent": "Топ {{percent}}%",
+    "now": "Сейчас",
+    "weeksAgo": "{{count}}н"
   }
 }

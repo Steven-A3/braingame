@@ -345,6 +345,8 @@
     "categoryBalance": "توازن الفئات",
     "categoryDetails": "تفاصيل الفئات",
     "gamesPlayed": "تم لعب {{count}} لعبة",
-    "topPercent": "أفضل {{percent}}%"
+    "topPercent": "أفضل {{percent}}%",
+    "now": "الآن",
+    "weeksAgo": "{{count}}أ"
   }
 }

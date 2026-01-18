@@ -345,6 +345,8 @@
     "categoryBalance": "Kategória egyensúly",
     "categoryDetails": "Kategória részletek",
     "gamesPlayed": "{{count}} játék játszva",
-    "topPercent": "Felső {{percent}}%"
+    "topPercent": "Felső {{percent}}%",
+    "now": "Most",
+    "weeksAgo": "{{count}}h"
   }
 }

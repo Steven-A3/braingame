@@ -346,6 +346,8 @@
     "categoryBalance": "Echilibru categorii",
     "categoryDetails": "Detalii categorii",
     "gamesPlayed": "{{count}} jocuri jucate",
-    "topPercent": "Top {{percent}}%"
+    "topPercent": "Top {{percent}}%",
+    "now": "Acum",
+    "weeksAgo": "{{count}}s"
   }
 }

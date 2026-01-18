@@ -345,6 +345,8 @@
     "categoryBalance": "카테고리 밸런스",
     "categoryDetails": "카테고리 상세",
     "gamesPlayed": "{{count}}게임 플레이",
-    "topPercent": "상위 {{percent}}%"
+    "topPercent": "상위 {{percent}}%",
+    "now": "현재",
+    "weeksAgo": "{{count}}주"
   }
 }

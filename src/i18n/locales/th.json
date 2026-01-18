@@ -345,6 +345,8 @@
     "categoryBalance": "สมดุลหมวดหมู่",
     "categoryDetails": "รายละเอียดหมวดหมู่",
     "gamesPlayed": "เล่นแล้ว {{count}} เกม",
-    "topPercent": "ท็อป {{percent}}%"
+    "topPercent": "ท็อป {{percent}}%",
+    "now": "ตอนนี้",
+    "weeksAgo": "{{count}}ส"
   }
 }

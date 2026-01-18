@@ -345,6 +345,8 @@
     "categoryBalance": "Balanse ng Kategorya",
     "categoryDetails": "Mga Detalye ng Kategorya",
     "gamesPlayed": "{{count}} larong nilaro",
-    "topPercent": "Nangungunang {{percent}}%"
+    "topPercent": "Nangungunang {{percent}}%",
+    "now": "Ngayon",
+    "weeksAgo": "{{count}}l"
   }
 }

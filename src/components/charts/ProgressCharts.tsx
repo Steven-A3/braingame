@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
+import i18n from '@/i18n';
 
 type TimeRange = '7d' | '30d' | 'all';
 
@@ -482,5 +483,6 @@ function EmptyChart({ message }: { message: string }) {
 // Helper functions
 function formatShortDate(dateStr: string): string {
   const date = new Date(dateStr);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const locale = i18n.language || 'en';
+  return date.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
 }
