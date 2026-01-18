@@ -127,7 +127,7 @@ export function InFeedAd() {
 // Wrapper component for banner ads
 export function BannerAd({ className = '' }: { className?: string }) {
   return (
-    <div className={`py-2 ${className}`}>
+    <div className={className}>
       <AdUnit
         slot={AD_SLOTS.HOME_BANNER}
         format="horizontal"
