@@ -99,13 +99,23 @@
   "workout": {
     "title": "Tägliches Training",
     "subtitle": "Schließe 5 Spiele ab, um dein Training zu beenden",
+    "description": "Absolviere 5 ausgewählte Spiele, um alle Bereiche deines Gehirns zu trainieren!",
+    "todaysGames": "Heutige Spiele:",
     "game": "Spiel",
     "of": "von",
     "completed": "Training abgeschlossen!",
+    "completedMessage": "Gut gemacht! Du hast das heutige Gehirntraining abgeschlossen.",
     "streakBonus": "Serienbonus",
+    "dayStreak": "Tage in Folge",
+    "totalGames": "Gespielte Spiele",
     "start": "Starten",
+    "startWorkout": "Training starten",
     "continue": "Fortsetzen",
-    "done": "Fertig"
+    "done": "Fertig",
+    "next": "WEITER",
+    "backToHome": "Zurück zur Startseite",
+    "loading": "Training wird geladen...",
+    "play": "{{game}} spielen"
   },
   "quests": {
     "title": "Tägliche Aufgaben",
@@ -172,7 +182,19 @@
     "history": "Verlauf",
     "thisWeek": "Diese Woche",
     "thisMonth": "Dieser Monat",
-    "allTime": "Gesamt"
+    "allTime": "Gesamt",
+    "7days": "7 Tage",
+    "30days": "30 Tage",
+    "games": "Spiele",
+    "avgScore": "Durchschnitt",
+    "accuracy": "Genauigkeit",
+    "scoreTrend": "Punktetrend",
+    "playMoreGames": "Spiele mehr für Trends",
+    "categoryPerformance": "Leistung nach Kategorie",
+    "noDataForPeriod": "Keine Daten für den ausgewählten Zeitraum",
+    "brainBalance": "Gehirnbalance",
+    "gamesAvg": "{{games}} Spiele · {{avg}} Ø",
+    "noGamesInPeriod": "Keine Spiele in diesem Zeitraum gespielt"
   },
   "leaderboard": {
     "title": "Bestenliste",
@@ -182,7 +204,21 @@
     "you": "Du",
     "daily": "Täglich",
     "weekly": "Wöchentlich",
-    "allTime": "Gesamt"
+    "allTime": "Gesamt",
+    "today": "Heute",
+    "thisWeek": "Diese Woche",
+    "gamesPlayed": "{{count}} Spiele gespielt",
+    "totalScore": "Gesamtpunktzahl",
+    "avgScore": "Durchschnitt",
+    "dayStreak": "Tage in Folge",
+    "byCategory": "NACH KATEGORIE",
+    "personalBests": "PERSÖNLICHE BESTLEISTUNGEN",
+    "noScoresYet": "Spiele einige Spiele, um deine Punktzahlen hier zu sehen!",
+    "pts": "Pkt",
+    "yourTopScores": "Deine Top-Ergebnisse",
+    "noScoresForGame": "Noch keine Punktzahlen für dieses Spiel",
+    "playAgain": "Nochmal spielen",
+    "gamesAndBest": "{{games}} Spiele • Beste: {{best}}"
   },
   "settings": {
     "title": "Einstellungen",
@@ -235,6 +271,33 @@
     "skip": "Überspringen",
     "next": "Weiter",
     "getStarted": "Los geht's!"
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Deine Gehirntraining-Reise",
+    "games": "Spiele",
+    "streak": "Serie",
+    "badges": "Abzeichen",
+    "points": "Punkte",
+    "stats": "Statistiken",
+    "history": "Verlauf",
+    "achievements": "Erfolge",
+    "noHistoryYet": "Noch kein Verlauf",
+    "startPlaying": "Beginne zu spielen, um deinen Spielverlauf zu sehen!",
+    "earnedOn": "Erhalten am {{date}}",
+    "secretBadge": "???",
+    "secretBadgeHint": "Schließe eine geheime Herausforderung ab, um sie freizuschalten"
+  },
+  "stats": {
+    "noStatsYet": "Noch keine Statistiken",
+    "playToSeeStats": "Spiele einige Spiele, um deine Gehirnstatistiken zu sehen!",
+    "brainScore": "Gehirnpunktzahl",
+    "rank": "Rang",
+    "weeklyProgress": "Wöchentlicher Fortschritt",
+    "categoryBalance": "Kategorienbalance",
+    "categoryDetails": "Kategoriendetails",
+    "gamesPlayed": "{{count}} Spiele gespielt",
+    "topPercent": "Top {{percent}}%"
   },
   "common": {
     "loading": "Laden...",

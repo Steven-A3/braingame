@@ -1,14 +1,16 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
-import { CATEGORY_COLORS, CATEGORY_LABELS, CATEGORY_ICONS } from '@/games/core/types';
+import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
 
 type TimeRange = '7d' | '30d' | 'all';
 
 export function ProgressCharts() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { gameHistory, stats } = useUserStore();
   const [timeRange, setTimeRange] = useState<TimeRange>('7d');
 
@@ -93,9 +95,9 @@ export function ProgressCharts() {
           onClick={() => navigate(-1)}
           className="text-slate-400 hover:text-white"
         >
-          ← Back
+          ← {t('common.back')}
         </button>
-        <h1 className="text-xl font-bold">Progress</h1>
+        <h1 className="text-xl font-bold">{t('nav.progress')}</h1>
       </div>
 
       <div className="flex-1 p-4 space-y-6 max-w-lg mx-auto w-full pb-24">
@@ -111,7 +113,7 @@ export function ProgressCharts() {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : 'All Time'}
+              {range === '7d' ? t('progress.7days') : range === '30d' ? t('progress.30days') : t('progress.allTime')}
             </button>
           ))}
         </div>
@@ -119,12 +121,12 @@ export function ProgressCharts() {
         {/* Quick stats */}
         <div className="grid grid-cols-3 gap-3">
           <StatCard
-            label="Games"
+            label={t('progress.games')}
             value={filteredHistory.length.toString()}
             icon="🎮"
           />
           <StatCard
-            label="Avg Score"
+            label={t('progress.avgScore')}
             value={
               filteredHistory.length > 0
                 ? Math.round(
@@ -136,7 +138,7 @@ export function ProgressCharts() {
             icon="⭐"
           />
           <StatCard
-            label="Accuracy"
+            label={t('progress.accuracy')}
             value={`${accuracyTrend}%`}
             icon="🎯"
           />
@@ -144,27 +146,27 @@ export function ProgressCharts() {
 
         {/* Score trend chart */}
         <div className="card">
-          <h3 className="font-semibold mb-4">Score Trend</h3>
+          <h3 className="font-semibold mb-4">{t('progress.scoreTrend')}</h3>
           {dailyScores.length > 0 ? (
             <LineChart data={dailyScores} />
           ) : (
-            <EmptyChart message="Play more games to see trends" />
+            <EmptyChart message={t('progress.playMoreGames')} />
           )}
         </div>
 
         {/* Category breakdown */}
         <div className="card">
-          <h3 className="font-semibold mb-4">Category Performance</h3>
+          <h3 className="font-semibold mb-4">{t('progress.categoryPerformance')}</h3>
           {filteredHistory.length > 0 ? (
-            <CategoryBreakdown data={categoryData} />
+            <CategoryBreakdown data={categoryData} t={t} />
           ) : (
-            <EmptyChart message="No data for selected period" />
+            <EmptyChart message={t('progress.noDataForPeriod')} />
           )}
         </div>
 
         {/* Category radar */}
         <div className="card">
-          <h3 className="font-semibold mb-4">Brain Balance</h3>
+          <h3 className="font-semibold mb-4">{t('progress.brainBalance')}</h3>
           <RadarChart stats={stats.categoryGames} />
         </div>
       </div>
@@ -309,8 +311,10 @@ function LineChart({
 // Category breakdown bars
 function CategoryBreakdown({
   data,
+  t,
 }: {
   data: { category: GameCategory; games: number; avgScore: number }[];
+  t: (key: string, options?: Record<string, unknown>) => string;
 }) {
   const maxGames = Math.max(...data.map((d) => d.games), 1);
 
@@ -325,10 +329,10 @@ function CategoryBreakdown({
             <div className="flex-1">
               <div className="flex justify-between text-sm mb-1">
                 <span className="text-slate-300">
-                  {CATEGORY_LABELS[item.category]}
+                  {t(`games.categories.${item.category}`)}
                 </span>
                 <span className="text-slate-400">
-                  {item.games} games · {item.avgScore.toLocaleString()} avg
+                  {t('progress.gamesAvg', { games: item.games, avg: item.avgScore.toLocaleString() })}
                 </span>
               </div>
               <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
@@ -345,7 +349,7 @@ function CategoryBreakdown({
         ))}
       {data.filter((d) => d.games > 0).length === 0 && (
         <div className="text-center text-slate-400 py-4">
-          No games played in this period
+          {t('progress.noGamesInPeriod')}
         </div>
       )}
     </div>

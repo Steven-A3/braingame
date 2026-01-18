@@ -1,16 +1,18 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { BADGES, sortBadges } from '@/services/badges';
 import type { Badge, BadgeProgress } from '@/services/badges';
 import { BadgeNotification, BadgeList } from '@/components/ui/BadgeCard';
 import { BrainStatsDashboard } from '@/components/stats/BrainStatsDashboard';
-import { CATEGORY_COLORS, CATEGORY_ICONS, CATEGORY_LABELS } from '@/games/core/types';
+import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
 
 type TabType = 'stats' | 'badges' | 'history';
 
 export function ProfilePage() {
+  const { t } = useTranslation();
   const { stats, gameHistory, earnedBadges, badgeProgress, newBadges, clearNewBadges } = useUserStore();
   const [activeTab, setActiveTab] = useState<TabType>('stats');
   const [showBadgeModal, setShowBadgeModal] = useState<Badge | null>(null);
@@ -38,11 +40,17 @@ export function ProfilePage() {
   // Sorted badges
   const sortedBadges = useMemo(() => sortBadges(BADGES), []);
 
+  const tabLabels: Record<TabType, string> = {
+    stats: t('profile.stats'),
+    badges: t('profile.badges'),
+    history: t('profile.history'),
+  };
+
   return (
     <div className="p-4 max-w-lg mx-auto pb-24">
       <header className="mb-6 pt-4">
-        <h1 className="text-2xl font-bold">Profile</h1>
-        <p className="text-slate-400 text-sm">Your brain training journey</p>
+        <h1 className="text-2xl font-bold">{t('profile.title')}</h1>
+        <p className="text-slate-400 text-sm">{t('profile.subtitle')}</p>
       </header>
 
       {/* Quick stats */}
@@ -50,24 +58,24 @@ export function ProfilePage() {
         <div className="grid grid-cols-4 gap-2 text-center">
           <div>
             <div className="text-2xl font-bold text-primary-400">{stats.totalGamesPlayed}</div>
-            <div className="text-xs text-slate-500">Games</div>
+            <div className="text-xs text-slate-500">{t('profile.games')}</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-primary-400 flex items-center justify-center gap-1">
               <span className="text-lg">🔥</span>
               {stats.currentStreak}
             </div>
-            <div className="text-xs text-slate-500">Streak</div>
+            <div className="text-xs text-slate-500">{t('profile.streak')}</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-primary-400">{earnedBadges.length}</div>
-            <div className="text-xs text-slate-500">Badges</div>
+            <div className="text-xs text-slate-500">{t('profile.badges')}</div>
           </div>
           <div>
             <div className="text-2xl font-bold text-primary-400">
               {Math.round(stats.totalScore / 1000)}k
             </div>
-            <div className="text-xs text-slate-500">Points</div>
+            <div className="text-xs text-slate-500">{t('profile.points')}</div>
           </div>
         </div>
       </div>
@@ -84,7 +92,7 @@ export function ProfilePage() {
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {tabLabels[tab]}
           </button>
         ))}
       </div>
@@ -111,7 +119,7 @@ export function ProfilePage() {
           >
             <div className="card">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold">Achievements</h3>
+                <h3 className="font-semibold">{t('profile.achievements')}</h3>
                 <span className="text-sm text-slate-400">
                   {earnedBadges.length}/{BADGES.length}
                 </span>
@@ -132,7 +140,7 @@ export function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
-            <HistoryTab gameHistory={gameHistory} />
+            <HistoryTab gameHistory={gameHistory} t={t} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -144,6 +152,7 @@ export function ProfilePage() {
             badge={showBadgeModal}
             progress={progressMap.get(showBadgeModal.id)}
             onClose={() => setShowBadgeModal(null)}
+            t={t}
           />
         )}
       </AnimatePresence>
@@ -162,14 +171,14 @@ export function ProfilePage() {
 }
 
 // History tab component
-function HistoryTab({ gameHistory }: { gameHistory: { category: GameCategory; score: number; gameId: string; date: string; accuracy: number }[] }) {
+function HistoryTab({ gameHistory, t }: { gameHistory: { category: GameCategory; score: number; gameId: string; date: string; accuracy: number }[]; t: (key: string, options?: Record<string, unknown>) => string }) {
   if (gameHistory.length === 0) {
     return (
       <div className="card text-center py-8">
         <div className="text-5xl mb-4">📜</div>
-        <h3 className="text-lg font-semibold mb-2">No History Yet</h3>
+        <h3 className="text-lg font-semibold mb-2">{t('profile.noHistoryYet')}</h3>
         <p className="text-slate-400 text-sm">
-          Start playing to see your game history!
+          {t('profile.startPlaying')}
         </p>
       </div>
     );
@@ -188,7 +197,7 @@ function HistoryTab({ gameHistory }: { gameHistory: { category: GameCategory; sc
       {Object.entries(groupedHistory).slice(0, 7).map(([date, games]) => (
         <div key={date} className="card">
           <div className="text-sm text-slate-400 mb-3">
-            {formatDate(date)}
+            {formatDate(date, t)}
           </div>
           <div className="space-y-2">
             {games.map((result, index) => (
@@ -204,9 +213,9 @@ function HistoryTab({ gameHistory }: { gameHistory: { category: GameCategory; sc
                     {CATEGORY_ICONS[result.category]}
                   </span>
                   <div>
-                    <div className="text-sm font-medium">{formatGameName(result.gameId)}</div>
+                    <div className="text-sm font-medium">{t(`games.names.${result.gameId}`, { defaultValue: formatGameName(result.gameId) })}</div>
                     <div className="text-xs text-slate-500">
-                      {CATEGORY_LABELS[result.category]}
+                      {t(`games.categories.${result.category}`)}
                     </div>
                   </div>
                 </div>
@@ -232,10 +241,12 @@ function BadgeDetailModal({
   badge,
   progress,
   onClose,
+  t,
 }: {
   badge: Badge;
   progress?: BadgeProgress;
   onClose: () => void;
+  t: (key: string, options?: Record<string, unknown>) => string;
 }) {
   const isEarned = progress?.earnedAt != null;
   const progressPercent = progress
@@ -262,10 +273,10 @@ function BadgeDetailModal({
             {badge.icon}
           </div>
           <h3 className="text-xl font-bold mb-1">
-            {badge.secret && !isEarned ? '???' : badge.name}
+            {badge.secret && !isEarned ? t('profile.secretBadge') : badge.name}
           </h3>
           <p className="text-sm text-slate-400 mb-4">
-            {badge.secret && !isEarned ? 'Complete a secret challenge to unlock' : badge.description}
+            {badge.secret && !isEarned ? t('profile.secretBadgeHint') : badge.description}
           </p>
 
           {/* Progress */}
@@ -288,12 +299,12 @@ function BadgeDetailModal({
           {/* Earned date */}
           {isEarned && progress?.earnedAt && (
             <div className="text-sm text-slate-500 mb-4">
-              Earned on {formatDate(progress.earnedAt.split('T')[0])}
+              {t('profile.earnedOn', { date: formatDate(progress.earnedAt.split('T')[0], t) })}
             </div>
           )}
 
           <button onClick={onClose} className="btn-ghost w-full">
-            Close
+            {t('common.close')}
           </button>
         </div>
       </motion.div>
@@ -302,14 +313,14 @@ function BadgeDetailModal({
 }
 
 // Helper functions
-function formatDate(dateStr: string): string {
+function formatDate(dateStr: string, t: (key: string) => string): string {
   const date = new Date(dateStr);
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
 
-  if (dateStr === today.toISOString().split('T')[0]) return 'Today';
-  if (dateStr === yesterday.toISOString().split('T')[0]) return 'Yesterday';
+  if (dateStr === today.toISOString().split('T')[0]) return t('common.today');
+  if (dateStr === yesterday.toISOString().split('T')[0]) return t('common.yesterday');
 
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { GAMES, getGameInfo } from '@/games/registry';
@@ -43,6 +44,7 @@ function generateWorkoutGames(seed: number): string[] {
 
 export function DailyWorkout() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const feedback = useFeedback();
   const {
     dailyWorkoutGames,
@@ -115,7 +117,7 @@ export function DailyWorkout() {
             onClick={handleGoHome}
             className="text-slate-400 hover:text-white"
           >
-            ← Back
+            ← {t('common.back')}
           </button>
         </div>
 
@@ -126,13 +128,13 @@ export function DailyWorkout() {
             className="text-center max-w-sm"
           >
             <div className="text-7xl mb-4">🏋️</div>
-            <h1 className="text-2xl font-bold mb-2">Daily Workout</h1>
+            <h1 className="text-2xl font-bold mb-2">{t('workout.title')}</h1>
             <p className="text-slate-400 mb-6">
-              Complete 5 curated games to train all areas of your brain!
+              {t('workout.description')}
             </p>
 
             <div className="card mb-6">
-              <h3 className="font-semibold mb-3">Today's Games:</h3>
+              <h3 className="font-semibold mb-3">{t('workout.todaysGames')}</h3>
               <div className="space-y-2">
                 {workoutGames.map((gameId) => {
                   const game = getGameInfo(gameId);
@@ -143,9 +145,9 @@ export function DailyWorkout() {
                     >
                       <span className="text-2xl">{game?.icon}</span>
                       <div>
-                        <div className="font-medium text-sm">{game?.name}</div>
-                        <div className="text-xs text-slate-500 capitalize">
-                          {game?.category}
+                        <div className="font-medium text-sm">{t(`games.names.${gameId}`, { defaultValue: game?.name })}</div>
+                        <div className="text-xs text-slate-500">
+                          {t(`games.categories.${game?.category}`)}
                         </div>
                       </div>
                     </div>
@@ -155,7 +157,7 @@ export function DailyWorkout() {
             </div>
 
             <button onClick={handleStartWorkout} className="btn-primary w-full">
-              Start Workout
+              {t('workout.startWorkout')}
             </button>
           </motion.div>
         </div>
@@ -197,9 +199,9 @@ export function DailyWorkout() {
           >
             🏆
           </motion.div>
-          <h1 className="text-2xl font-bold mb-2">Workout Complete!</h1>
+          <h1 className="text-2xl font-bold mb-2">{t('workout.completed')}</h1>
           <p className="text-slate-400 mb-6">
-            Great job! You've completed today's brain workout.
+            {t('workout.completedMessage')}
           </p>
 
           <div className="card mb-6">
@@ -213,7 +215,7 @@ export function DailyWorkout() {
                 >
                   {stats.currentStreak}
                 </motion.div>
-                <div className="text-xs text-slate-400">Day Streak</div>
+                <div className="text-xs text-slate-400">{t('workout.dayStreak')}</div>
               </div>
               <div>
                 <motion.div
@@ -224,13 +226,13 @@ export function DailyWorkout() {
                 >
                   {stats.totalGamesPlayed}
                 </motion.div>
-                <div className="text-xs text-slate-400">Total Games</div>
+                <div className="text-xs text-slate-400">{t('workout.totalGames')}</div>
               </div>
             </div>
           </div>
 
           <button onClick={() => { feedback.tap(); handleGoHome(); }} className="btn-primary w-full">
-            Back to Home
+            {t('workout.backToHome')}
           </button>
         </motion.div>
       </div>
@@ -245,7 +247,7 @@ export function DailyWorkout() {
   if (workoutGames.length === 0) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center">
-        <div className="text-xl text-slate-400">Loading workout...</div>
+        <div className="text-xl text-slate-400">{t('workout.loading')}</div>
       </div>
     );
   }
@@ -257,10 +259,10 @@ export function DailyWorkout() {
           onClick={handleGoHome}
           className="text-slate-400 hover:text-white"
         >
-          ← Back
+          ← {t('common.back')}
         </button>
         <div className="text-sm text-slate-400">
-          {dailyWorkoutProgress + 1} of {WORKOUT_SIZE}
+          {dailyWorkoutProgress + 1} {t('workout.of')} {WORKOUT_SIZE}
         </div>
       </div>
 
@@ -304,9 +306,9 @@ export function DailyWorkout() {
                   {isCompleted ? '✓' : game?.icon}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold">{game?.name}</div>
-                  <div className="text-sm text-slate-400 capitalize">
-                    {game?.category}
+                  <div className="font-semibold">{t(`games.names.${gameId}`, { defaultValue: game?.name })}</div>
+                  <div className="text-sm text-slate-400">
+                    {t(`games.categories.${game?.category}`)}
                   </div>
                 </div>
                 {isCurrent && (
@@ -315,11 +317,11 @@ export function DailyWorkout() {
                     transition={{ repeat: Infinity, duration: 1.5 }}
                     className="text-primary-400 text-sm font-bold"
                   >
-                    NEXT
+                    {t('workout.next')}
                   </motion.div>
                 )}
                 {isCompleted && (
-                  <div className="text-green-400 text-sm">Done!</div>
+                  <div className="text-green-400 text-sm">{t('workout.done')}</div>
                 )}
               </motion.div>
             );
@@ -337,7 +339,7 @@ export function DailyWorkout() {
               onClick={() => handlePlayGame(currentGameId)}
               className="btn-primary w-full max-w-sm"
             >
-              Play {currentGame.name}
+              {t('workout.play', { game: t(`games.names.${currentGameId}`, { defaultValue: currentGame.name }) })}
             </motion.button>
           )}
         </AnimatePresence>

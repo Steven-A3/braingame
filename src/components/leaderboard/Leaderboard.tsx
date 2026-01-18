@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useUserStore } from '@/stores/userStore';
 import { getGameInfo } from '@/games/registry';
@@ -9,6 +10,7 @@ type TimeFilter = 'today' | 'week' | 'allTime';
 
 export function Leaderboard() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { gameHistory, stats, name } = useUserStore();
 
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('allTime');
@@ -115,9 +117,9 @@ export function Leaderboard() {
             onClick={handleGoHome}
             className="text-slate-400 hover:text-white"
           >
-            ← Back
+            ← {t('common.back')}
           </button>
-          <h1 className="text-lg font-bold">Leaderboard</h1>
+          <h1 className="text-lg font-bold">{t('leaderboard.title')}</h1>
           <div className="w-12" /> {/* Spacer */}
         </div>
 
@@ -133,9 +135,9 @@ export function Leaderboard() {
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
               }`}
             >
-              {filter === 'today' && 'Today'}
-              {filter === 'week' && 'This Week'}
-              {filter === 'allTime' && 'All Time'}
+              {filter === 'today' && t('leaderboard.today')}
+              {filter === 'week' && t('leaderboard.thisWeek')}
+              {filter === 'allTime' && t('leaderboard.allTime')}
             </button>
           ))}
         </div>
@@ -153,9 +155,9 @@ export function Leaderboard() {
               🏆
             </div>
             <div>
-              <div className="font-bold text-lg">{name || 'Brain Trainer'}</div>
+              <div className="font-bold text-lg">{name || t('leaderboard.player')}</div>
               <div className="text-sm text-slate-400">
-                {filteredResults.length} games played
+                {t('leaderboard.gamesPlayed', { count: filteredResults.length })}
               </div>
             </div>
           </div>
@@ -165,7 +167,7 @@ export function Leaderboard() {
               <div className="text-2xl font-bold text-primary-400">
                 {filteredResults.reduce((sum, r) => sum + r.score, 0).toLocaleString()}
               </div>
-              <div className="text-xs text-slate-400">Total Score</div>
+              <div className="text-xs text-slate-400">{t('leaderboard.totalScore')}</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary-400">
@@ -176,13 +178,13 @@ export function Leaderboard() {
                     )
                   : 0}
               </div>
-              <div className="text-xs text-slate-400">Avg Score</div>
+              <div className="text-xs text-slate-400">{t('leaderboard.avgScore')}</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary-400">
                 {stats.currentStreak}
               </div>
-              <div className="text-xs text-slate-400">Day Streak</div>
+              <div className="text-xs text-slate-400">{t('leaderboard.dayStreak')}</div>
             </div>
           </div>
         </motion.div>
@@ -190,7 +192,7 @@ export function Leaderboard() {
         {/* Category breakdown */}
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-slate-400 mb-3">
-            BY CATEGORY
+            {t('leaderboard.byCategory')}
           </h2>
           <div className="grid grid-cols-2 gap-2">
             {categoryStats.map((cat) => (
@@ -209,12 +211,12 @@ export function Leaderboard() {
                     {cat.category === 'language' && '📝'}
                     {cat.category === 'speed' && '⚡'}
                   </span>
-                  <span className="text-sm font-medium capitalize">
-                    {cat.category}
+                  <span className="text-sm font-medium">
+                    {t(`games.categories.${cat.category}`)}
                   </span>
                 </div>
                 <div className="text-xs text-slate-400">
-                  {cat.gamesPlayed} games • Best: {cat.bestScore}
+                  {t('leaderboard.gamesAndBest', { games: cat.gamesPlayed, best: cat.bestScore })}
                 </div>
               </motion.div>
             ))}
@@ -224,13 +226,13 @@ export function Leaderboard() {
         {/* Personal bests */}
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-slate-400 mb-3">
-            PERSONAL BESTS
+            {t('leaderboard.personalBests')}
           </h2>
 
           {personalBests.length === 0 ? (
             <div className="text-center py-8 text-slate-500">
               <div className="text-4xl mb-2">🎮</div>
-              <p>Play some games to see your scores here!</p>
+              <p>{t('leaderboard.noScoresYet')}</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -263,7 +265,7 @@ export function Leaderboard() {
                   {/* Game info */}
                   <div className="text-2xl">{entry.gameIcon}</div>
                   <div className="flex-1">
-                    <div className="font-medium text-sm">{entry.gameName}</div>
+                    <div className="font-medium text-sm">{t(`games.names.${entry.gameId}`, { defaultValue: entry.gameName })}</div>
                     <div className="text-xs text-slate-500">{entry.date}</div>
                   </div>
 
@@ -272,7 +274,7 @@ export function Leaderboard() {
                     <div className="font-bold text-primary-400">
                       {entry.score.toLocaleString()}
                     </div>
-                    <div className="text-xs text-slate-500">pts</div>
+                    <div className="text-xs text-slate-500">{t('leaderboard.pts')}</div>
                   </div>
                 </motion.div>
               ))}
@@ -300,7 +302,7 @@ export function Leaderboard() {
                     {getGameInfo(selectedGame)?.icon}
                   </span>
                   <h3 className="font-bold">
-                    {getGameInfo(selectedGame)?.name}
+                    {t(`games.names.${selectedGame}`, { defaultValue: getGameInfo(selectedGame)?.name })}
                   </h3>
                 </div>
                 <button
@@ -311,11 +313,11 @@ export function Leaderboard() {
                 </button>
               </div>
 
-              <div className="text-sm text-slate-400 mb-4">Your Top Scores</div>
+              <div className="text-sm text-slate-400 mb-4">{t('leaderboard.yourTopScores')}</div>
 
               {gameLeaderboard.length === 0 ? (
                 <div className="text-center py-6 text-slate-500">
-                  No scores yet for this game
+                  {t('leaderboard.noScoresForGame')}
                 </div>
               ) : (
                 <div className="space-y-2">
@@ -352,7 +354,7 @@ export function Leaderboard() {
                 onClick={() => navigate(`/play/${selectedGame}`)}
                 className="btn-primary w-full mt-4"
               >
-                Play Again
+                {t('leaderboard.playAgain')}
               </button>
             </motion.div>
           </motion.div>

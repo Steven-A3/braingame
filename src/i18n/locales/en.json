@@ -99,13 +99,23 @@
   "workout": {
     "title": "Daily Workout",
     "subtitle": "Complete 5 games to finish your daily workout",
+    "description": "Complete 5 curated games to train all areas of your brain!",
+    "todaysGames": "Today's Games:",
     "game": "Game",
     "of": "of",
     "completed": "Workout Complete!",
+    "completedMessage": "Great job! You've completed today's brain workout.",
     "streakBonus": "Streak Bonus",
+    "dayStreak": "Day Streak",
+    "totalGames": "Total Games",
     "start": "Start",
+    "startWorkout": "Start Workout",
     "continue": "Continue",
-    "done": "Done"
+    "done": "Done",
+    "next": "NEXT",
+    "backToHome": "Back to Home",
+    "loading": "Loading workout...",
+    "play": "Play {{game}}"
   },
   "quests": {
     "title": "Daily Quests",
@@ -172,7 +182,19 @@
     "history": "History",
     "thisWeek": "This Week",
     "thisMonth": "This Month",
-    "allTime": "All Time"
+    "allTime": "All Time",
+    "7days": "7 Days",
+    "30days": "30 Days",
+    "games": "Games",
+    "avgScore": "Avg Score",
+    "accuracy": "Accuracy",
+    "scoreTrend": "Score Trend",
+    "playMoreGames": "Play more games to see trends",
+    "categoryPerformance": "Category Performance",
+    "noDataForPeriod": "No data for selected period",
+    "brainBalance": "Brain Balance",
+    "gamesAvg": "{{games}} games · {{avg}} avg",
+    "noGamesInPeriod": "No games played in this period"
   },
   "leaderboard": {
     "title": "Leaderboard",
@@ -182,7 +204,21 @@
     "you": "You",
     "daily": "Daily",
     "weekly": "Weekly",
-    "allTime": "All Time"
+    "allTime": "All Time",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "gamesPlayed": "{{count}} games played",
+    "totalScore": "Total Score",
+    "avgScore": "Avg Score",
+    "dayStreak": "Day Streak",
+    "byCategory": "BY CATEGORY",
+    "personalBests": "PERSONAL BESTS",
+    "noScoresYet": "Play some games to see your scores here!",
+    "pts": "pts",
+    "yourTopScores": "Your Top Scores",
+    "noScoresForGame": "No scores yet for this game",
+    "playAgain": "Play Again",
+    "gamesAndBest": "{{games}} games • Best: {{best}}"
   },
   "settings": {
     "title": "Settings",
@@ -268,6 +304,33 @@
     "hours": "hours",
     "minutes": "minutes",
     "seconds": "seconds"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Your brain training journey",
+    "games": "Games",
+    "streak": "Streak",
+    "badges": "Badges",
+    "points": "Points",
+    "stats": "Stats",
+    "history": "History",
+    "achievements": "Achievements",
+    "noHistoryYet": "No History Yet",
+    "startPlaying": "Start playing to see your game history!",
+    "earnedOn": "Earned on {{date}}",
+    "secretBadge": "???",
+    "secretBadgeHint": "Complete a secret challenge to unlock"
+  },
+  "stats": {
+    "noStatsYet": "No Stats Yet",
+    "playToSeeStats": "Play some games to see your brain stats!",
+    "brainScore": "Brain Score",
+    "rank": "Rank",
+    "weeklyProgress": "Weekly Progress",
+    "categoryBalance": "Category Balance",
+    "categoryDetails": "Category Details",
+    "gamesPlayed": "{{count}} games played",
+    "topPercent": "Top {{percent}}%"
   },
   "share": {
     "title": "Share your score",

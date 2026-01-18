@@ -105,7 +105,17 @@
     "streakBonus": "Stribe-bonus",
     "start": "Start",
     "continue": "Fortsæt",
-    "done": "Færdig"
+    "done": "Færdig",
+    "description": "Gennemfør 5 udvalgte spil for at træne alle områder af din hjerne!",
+    "todaysGames": "Dagens spil:",
+    "completedMessage": "Godt gået! Du har gennemført dagens hjernetræning.",
+    "dayStreak": "Dage i træk",
+    "totalGames": "Samlede spil",
+    "startWorkout": "Start træning",
+    "next": "NÆSTE",
+    "backToHome": "Tilbage til hjem",
+    "loading": "Indlæser træning...",
+    "play": "Spil {{game}}"
   },
   "quests": {
     "title": "Daglige missioner",
@@ -172,7 +182,19 @@
     "history": "Historik",
     "thisWeek": "Denne uge",
     "thisMonth": "Denne måned",
-    "allTime": "Alt tid"
+    "allTime": "Alt tid",
+    "7days": "7 dage",
+    "30days": "30 dage",
+    "games": "Spil",
+    "avgScore": "Gennemsnitsscore",
+    "accuracy": "Nøjagtighed",
+    "scoreTrend": "Score-tendens",
+    "playMoreGames": "Spil mere for at se tendenser",
+    "categoryPerformance": "Præstation per kategori",
+    "noDataForPeriod": "Ingen data for valgt periode",
+    "brainBalance": "Hjernebalance",
+    "gamesAvg": "{{games}} spil · {{avg}} gns",
+    "noGamesInPeriod": "Ingen spil spillet i denne periode"
   },
   "leaderboard": {
     "title": "Rangliste",
@@ -182,7 +204,21 @@
     "you": "Dig",
     "daily": "Daglig",
     "weekly": "Ugentlig",
-    "allTime": "Samlet"
+    "allTime": "Samlet",
+    "today": "I dag",
+    "thisWeek": "Denne uge",
+    "gamesPlayed": "{{count}} spil spillet",
+    "totalScore": "Total score",
+    "avgScore": "Gennemsnitsscore",
+    "dayStreak": "Dage i træk",
+    "byCategory": "EFTER KATEGORI",
+    "personalBests": "PERSONLIGE REKORDER",
+    "noScoresYet": "Spil spil for at se dine scores her!",
+    "pts": "pt",
+    "yourTopScores": "Dine topresultater",
+    "noScoresForGame": "Ingen scores for dette spil endnu",
+    "playAgain": "Spil igen",
+    "gamesAndBest": "{{games}} spil • Bedst: {{best}}"
   },
   "settings": {
     "title": "Indstillinger",
@@ -284,5 +320,32 @@
     "copied": "Kode kopieret!",
     "friendsJoined": "{{count}} ven har tilmeldt sig!",
     "friendsJoined_other": "{{count}} venner har tilmeldt sig!"
+  },
+  "profile": {
+    "title": "Profil",
+    "subtitle": "Din hjernetræningsrejse",
+    "games": "Spil",
+    "streak": "Række",
+    "badges": "Badges",
+    "points": "Point",
+    "stats": "Statistik",
+    "history": "Historik",
+    "achievements": "Præstationer",
+    "noHistoryYet": "Ingen historik endnu",
+    "startPlaying": "Begynd at spille for at se din spilhistorik!",
+    "earnedOn": "Optjent den {{date}}",
+    "secretBadge": "???",
+    "secretBadgeHint": "Gennemfør en hemmelig udfordring for at låse op"
+  },
+  "stats": {
+    "noStatsYet": "Ingen statistik endnu",
+    "playToSeeStats": "Spil spil for at se din hjernestatistik!",
+    "brainScore": "Hjerne-score",
+    "rank": "Rang",
+    "weeklyProgress": "Ugentlig fremgang",
+    "categoryBalance": "Kategoribalance",
+    "categoryDetails": "Kategoridetaljer",
+    "gamesPlayed": "{{count}} spil spillet",
+    "topPercent": "Top {{percent}}%"
   }
 }

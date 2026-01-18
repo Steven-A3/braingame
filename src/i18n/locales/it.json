@@ -99,13 +99,23 @@
   "workout": {
     "title": "Allenamento giornaliero",
     "subtitle": "Completa 5 giochi per finire il tuo allenamento",
+    "description": "Completa 5 giochi selezionati per allenare tutte le aree del tuo cervello!",
+    "todaysGames": "Giochi di oggi:",
     "game": "Gioco",
     "of": "di",
     "completed": "Allenamento completato!",
+    "completedMessage": "Ottimo lavoro! Hai completato l'allenamento cerebrale di oggi.",
     "streakBonus": "Bonus serie",
+    "dayStreak": "Giorni consecutivi",
+    "totalGames": "Giochi totali",
     "start": "Inizia",
+    "startWorkout": "Inizia allenamento",
     "continue": "Continua",
-    "done": "Fatto"
+    "done": "Fatto",
+    "next": "AVANTI",
+    "backToHome": "Torna alla home",
+    "loading": "Caricamento allenamento...",
+    "play": "Gioca a {{game}}"
   },
   "quests": {
     "title": "Missioni giornaliere",
@@ -172,7 +182,19 @@
     "history": "Cronologia",
     "thisWeek": "Questa settimana",
     "thisMonth": "Questo mese",
-    "allTime": "Da sempre"
+    "allTime": "Da sempre",
+    "7days": "7 giorni",
+    "30days": "30 giorni",
+    "games": "Giochi",
+    "avgScore": "Punteggio medio",
+    "accuracy": "Precisione",
+    "scoreTrend": "Tendenza punteggio",
+    "playMoreGames": "Gioca di più per vedere le tendenze",
+    "categoryPerformance": "Prestazioni per categoria",
+    "noDataForPeriod": "Nessun dato per il periodo selezionato",
+    "brainBalance": "Equilibrio cerebrale",
+    "gamesAvg": "{{games}} giochi · {{avg}} media",
+    "noGamesInPeriod": "Nessun gioco giocato in questo periodo"
   },
   "leaderboard": {
     "title": "Classifica",
@@ -182,7 +204,21 @@
     "you": "Tu",
     "daily": "Giornaliero",
     "weekly": "Settimanale",
-    "allTime": "Generale"
+    "allTime": "Generale",
+    "today": "Oggi",
+    "thisWeek": "Questa settimana",
+    "gamesPlayed": "{{count}} giochi giocati",
+    "totalScore": "Punteggio totale",
+    "avgScore": "Punteggio medio",
+    "dayStreak": "Giorni consecutivi",
+    "byCategory": "PER CATEGORIA",
+    "personalBests": "RECORD PERSONALI",
+    "noScoresYet": "Gioca alcuni giochi per vedere i tuoi punteggi qui!",
+    "pts": "pts",
+    "yourTopScores": "I tuoi migliori punteggi",
+    "noScoresForGame": "Nessun punteggio per questo gioco ancora",
+    "playAgain": "Gioca ancora",
+    "gamesAndBest": "{{games}} giochi • Migliore: {{best}}"
   },
   "settings": {
     "title": "Impostazioni",
@@ -235,6 +271,33 @@
     "skip": "Salta",
     "next": "Avanti",
     "getStarted": "Iniziamo!"
+  },
+  "profile": {
+    "title": "Profilo",
+    "subtitle": "Il tuo percorso di allenamento cerebrale",
+    "games": "Giochi",
+    "streak": "Serie",
+    "badges": "Badge",
+    "points": "Punti",
+    "stats": "Statistiche",
+    "history": "Cronologia",
+    "achievements": "Risultati",
+    "noHistoryYet": "Nessuna cronologia ancora",
+    "startPlaying": "Inizia a giocare per vedere la tua cronologia di gioco!",
+    "earnedOn": "Ottenuto il {{date}}",
+    "secretBadge": "???",
+    "secretBadgeHint": "Completa una sfida segreta per sbloccare"
+  },
+  "stats": {
+    "noStatsYet": "Nessuna statistica ancora",
+    "playToSeeStats": "Gioca alcuni giochi per vedere le tue statistiche cerebrali!",
+    "brainScore": "Punteggio cerebrale",
+    "rank": "Posizione",
+    "weeklyProgress": "Progresso settimanale",
+    "categoryBalance": "Equilibrio delle categorie",
+    "categoryDetails": "Dettagli delle categorie",
+    "gamesPlayed": "{{count}} giochi giocati",
+    "topPercent": "Top {{percent}}%"
   },
   "common": {
     "loading": "Caricamento...",
