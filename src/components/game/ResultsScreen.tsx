@@ -10,6 +10,7 @@ import { Confetti, EmojiBurst } from '@/components/ui/Confetti';
 import { useFeedback } from '@/hooks/useFeedback';
 import { SocialShareButtons } from '@/components/ui/SocialShareButtons';
 import { ResultsAd } from '@/components/ads/AdUnit';
+import { Elly } from '@/components/mascot';
 
 interface ResultsScreenProps {
   result: GameResult;
@@ -108,15 +109,18 @@ export function ResultsScreen({ result, gameInfo, onPlayAgain, onGoHome }: Resul
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-sm"
       >
-        {/* Header */}
+        {/* Header with Elly */}
         <div className="text-center mb-6">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
-            className="text-6xl mb-4"
+            className="mb-4 flex justify-center"
           >
-            {isPerfect ? '🏆' : result.levelsCompleted === result.maxLevel ? '🎉' : '👏'}
+            <Elly
+              size={80}
+              state={isPerfect || result.levelsCompleted === result.maxLevel ? 'happy' : 'encourage'}
+            />
           </motion.div>
           <h1 className="text-2xl font-bold mb-1">
             {isPerfect ? 'Perfect!' : result.levelsCompleted === result.maxLevel ? 'Challenge Complete!' : 'Good Effort!'}
