@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'prompt',
-      includeAssets: ['favicon.ico', 'favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png', 'icons/*.png', 'logo.svg'],
+      includeAssets: ['favicon.ico', 'favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png', 'icons/*.png', 'logo.svg', 'soft_happy_elli.svg', 'neutral_smile_elli.svg', 'gentle_encourage_elli.svg'],
       manifest: {
         name: 'Daily Brain - Free Brain Training Games',
         short_name: 'Daily Brain',
