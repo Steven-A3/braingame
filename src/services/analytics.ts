@@ -170,14 +170,114 @@ export function trackShare(
   });
 }
 
+export function trackShareButtonClick(): void {
+  trackEvent('share_button_click', {
+    event_category: 'share',
+  });
+}
+
+export function trackShareQrSave(): void {
+  trackEvent('share_qr_save', {
+    event_category: 'share',
+    method: 'qr_code',
+  });
+}
+
+export function trackShareNative(method: string): void {
+  trackEvent('share_native', {
+    event_category: 'share',
+    method,
+  });
+}
+
 export function trackReferral(referralCode: string): void {
   trackEvent('referral_signup', {
     referral_code: referralCode,
   });
 }
 
+export function trackReferralCodeCopied(): void {
+  trackEvent('referral_code_copied', {
+    event_category: 'referral',
+  });
+}
+
+export function trackReferralLinkShared(): void {
+  trackEvent('referral_link_shared', {
+    event_category: 'referral',
+  });
+}
+
+// ============================================
+// PWA EVENTS
+// ============================================
+
 export function trackPWAInstall(): void {
   trackEvent('pwa_install');
+}
+
+export function trackPwaUpdatePrompted(): void {
+  trackEvent('pwa_update_prompted', {
+    event_category: 'pwa',
+  });
+}
+
+export function trackPwaUpdateAccepted(): void {
+  trackEvent('pwa_update_accepted', {
+    event_category: 'pwa',
+  });
+}
+
+export function trackPwaUpdateDismissed(): void {
+  trackEvent('pwa_update_dismissed', {
+    event_category: 'pwa',
+  });
+}
+
+// ============================================
+// ONBOARDING EVENTS
+// ============================================
+
+export function trackOnboardingStart(): void {
+  trackEvent('onboarding_start', {
+    event_category: 'onboarding',
+  });
+}
+
+export function trackOnboardingComplete(language: string): void {
+  trackEvent('onboarding_complete', {
+    event_category: 'onboarding',
+    language,
+  });
+}
+
+export function trackLanguageSelected(language: string, source: 'onboarding' | 'settings'): void {
+  trackEvent('language_selected', {
+    event_category: 'settings',
+    language,
+    source,
+  });
+}
+
+// ============================================
+// NAVIGATION EVENTS
+// ============================================
+
+export function trackCategoryLandingView(category: string, slug: string): void {
+  trackEvent('category_landing_view', {
+    event_category: 'navigation',
+    category,
+    page_slug: slug,
+  });
+}
+
+export function trackGameCardClick(gameId: string, category: string, location: string): void {
+  trackEvent('game_card_click', {
+    event_category: 'navigation',
+    game_id: gameId,
+    game_category: category,
+    location,
+  });
 }
 
 // ============================================

@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { trackPwaUpdatePrompted, trackPwaUpdateAccepted, trackPwaUpdateDismissed } from '@/services/analytics';
 
 export function UpdatePrompt() {
   const { t } = useTranslation();
@@ -22,11 +24,20 @@ export function UpdatePrompt() {
     },
   });
 
+  // Track when update prompt is shown
+  useEffect(() => {
+    if (needRefresh) {
+      trackPwaUpdatePrompted();
+    }
+  }, [needRefresh]);
+
   const handleUpdate = () => {
+    trackPwaUpdateAccepted();
     updateServiceWorker(true);
   };
 
   const handleClose = () => {
+    trackPwaUpdateDismissed();
     setNeedRefresh(false);
   };
 

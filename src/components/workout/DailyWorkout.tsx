@@ -7,6 +7,7 @@ import { GAMES, getGameInfo } from '@/games/registry';
 import { getGameSeed } from '@/games/core/SeededRNG';
 import { Confetti, EmojiBurst } from '@/components/ui/Confetti';
 import { useFeedback } from '@/hooks/useFeedback';
+import { trackWorkoutStart, trackWorkoutComplete } from '@/services/analytics';
 import type { GameCategory } from '@/games/core/types';
 
 const WORKOUT_SIZE = 5;
@@ -87,6 +88,7 @@ export function DailyWorkout() {
 
   const handleStartWorkout = () => {
     feedback.tap();
+    trackWorkoutStart();
     // Ensure workout is saved to store
     if (dailyWorkoutGames.length === 0 && workoutGames.length > 0) {
       startDailyWorkout(workoutGames);
@@ -171,6 +173,8 @@ export function DailyWorkout() {
       setShowConfetti(true);
       setShowEmoji(true);
       feedback.achievement();
+      // Track workout completion
+      trackWorkoutComplete(WORKOUT_SIZE, 0); // Score is tracked per-game
       const timer = setTimeout(() => {
         setShowConfetti(false);
         setShowEmoji(false);
