@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeCanvas } from 'qrcode.react';
 import { useTranslation } from 'react-i18next';
+import { trackShareButtonClick, trackShareQrSave, trackShareNative } from '@/services/analytics';
 
 const SITE_URL = 'https://dailybrain.one';
 
@@ -108,6 +109,7 @@ export function ShareButton() {
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
 
+        trackShareQrSave();
         setIsSaving(false);
       }, 'image/png');
 
@@ -124,7 +126,10 @@ export function ShareButton() {
         className="fixed bottom-24 right-4 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-lg shadow-purple-500/30 flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          trackShareButtonClick();
+        }}
         aria-label={t('share.share', 'Share')}
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,6 +221,8 @@ export function ShareButton() {
                       title: 'Daily Brain - Free Brain Games',
                       text: t('share.shareText', 'Train your brain with free games!'),
                       url: SITE_URL,
+                    }).then(() => {
+                      trackShareNative('native_share');
                     }).catch(() => {});
                   }}
                   className="w-full py-3 px-4 rounded-xl border border-slate-600 text-slate-300 font-medium mt-3 flex items-center justify-center gap-2"

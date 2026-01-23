@@ -7,6 +7,7 @@ import { GAMES } from '@/games/registry';
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '@/games/core/types';
 import type { GameCategory } from '@/games/core/types';
 import { Elly } from '@/components/mascot';
+import { trackCategoryLandingView, trackGameCardClick } from '@/services/analytics';
 
 // SEO metadata for each category
 const CATEGORY_SEO: Record<string, {
@@ -87,7 +88,10 @@ export function CategoryLandingPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [categorySlug]);
+    if (seoData) {
+      trackCategoryLandingView(seoData.category, categorySlug);
+    }
+  }, [categorySlug, seoData]);
 
   if (!seoData) {
     return (
@@ -171,6 +175,7 @@ export function CategoryLandingPage() {
                   <Link
                     to={`/play/${game.id}`}
                     className="card flex items-center gap-4 hover:bg-slate-800/80 transition-colors"
+                    onClick={() => trackGameCardClick(game.id, game.category, 'category_landing')}
                   >
                     <div
                       className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"

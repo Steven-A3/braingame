@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useFeedback } from '@/hooks/useFeedback';
 import { languages } from '@/i18n';
 import { Elly } from '@/components/mascot';
 import type { EllyState } from '@/components/mascot';
+import { trackOnboardingStart, trackOnboardingComplete, trackLanguageSelected } from '@/services/analytics';
 
 interface OnboardingProps {
   onComplete: () => void;
@@ -56,9 +57,15 @@ export function Onboarding({ onComplete }: OnboardingProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const feedback = useFeedback();
 
+  // Track onboarding start
+  useEffect(() => {
+    trackOnboardingStart();
+  }, []);
+
   const handleLanguageSelect = (langCode: string) => {
     feedback.tap();
     i18n.changeLanguage(langCode);
+    trackLanguageSelected(langCode, 'onboarding');
   };
 
   const handleNext = () => {
@@ -67,6 +74,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
       setCurrentStep(currentStep + 1);
     } else {
       feedback.complete();
+      trackOnboardingComplete(i18n.language);
       onComplete();
     }
   };
@@ -80,6 +88,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
 
   const handleSkip = () => {
     feedback.tap();
+    trackOnboardingComplete(i18n.language); // Track even when skipped
     onComplete();
   };
 
