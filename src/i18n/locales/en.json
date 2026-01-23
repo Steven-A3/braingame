@@ -337,7 +337,14 @@
   "share": {
     "title": "Share your score",
     "message": "I scored {{score}} points in {{game}} on Daily Brain! Can you beat me?",
-    "copied": "Copied to clipboard!"
+    "copied": "Copied to clipboard!",
+    "share": "Share",
+    "shareApp": "Share Daily Brain",
+    "scanToPlay": "Scan to play free brain games!",
+    "saveImage": "Save QR Code Image",
+    "saving": "Saving...",
+    "shareText": "Train your brain with free games!",
+    "shareOther": "Share via..."
   },
   "invite": {
     "title": "Invite Friends",

@@ -15,6 +15,7 @@ import { Leaderboard } from '@/components/leaderboard';
 import { Settings } from '@/components/settings';
 import { ProgressCharts } from '@/components/charts';
 import { UpdatePrompt } from '@/components/pwa';
+import { ShareButton } from '@/components/share';
 import { useUserStore } from '@/stores/userStore';
 import { checkReferralCode } from '@/services/referral';
 
@@ -81,6 +82,7 @@ export function App() {
             <Route path="/:categorySlug" element={<CategoryLandingPage />} />
           </Routes>
         </OnboardingGuard>
+        <ShareButton />
         <UpdatePrompt />
       </BrowserRouter>
     </Suspense>
