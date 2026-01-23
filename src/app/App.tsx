@@ -8,6 +8,7 @@ import { GamesPage } from './routes/GamesPage';
 import { ProfilePage } from './routes/ProfilePage';
 import { GamePlayPage } from './routes/GamePlayPage';
 import { QuestsPage } from './routes/QuestsPage';
+import { CategoryLandingPage } from './routes/CategoryLandingPage';
 import { Onboarding } from '@/components/onboarding';
 import { DailyWorkout } from '@/components/workout';
 import { Leaderboard } from '@/components/leaderboard';
@@ -70,6 +71,14 @@ export function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/progress" element={<ProgressCharts />} />
             <Route path="/quests" element={<QuestsPage />} />
+            {/* SEO Landing Pages */}
+            <Route path="/memory-games" element={<CategoryLandingPage />} />
+            <Route path="/logic-puzzles" element={<CategoryLandingPage />} />
+            <Route path="/focus-games" element={<CategoryLandingPage />} />
+            <Route path="/math-games" element={<CategoryLandingPage />} />
+            <Route path="/word-games" element={<CategoryLandingPage />} />
+            <Route path="/speed-games" element={<CategoryLandingPage />} />
+            <Route path="/:categorySlug" element={<CategoryLandingPage />} />
           </Routes>
         </OnboardingGuard>
         <UpdatePrompt />
